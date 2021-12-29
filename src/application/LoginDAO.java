@@ -12,30 +12,32 @@ public class LoginDAO {
 	String URL = "jdbc:mysql://127.0.0.1:3306/super_chat_pal_crm";
 	String uname = "root";
 	String pass = "masiqi93";
-	boolean duplicate = false;
 	
-	public boolean checkDuplicate() {
-		if (this.duplicate = true) {
-			return true;
-		} else {
-			return false;
-		}
-	}
 	
-	public boolean checkUserExist(String email) throws SQLException {
+	public boolean checkUserExist(String email) {
 		
 		String query = "SELECT * FROM login";
 		
-		Connection con = DriverManager.getConnection(URL, uname, pass);
-		Statement st = con.createStatement();
-		ResultSet rs = st.executeQuery(query);
-		
-		// loop result set that if email exist in database
-		while(rs.next()) {
-			if(rs.getString("email").equals(email)) {
-				return true;
+		Connection con;
+		try {
+			con = DriverManager.getConnection(URL, uname, pass);
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(query);
+			
+			// loop result set that if email exist in database
+			while(rs.next()) {
+				if(rs.getString("email").equals(email)) {
+					return true;
+				}
 			}
+			
+			return false;
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		
 		
 		return false;
 		
@@ -65,19 +67,12 @@ public class LoginDAO {
 		return login;
 	}
 	
-	public void register(String email, String password, String full_name, int auth_level) {
+	public void register(String email, String password, String full_name, int auth_level) throws SQLException {
 		
 		// Testing duplicate entry
-		Login login = new Login();
-		try {
-			login = this.getLogin(email);
-			if (login.getEmail().equals(email)){
-				duplicate = true;
-				return;
-			}
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			//e1.printStackTrace();
+		
+		if (checkUserExist(email)) {
+			return;
 		}
 		
 		String query = "INSERT INTO login VALUES (DEFAULT,?,?,?,?)";
