@@ -26,8 +26,8 @@ public class Main extends Application {
 
 	public static void main(String[] args) throws Exception {
 		
-		ContactsDAO contactsDAO = new ContactsDAO();
-		System.out.println(contactsDAO.getAllContacts().toString());
-		//launch(args);
+		//ContactsDAO contactsDAO = new ContactsDAO();
+		//System.out.println(contactsDAO.getAllContacts().toString());
+		launch(args);
 	}
 }
