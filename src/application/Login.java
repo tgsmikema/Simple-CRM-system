@@ -9,15 +9,6 @@ public class Login {
 	private String full_name;
 	private int auth_level;
 	
-	/*// constructor
-	public Login(int user_id, String email, String password, String full_name, int auth_level) {
-		this.user_id = user_id;
-		this.email = email;
-		this.password = password;
-		this.full_name = full_name;
-		this.auth_level = auth_level;
-	}
-	*/
 	
 	public Login() {
 		// TODO Auto-generated constructor stub
