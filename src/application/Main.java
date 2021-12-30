@@ -26,13 +26,8 @@ public class Main extends Application {
 
 	public static void main(String[] args) throws Exception {
 		
-		//LoginDAO loginDAO = new LoginDAO();
-		//loginDAO.register("707722327@qq.com", "123123", "Hi There", 1);
-		//Login login = new Login();
-		//login = loginDAO.getLogin("abc@gmail.com");
-		
-		//login.getEmail();
-		
-		launch(args);
+		ContactsDAO contactsDAO = new ContactsDAO();
+		System.out.println(contactsDAO.getAllContacts().toString());
+		//launch(args);
 	}
 }
