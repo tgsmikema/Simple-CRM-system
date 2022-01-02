@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ContactsHomeController">
+   <children>
+      <TableView fx:id="table_view" layoutY="127.0" prefHeight="473.0" prefWidth="1000.0">
+        <columns>
+          <TableColumn fx:id="contact_id_c" prefWidth="120.0" text="Contact ID" />
+          <TableColumn fx:id="first_name_c" prefWidth="120.0" text="First Name" />
+            <TableColumn fx:id="last_name_c" prefWidth="120.0" text="Last Name" />
+            <TableColumn fx:id="phone_or_mobile_c" prefWidth="120.0" text="Phone/Mobile" />
+            <TableColumn fx:id="email_c" prefWidth="120.0" text="Email" />
+            <TableColumn fx:id="fax_c" prefWidth="120.0" text="Fax" />
+            <TableColumn fx:id="address_line_1_c" prefWidth="120.0" text="Address Line 1" />
+            <TableColumn fx:id="address_line_2_c" prefWidth="120.0" text="Address Line 2" />
+            <TableColumn fx:id="city_c" prefWidth="120.0" text="City" />
+            <TableColumn fx:id="state_or_county_c" prefWidth="120.0" text="State or County" />
+            <TableColumn fx:id="country_c" prefWidth="120.0" text="Country" />
+            <TableColumn fx:id="description_c" prefWidth="120.0" text="Description" />
+            <TableColumn fx:id="industry_c" prefWidth="120.0" text="Industry" />
+            <TableColumn fx:id="company_c" prefWidth="120.0" text="Company" />
+            <TableColumn fx:id="job_title_c" prefWidth="120.0" text="Job Title" />
+            <TableColumn fx:id="created_by_c" prefWidth="120.0" text="Created By" />
+            <TableColumn fx:id="created_date_and_time_c" prefWidth="120.0" text="Created Date And Time" />
+            <TableColumn fx:id="contact_source_c" prefWidth="120.0" text="Contact Source" />
+        </columns>
+      </TableView>
+      <Button fx:id="view_details" layoutX="45.0" layoutY="74.0" mnemonicParsing="false" text="View Details/ Modify Selected Contact" />
+      <Button fx:id="search_contacts" layoutX="730.0" layoutY="74.0" mnemonicParsing="false" text="Search Contacts" />
+      <Button fx:id="add_new_contacts" layoutX="414.0" layoutY="74.0" mnemonicParsing="false" text="Add New Contacts" />
+      <Button fx:id="dashboard" layoutX="906.0" layoutY="27.0" mnemonicParsing="false" onAction="#returnToDashBoard" text="Dashboard" />
+   </children>
+</AnchorPane>

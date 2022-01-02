@@ -1,17 +1,22 @@
 package application;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class LoginController implements Initializable {
 
@@ -59,7 +64,24 @@ public class LoginController implements Initializable {
 			return;
 			// if everything entered correctly then proceed to the next step - dashboard
 		} else {
-			sceneManager.switchScene(e, "DashBoard");
+			//sceneManager.switchScene(e, "DashBoard");
+			try {
+		           FXMLLoader loader = new FXMLLoader(getClass().getResource("DashBoard.fxml"));
+		           Parent root = loader.load();
+		   
+		           //The following both lines are the only addition we need to pass the arguments
+		           DashBoardController dashBoardController = loader.getController();
+		           dashBoardController.setUserIdLabelText(Integer.toString(login.getUser_id()));
+		           dashBoardController.setUserNameLabelText(login.getFull_name());
+		   
+		           Stage stage = new Stage();
+		           stage.setScene(new Scene(root));
+		           stage.setTitle("Layout2 + Controller2");
+		           stage.show();
+		   
+		       } catch (IOException e1) {
+		           e1.printStackTrace();
+		       }
 		}
 
 	}
