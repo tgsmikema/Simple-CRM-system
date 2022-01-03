@@ -2,6 +2,7 @@ package application;
 import java.net.URL;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
@@ -10,9 +11,12 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class ContactsHomeController implements Initializable {
@@ -90,11 +94,15 @@ public class ContactsHomeController implements Initializable {
     @FXML
     private Button dashboard;
     
+    @FXML
+    private Button delete_contact;
+    
     // new sceneManager instance
     private SceneManager sceneManager = new SceneManager();
     
     private ArrayList<Contacts> contactsArray;
     private ObservableList<Contacts> contactsObserve;
+    private ObservableList<Contacts> selectedContact;
     
 
 	@Override
@@ -131,14 +139,14 @@ public class ContactsHomeController implements Initializable {
 		this.table_view.setItems(contactsObserve);
 		
 		//table_view.getSelectionModel().setCellSelectionEnabled(true);
-		ObservableList<Contacts> selectedContact = table_view.getSelectionModel().getSelectedItems();
+		selectedContact = table_view.getSelectionModel().getSelectedItems();
 		
 		selectedContact.addListener(new ListChangeListener<Object>() {
 
 			@Override
 			public void onChanged(Change<? extends Object> arg0) {
 				// TODO Auto-generated method stub
-				
+				//System.out.println(selectedContact.get(0).getFirst_name());
 			}
 			
 		});
@@ -147,6 +155,46 @@ public class ContactsHomeController implements Initializable {
 	}
 	
 	public void returnToDashBoard(ActionEvent e) {
+		sceneManager.switchScene(e, "DashBoard");
+	}
+	
+	public void deleteSelectedContact(ActionEvent e) {
+		// if nothing was selected, then pop-up warning alert.
+		if (selectedContact.size() == 0) {
+			this.warningAlert("You haven't selected any contact!");
+		} else {
+			// confirm that you want to delete the selected contacct.
+			boolean deleteConfirmation = this.confirmationAlert("Are You Sure that you want to delete the selected contact?");
+			if (deleteConfirmation) {
+				//delete selected contact
+				// initiate contactsDAO type;
+				ContactsDAO contactsDAO = new ContactsDAO();
+				contactsDAO.deleteContactFromID(selectedContact.get(0).getContact_id());
+				//show successful delete scene
+				sceneManager.switchScene(e, "SuccessfullyDeletedSelectedContact");
+			} else {
+				return;
+			}
+		}
+	}
+	
+	private void warningAlert(String message) {
+		Alert alert = new Alert(AlertType.WARNING);
+		alert.setTitle("Warning!");
+		alert.setHeaderText(message);
+
+		alert.showAndWait();
+		return;
+	}
+	
+	private boolean confirmationAlert(String message) {
+		
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle("Warning!");
+		alert.setHeaderText(message);
+		
+		Optional<ButtonType> result = alert.showAndWait();
+		return result.get() == ButtonType.OK;
 		
 	}
     

@@ -56,5 +56,26 @@ public class ContactsDAO {
 		return null;
 		
 	}
+	
+	public void deleteContactFromID(int contact_id) {
+		
+		String query = "DELETE FROM contacts WHERE contact_id = " + contact_id;
+
+		Connection con;
+		try {
+			con = DriverManager.getConnection(URL, uname, pass);
+			Statement st = con.createStatement();
+			st.execute(query);
+			
+			st.close();
+			con.close();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
 
 }
