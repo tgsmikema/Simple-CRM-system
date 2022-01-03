@@ -3,6 +3,7 @@ package application;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
@@ -14,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
@@ -136,6 +138,9 @@ public class NewContactController implements Initializable {
 
 	@FXML
 	private TextField state_or_county_t;
+	
+    @FXML
+    private DatePicker datePicker;
 
 	private SceneManager sceneManager = new SceneManager();
 
@@ -272,7 +277,7 @@ public class NewContactController implements Initializable {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");  
 		LocalDateTime now = LocalDateTime.now();  
 		String localTime = dtf.format(now).toString();
-		System.out.println(localTime);
+		//System.out.println(localTime);
 
 		created_date_and_time_t.setText(localTime);
 
@@ -292,6 +297,24 @@ public class NewContactController implements Initializable {
 
 		alert.showAndWait();
 		return;
+	}
+	
+	@FXML
+	private void datePicking(ActionEvent event) {
+		
+		//get selected date
+		LocalDate mydate = datePicker.getValue();
+		String myFormattedDate = mydate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+		
+		//get local time
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss");  
+		LocalDateTime now = LocalDateTime.now();  
+		String localTime = dtf.format(now).toString();
+		System.out.println(localTime);
+		
+		String dateAndTimeConcat = myFormattedDate + " " + localTime;
+		created_date_and_time_t.setText(dateAndTimeConcat);
+		
 	}
 
 
