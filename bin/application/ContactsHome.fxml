@@ -31,7 +31,7 @@
       </TableView>
       <Button fx:id="view_details" layoutX="45.0" layoutY="74.0" mnemonicParsing="false" text="View Details/ Modify Selected Contact" />
       <Button fx:id="search_contacts" layoutX="636.0" layoutY="74.0" mnemonicParsing="false" text="Search Contacts" />
-      <Button fx:id="add_new_contacts" layoutX="385.0" layoutY="74.0" mnemonicParsing="false" text="Add New Contacts" />
+      <Button fx:id="add_new_contacts" layoutX="385.0" layoutY="74.0" mnemonicParsing="false" onAction="#newContact" text="Add New Contacts" />
       <Button fx:id="dashboard" layoutX="906.0" layoutY="27.0" mnemonicParsing="false" onAction="#returnToDashBoard" text="Dashboard" />
       <Button fx:id="delete_contact" layoutX="811.0" layoutY="74.0" mnemonicParsing="false" onAction="#deleteSelectedContact" prefHeight="25.0" prefWidth="184.0" text="DELETE Selected Contact" />
    </children>

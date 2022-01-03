@@ -146,7 +146,8 @@ public class ContactsHomeController implements Initializable {
 			@Override
 			public void onChanged(Change<? extends Object> arg0) {
 				// TODO Auto-generated method stub
-				//System.out.println(selectedContact.get(0).getFirst_name());
+				//System.out.println(selectedContact.get(0).getAddress_line_1() == null ||
+				//		selectedContact.get(0).getAddress_line_1().isEmpty());
 			}
 			
 		});
@@ -176,6 +177,10 @@ public class ContactsHomeController implements Initializable {
 				return;
 			}
 		}
+	}
+	
+	public void newContact(ActionEvent e) {
+		sceneManager.switchScene(e, "NewContact");
 	}
 	
 	private void warningAlert(String message) {
