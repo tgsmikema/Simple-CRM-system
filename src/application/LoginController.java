@@ -26,10 +26,14 @@ public class LoginController implements Initializable {
 	@FXML private PasswordField password;
 
 	private SceneManager sceneManager = new SceneManager();
+	
+	private TempDataDAO tempDataDAO = new TempDataDAO();
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
+	
+		tempDataDAO.resetData();
 	}
 
 	public void submit(ActionEvent e) throws SQLException {
@@ -64,6 +68,8 @@ public class LoginController implements Initializable {
 			return;
 			// if everything entered correctly then proceed to the next step - dashboard
 		} else {
+			// record current session user id who logging into the system
+			tempDataDAO.setCurrentUserID(login.getUser_id());
 			sceneManager.switchScene(e, "DashBoard");
 		}
 

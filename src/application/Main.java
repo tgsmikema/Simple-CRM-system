@@ -29,6 +29,12 @@ public class Main extends Application {
 		
 		//ContactsDAO contactsDAO = new ContactsDAO();
 		//System.out.println(contactsDAO.getAllContacts().toString());
+		
+		//TempDataDAO t = new TempDataDAO();
+		//t.setCurrentContactID(5);
+		//t.setCurrentUserID(6);
+		//t.resetData();
+		
 		launch(args);
 	}
 }

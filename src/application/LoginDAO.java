@@ -95,6 +95,39 @@ public class LoginDAO {
 		
 	}
 	
+	public Login getLoginFromID(int user_id) {
+		
+		Login login = new Login();
+		login.setUser_id(user_id);
+
+		String query = "SELECT * FROM login WHERE user_id = " + "'"+ user_id + "'";
+
+		Connection con;
+		try {
+			con = DriverManager.getConnection(URL, uname, pass);
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(query);
+
+			rs.next();
+			
+			login.setEmail(rs.getString("email"));
+			login.setPassword(rs.getString("password")); 
+			login.setFull_name(rs.getString("full_name"));
+			login.setAuth_level(rs.getInt("auth_level"));
+		
+			st.close();
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+		
+
+		return login;
+		
+	}
+	
 	
 
 
