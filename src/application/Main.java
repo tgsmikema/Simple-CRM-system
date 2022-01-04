@@ -34,11 +34,15 @@ public class Main extends Application {
 		//ContactsDAO contactsDAO = new ContactsDAO();
 		//System.out.println(contactsDAO.addNewContact("asb","ddd",null,"email@gmail.com",null,null,null,null,null,null,null,null,null,null,"Mike Ma",Timestamp.valueOf("2021-03-04 12:23:00"),null));
 
+
+		//ContactsDAO contactsDAO = new ContactsDAO();
+		//System.out.println(contactsDAO.modifyContactFromID(15,"asb","Gao",null,"email@gmail.com",null,null,null,null,null,null,null,null,null,null,"Mike Ma",Timestamp.valueOf("2021-03-04 12:23:00"),null));
+
 		//TempDataDAO t = new TempDataDAO();
 		//t.setCurrentContactID(5);
 		//t.setCurrentUserID(6);
 		//t.resetData();
-		
+
 
 		launch(args);
 	}

@@ -309,7 +309,7 @@ public class NewContactController implements Initializable {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss");  
 		LocalDateTime now = LocalDateTime.now();  
 		String localTime = dtf.format(now).toString();
-		System.out.println(localTime);
+		//System.out.println(localTime);
 		
 		String dateAndTimeConcat = myFormattedDate + " " + localTime;
 		created_date_and_time_t.setText(dateAndTimeConcat);
