@@ -59,7 +59,7 @@ public class ContactsDAO {
 
 	}
 
-	public Contacts getOneContactFromID(int contact_id) {
+	public Contacts getContactFromID(int contact_id) {
 
 		String query = "SELECT * FROM contacts WHERE contact_id = " + contact_id;
 

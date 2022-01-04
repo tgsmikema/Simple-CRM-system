@@ -184,23 +184,23 @@ public class ModifyContactController implements Initializable {
 
 		// get all selected contact data from database.
 		contact_id = tempDataDAO.getCurrentContactID();
-		first_name = contactsDAO.getOneContactFromID(contact_id).getFirst_name();
-		last_name = contactsDAO.getOneContactFromID(contact_id).getLast_name();
-		phone_or_mobile = contactsDAO.getOneContactFromID(contact_id).getPhone_or_mobile();
-		email = contactsDAO.getOneContactFromID(contact_id).getEmail();
-		fax = contactsDAO.getOneContactFromID(contact_id).getFax();
-		address_line_1 = contactsDAO.getOneContactFromID(contact_id).getAddress_line_1();
-		address_line_2 = contactsDAO.getOneContactFromID(contact_id).getAddress_line_2();
-		city = contactsDAO.getOneContactFromID(contact_id).getCity();
-		state_or_county = contactsDAO.getOneContactFromID(contact_id).getState_or_county();
-		country = contactsDAO.getOneContactFromID(contact_id).getCountry();
-		description = contactsDAO.getOneContactFromID(contact_id).getDescription();
-		industry = contactsDAO.getOneContactFromID(contact_id).getIndustry();
-		company = contactsDAO.getOneContactFromID(contact_id).getCompany();
-		job_title = contactsDAO.getOneContactFromID(contact_id).getJob_title();
-		created_by = contactsDAO.getOneContactFromID(contact_id).getCreated_by();
-		created_date_and_time = contactsDAO.getOneContactFromID(contact_id).getCreated_date_and_time();
-		contact_source = contactsDAO.getOneContactFromID(contact_id).getContact_source();
+		first_name = contactsDAO.getContactFromID(contact_id).getFirst_name();
+		last_name = contactsDAO.getContactFromID(contact_id).getLast_name();
+		phone_or_mobile = contactsDAO.getContactFromID(contact_id).getPhone_or_mobile();
+		email = contactsDAO.getContactFromID(contact_id).getEmail();
+		fax = contactsDAO.getContactFromID(contact_id).getFax();
+		address_line_1 = contactsDAO.getContactFromID(contact_id).getAddress_line_1();
+		address_line_2 = contactsDAO.getContactFromID(contact_id).getAddress_line_2();
+		city = contactsDAO.getContactFromID(contact_id).getCity();
+		state_or_county = contactsDAO.getContactFromID(contact_id).getState_or_county();
+		country = contactsDAO.getContactFromID(contact_id).getCountry();
+		description = contactsDAO.getContactFromID(contact_id).getDescription();
+		industry = contactsDAO.getContactFromID(contact_id).getIndustry();
+		company = contactsDAO.getContactFromID(contact_id).getCompany();
+		job_title = contactsDAO.getContactFromID(contact_id).getJob_title();
+		created_by = contactsDAO.getContactFromID(contact_id).getCreated_by();
+		created_date_and_time = contactsDAO.getContactFromID(contact_id).getCreated_date_and_time();
+		contact_source = contactsDAO.getContactFromID(contact_id).getContact_source();
 
 		// set related fields with database values
 		contact_id_t.setText(String.valueOf(contact_id));
