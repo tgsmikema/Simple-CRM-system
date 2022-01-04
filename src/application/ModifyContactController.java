@@ -294,7 +294,7 @@ public class ModifyContactController implements Initializable {
 		Pattern p = Pattern.compile("\\d{4}-\\d{2}-\\d{2}\\s\\d{2}:\\d{2}:\\d{2}");
 		Matcher m = p.matcher(date_and_time);
 		boolean b = m.matches();
-		System.out.println(b);
+		
 		// if pattern matches, then proceed to convert to Timestamp type to aviod exceptions
 		if (b) {
 			created_date_and_time = Timestamp.valueOf(date_and_time);
