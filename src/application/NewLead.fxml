@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.NewLeadController">
+   <children>
+      <Label layoutX="395.0" layoutY="14.0" text="Add New Lead">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <Label layoutX="14.0" layoutY="72.0" text="Step 1. Select Contact">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TableView fx:id="table_view" layoutY="108.0" prefHeight="200.0" prefWidth="1000.0">
+        <columns>
+          <TableColumn fx:id="contact_id_c" prefWidth="120.0" text="Contact ID" />
+          <TableColumn fx:id="first_name_c" prefWidth="120.0" text="First Name" />
+            <TableColumn fx:id="last_name_c" prefWidth="120.0" text="Last Name" />
+            <TableColumn fx:id="phone_or_mobile_c" prefWidth="120.0" text="Phone/Mobile" />
+            <TableColumn fx:id="email_c" prefWidth="120.0" text="Email" />
+            <TableColumn fx:id="fax_c" prefWidth="120.0" text="Fax" />
+            <TableColumn fx:id="address_line_1_c" prefWidth="120.0" text="Address Line 1" />
+            <TableColumn fx:id="address_line_2_c" prefWidth="120.0" text="Address Line 2" />
+            <TableColumn fx:id="city_c" prefWidth="120.0" text="City" />
+            <TableColumn fx:id="state_or_county_c" prefWidth="120.0" text="State or County" />
+            <TableColumn fx:id="country_c" prefWidth="120.0" text="Country" />
+            <TableColumn fx:id="description_c" prefWidth="120.0" text="Description" />
+            <TableColumn fx:id="industry_c" prefWidth="120.0" text="Industry" />
+            <TableColumn fx:id="company_c" prefWidth="120.0" text="Company" />
+            <TableColumn fx:id="job_title_c" prefWidth="120.0" text="Job Title" />
+            <TableColumn fx:id="created_by_c" prefWidth="120.0" text="Created By" />
+            <TableColumn fx:id="created_date_and_time_c" prefWidth="120.0" text="Created Date And Time" />
+            <TableColumn fx:id="contact_source_c" prefWidth="120.0" text="Contact Source" />
+        </columns>
+      </TableView>
+      <Label layoutX="14.0" layoutY="315.0" prefHeight="24.0" prefWidth="222.0" text="Step 2. Create New Lead">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="275.0" layoutY="72.0" text="OR">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Button layoutX="363.0" layoutY="71.0" mnemonicParsing="false" onAction="#switchToAddNewContact" text="Create A New Contact First" />
+      <Label layoutX="23.0" layoutY="358.0" text="Contact ID:" />
+      <Label fx:id="contact_id_t" layoutX="100.0" layoutY="358.0" prefHeight="17.0" prefWidth="37.0" />
+      <Label layoutX="14.0" layoutY="397.0" text="Lead Source:" />
+      <TextField fx:id="lead_source_t" layoutX="100.0" layoutY="393.0" />
+      <Label layoutX="20.0" layoutY="435.0" text="Lead Status:" />
+      <TextField fx:id="lead_status_t" layoutX="100.0" layoutY="431.0" />
+      <Label layoutX="38.0" layoutY="467.0" prefHeight="41.0" prefWidth="69.0" text="If Lost Reasons:" wrapText="true" />
+      <TextField fx:id="if_lost_reasons_t" layoutX="100.0" layoutY="482.0" />
+      <Label layoutX="24.0" layoutY="519.0" prefHeight="41.0" prefWidth="73.0" text="Lead Created By:" wrapText="true" />
+      <Label fx:id="lead_created_by_t" layoutX="105.0" layoutY="541.0" prefHeight="17.0" prefWidth="135.0" />
+      <Label layoutX="302.0" layoutY="355.0" prefHeight="75.0" prefWidth="73.0" text="Lead Created Date And Time:" wrapText="true" />
+      <TextField fx:id="lead_created_date_and_time" layoutX="375.0" layoutY="401.0" />
+      <Button layoutX="375.0" layoutY="362.0" mnemonicParsing="false" onAction="#localTimeButton" text="Get Current Time" />
+      <DatePicker fx:id="date_picker" layoutX="545.0" layoutY="401.0" onAction="#datePicker" prefHeight="25.0" prefWidth="10.0" />
+      <Label layoutX="288.0" layoutY="486.0" text="Assigned To:" />
+      <ChoiceBox fx:id="assigned_to_t" layoutX="374.0" layoutY="482.0" prefWidth="150.0" />
+      <Button fx:id="save_b" layoutX="865.0" layoutY="454.0" mnemonicParsing="false" onAction="#saveNewLead" text="Save" />
+      <Button fx:id="cancel_b" layoutX="859.0" layoutY="506.0" mnemonicParsing="false" onAction="#cancelAndReturn" text="Cancel" />
+   </children>
+</AnchorPane>

@@ -27,8 +27,8 @@ public class LeadsHybridContacts {
 	private String industry;
 	private String company;
 	private String job_title;
-	private String contact_created_by;
-	private Timestamp contact_created_date_and_time;
+	private String created_by;
+	private Timestamp created_date_and_time;
 	private String contact_source;
 	
 	//getter and setters
@@ -158,17 +158,17 @@ public class LeadsHybridContacts {
 	public void setJob_title(String job_title) {
 		this.job_title = job_title;
 	}
-	public String getContact_created_by() {
-		return contact_created_by;
+	public String getCreated_by() {
+		return created_by;
 	}
-	public void setContact_created_by(String contact_created_by) {
-		this.contact_created_by = contact_created_by;
+	public void setCreated_by(String created_by) {
+		this.created_by = created_by;
 	}
-	public Timestamp getContact_created_date_and_time() {
-		return contact_created_date_and_time;
+	public Timestamp getCreated_date_and_time() {
+		return created_date_and_time;
 	}
-	public void setContact_created_date_and_time(Timestamp contact_created_date_and_time) {
-		this.contact_created_date_and_time = contact_created_date_and_time;
+	public void setCreated_date_and_time(Timestamp created_date_and_time) {
+		this.created_date_and_time = created_date_and_time;
 	}
 	public String getContact_source() {
 		return contact_source;

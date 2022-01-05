@@ -1,136 +1,200 @@
 package application;
 
 import java.net.URL;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 public class LeadsHomeController implements Initializable {
 
-    @FXML
-    private Button add_new_lead;
+	@FXML
+	private Button add_new_lead;
 
-    @FXML
-    private TableColumn<?, ?> address_line_1_c;
+	@FXML
+	private TableColumn<LeadsHybridContacts,String> address_line_1_c;
 
-    @FXML
-    private TableColumn<?, ?> address_line_2_c;
+	@FXML
+	private TableColumn<LeadsHybridContacts,String> address_line_2_c;
 
-    @FXML
-    private TableColumn<?, ?> assigned_to_c;
+	@FXML
+	private TableColumn<LeadsHybridContacts,String> assigned_to_c;
 
-    @FXML
-    private TableColumn<?, ?> city_c;
+	@FXML
+	private TableColumn<LeadsHybridContacts,String> city_c;
 
-    @FXML
-    private TableColumn<?, ?> company_c;
+	@FXML
+	private TableColumn<LeadsHybridContacts,String> company_c;
 
-    @FXML
-    private TableColumn<?, ?> contact_created_by_c;
+	@FXML
+	private TableColumn<LeadsHybridContacts,String> contact_created_by_c;
 
-    @FXML
-    private TableColumn<?, ?> contact_created_date_and_time_c;
+	@FXML
+	private TableColumn<LeadsHybridContacts,Timestamp> contact_created_date_and_time_c;
 
-    @FXML
-    private TableColumn<?, ?> contact_id_c;
+	@FXML
+	private TableColumn<LeadsHybridContacts,Integer> contact_id_c;
 
-    @FXML
-    private TableColumn<?, ?> contact_source_c;
+	@FXML
+	private TableColumn<LeadsHybridContacts,String> contact_source_c;
 
-    @FXML
-    private TableColumn<?, ?> country_c;
+	@FXML
+	private TableColumn<LeadsHybridContacts,String> country_c;
 
-    @FXML
-    private Button dashboard;
+	@FXML
+	private Button dashboard;
 
-    @FXML
-    private Button delete_lead;
+	@FXML
+	private TableColumn<LeadsHybridContacts,String> description_c;
 
-    @FXML
-    private TableColumn<?, ?> description_c;
+	@FXML
+	private TableColumn<LeadsHybridContacts,String> email_c;
 
-    @FXML
-    private TableColumn<?, ?> email_c;
+	@FXML
+	private TableColumn<LeadsHybridContacts,String> fax_c;
 
-    @FXML
-    private TableColumn<?, ?> fax_c;
+	@FXML
+	private TableColumn<LeadsHybridContacts,String> first_name_c;
 
-    @FXML
-    private TableColumn<?, ?> first_name_c;
+	@FXML
+	private TableColumn<LeadsHybridContacts,String> if_lost_reasons_c;
 
-    @FXML
-    private TableColumn<?, ?> if_lost_reasons_c;
+	@FXML
+	private TableColumn<LeadsHybridContacts,String> industry_c;
 
-    @FXML
-    private TableColumn<?, ?> industry_c;
+	@FXML
+	private TableColumn<LeadsHybridContacts,String> job_title_c;
 
-    @FXML
-    private TableColumn<?, ?> job_title_c;
+	@FXML
+	private TableColumn<LeadsHybridContacts,String> last_name_c;
 
-    @FXML
-    private TableColumn<?, ?> last_name_c;
+	@FXML
+	private TableColumn<LeadsHybridContacts,String> lead_created_by_c;
 
-    @FXML
-    private TableColumn<?, ?> lead_created_by_c;
+	@FXML
+	private TableColumn<LeadsHybridContacts,Timestamp> lead_created_date_and_time_c;
 
-    @FXML
-    private TableColumn<?, ?> lead_created_date_c;
+	@FXML
+	private TableColumn<LeadsHybridContacts,String> lead_source_c;
 
-    @FXML
-    private TableColumn<?, ?> lead_source_c;
+	@FXML
+	private TableColumn<LeadsHybridContacts,String> lead_status_c;
 
-    @FXML
-    private TableColumn<?, ?> lead_status_c;
+	@FXML
+	private TableColumn<LeadsHybridContacts,String> phone_or_mobile_c;
 
-    @FXML
-    private TableColumn<?, ?> phone_or_mobile_c;
+	@FXML
+	private Button search_lead;
 
-    @FXML
-    private Button search_lead;
+	@FXML
+	private TableColumn<LeadsHybridContacts,String> state_or_county_c;
 
-    @FXML
-    private TableColumn<?, ?> state_or_county_c;
+	@FXML
+	private TableView<LeadsHybridContacts> table_view;
 
-    @FXML
-    private TableView<?> table_view;
+	@FXML
+	private Button view_details;
 
-    @FXML
-    private Button view_details;
+	@FXML
+	private Button show_hide_columns_b;
 
-    @FXML
-    void deleteSelectedLead(ActionEvent event) {
+	@FXML
+	void modifyContact(ActionEvent event) {
 
-    }
+	}
 
-    @FXML
-    void modifyContact(ActionEvent event) {
+	@FXML
+	void newLead(ActionEvent event) {
+		sceneManager.switchScene(event, "NewLead");
+	}
 
-    }
+	@FXML
+	void returnToDashBoard(ActionEvent event) {
+		sceneManager.switchScene(event, "DashBoard");
+	}
 
-    @FXML
-    void newLead(ActionEvent event) {
+	// new sceneManager instance
+	private SceneManager sceneManager = new SceneManager();
 
-    }
+	private ArrayList<LeadsHybridContacts> leadsHybridContactsArray;
+	private ObservableList<LeadsHybridContacts> leadsHybridContactsObserve;
+	private ObservableList<LeadsHybridContacts> selectedleadsHybridContacts;
 
-    @FXML
-    void returnToDashBoard(ActionEvent event) {
-
-    }
+	private TempDataDAO tempDataDAO = new TempDataDAO();
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		
+
+		LeadsDAO leadsDAO = new LeadsDAO();
+
+		leadsHybridContactsArray = new ArrayList<>();
+
+		leadsHybridContactsArray = leadsDAO.getAllLeadsHybridContacts();
+
+		leadsHybridContactsObserve = FXCollections.observableArrayList(leadsHybridContactsArray);
+
+
+		this.contact_id_c.setCellValueFactory((new PropertyValueFactory<LeadsHybridContacts,Integer>("contact_id")));
+		this.lead_source_c.setCellValueFactory((new PropertyValueFactory<LeadsHybridContacts,String>("lead_source")));
+		this.lead_status_c.setCellValueFactory((new PropertyValueFactory<LeadsHybridContacts,String>("lead_status")));
+		this.if_lost_reasons_c.setCellValueFactory((new PropertyValueFactory<LeadsHybridContacts,String>("if_lost_reasons")));
+		this.lead_created_by_c.setCellValueFactory((new PropertyValueFactory<LeadsHybridContacts,String>("lead_created_by")));
+		this.lead_created_date_and_time_c.setCellValueFactory((new PropertyValueFactory<LeadsHybridContacts,Timestamp>("lead_created_date_and_time")));
+		this.assigned_to_c.setCellValueFactory((new PropertyValueFactory<LeadsHybridContacts,String>("assigned_to")));
+
+
+		this.first_name_c.setCellValueFactory((new PropertyValueFactory<LeadsHybridContacts,String>("first_name")));
+		this.last_name_c.setCellValueFactory((new PropertyValueFactory<LeadsHybridContacts,String>("last_name")));
+		this.phone_or_mobile_c.setCellValueFactory((new PropertyValueFactory<LeadsHybridContacts,String>("phone_or_mobile")));
+		this.email_c.setCellValueFactory((new PropertyValueFactory<LeadsHybridContacts,String>("email")));
+		this.fax_c.setCellValueFactory((new PropertyValueFactory<LeadsHybridContacts,String>("fax")));
+		this.address_line_1_c.setCellValueFactory((new PropertyValueFactory<LeadsHybridContacts,String>("address_line_1")));
+		this.address_line_2_c.setCellValueFactory((new PropertyValueFactory<LeadsHybridContacts,String>("address_line_2")));
+		this.city_c.setCellValueFactory((new PropertyValueFactory<LeadsHybridContacts,String>("city")));
+		this.state_or_county_c.setCellValueFactory((new PropertyValueFactory<LeadsHybridContacts,String>("state_or_county")));
+		this.country_c.setCellValueFactory((new PropertyValueFactory<LeadsHybridContacts,String>("country")));
+		this.description_c.setCellValueFactory((new PropertyValueFactory<LeadsHybridContacts,String>("description")));
+		this.industry_c.setCellValueFactory((new PropertyValueFactory<LeadsHybridContacts,String>("industry")));
+		this.company_c.setCellValueFactory((new PropertyValueFactory<LeadsHybridContacts,String>("company")));
+		this.job_title_c.setCellValueFactory((new PropertyValueFactory<LeadsHybridContacts,String>("job_title")));
+		this.contact_created_by_c.setCellValueFactory((new PropertyValueFactory<LeadsHybridContacts,String>("created_by")));
+		this.contact_created_date_and_time_c.setCellValueFactory((new PropertyValueFactory<LeadsHybridContacts,Timestamp>("created_date_and_time")));
+		this.contact_source_c.setCellValueFactory((new PropertyValueFactory<LeadsHybridContacts,String>("contact_source")));
+		this.table_view.setItems(leadsHybridContactsObserve);
+
 		//hide unnecessary columns
 		this.hideUnnecessaryColumns(null);
+
+		selectedleadsHybridContacts = table_view.getSelectionModel().getSelectedItems();
 		
+		
+		selectedleadsHybridContacts.addListener(new ListChangeListener<Object>() {
+
+			@Override
+			public void onChanged(Change<? extends Object> arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
+
 	}
-	
+
 	@FXML
 	public void hideUnnecessaryColumns(ActionEvent event) {
 		fax_c.setVisible(false);
@@ -146,8 +210,12 @@ public class LeadsHomeController implements Initializable {
 		contact_created_by_c.setVisible(false);
 		contact_created_date_and_time_c.setVisible(false);
 		contact_source_c.setVisible(false);
+
+		show_hide_columns_b.setText("Show Extra Columns");
+
+		show_hide_columns_b.setOnAction(this::showUnnecessaryColumns);
 	}
-	
+
 	@FXML
 	public void showUnnecessaryColumns(ActionEvent event) {
 		fax_c.setVisible(true);
@@ -163,6 +231,30 @@ public class LeadsHomeController implements Initializable {
 		contact_created_by_c.setVisible(true);
 		contact_created_date_and_time_c.setVisible(true);
 		contact_source_c.setVisible(true);
+
+		show_hide_columns_b.setText("Hide Extra Columns");
+
+		show_hide_columns_b.setOnAction(this::hideUnnecessaryColumns);
+
+	}
+
+	private void warningAlert(String message) {
+		Alert alert = new Alert(AlertType.WARNING);
+		alert.setTitle("Warning!");
+		alert.setHeaderText(message);
+
+		alert.showAndWait();
+		return;
+	}
+
+	private boolean confirmationAlert(String message) {
+
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle("Warning!");
+		alert.setHeaderText(message);
+
+		Optional<ButtonType> result = alert.showAndWait();
+		return result.get() == ButtonType.OK;
 
 	}
 

@@ -10,8 +10,8 @@ public class Leads {
 	private String lead_source;
 	private String lead_status;
 	private String if_lost_reasons;
-	private String created_by;
-	private Timestamp created_date_and_time;
+	private String lead_created_by;
+	private Timestamp lead_created_date_and_time;
 	private String assigned_to;
 	
 	//setted and getters
@@ -40,16 +40,16 @@ public class Leads {
 		this.if_lost_reasons = if_lost_reasons;
 	}
 	public String getCreated_by() {
-		return created_by;
+		return lead_created_by;
 	}
 	public void setCreated_by(String created_by) {
-		this.created_by = created_by;
+		this.lead_created_by = created_by;
 	}
 	public Timestamp getCreated_date_and_time() {
-		return created_date_and_time;
+		return lead_created_date_and_time;
 	}
 	public void setCreated_date_and_time(Timestamp created_date_and_time) {
-		this.created_date_and_time = created_date_and_time;
+		this.lead_created_date_and_time = created_date_and_time;
 	}
 	public String getAssigned_to() {
 		return assigned_to;

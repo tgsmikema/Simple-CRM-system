@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class LoginDAO {
 
@@ -90,6 +91,34 @@ public class LoginDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+		
+		
+	}
+	
+	public ArrayList<String> getAllUserNamesFromLogin() {
+		
+		ArrayList<String> allLoginUserName = new ArrayList<>();
+		
+		String query = "SELECT full_name FROM login";
+		
+		Connection con;
+		try {
+			con = DriverManager.getConnection(URL, uname, pass);
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(query);
+			
+			// loop result set that if email exist in database
+			while(rs.next()) {
+				allLoginUserName.add(rs.getString("full_name"));
+				}
+			
+			return allLoginUserName;
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
 		}
 		
 		

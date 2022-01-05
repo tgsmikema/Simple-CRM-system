@@ -16,7 +16,7 @@
             <TableColumn fx:id="lead_status_c" prefWidth="100.0" text="Lead Status" />
             <TableColumn fx:id="if_lost_reasons_c" prefWidth="100.0" text="If Lost Reasons" />
             <TableColumn fx:id="lead_created_by_c" prefWidth="100.0" text="Lead Created By" />
-            <TableColumn fx:id="lead_created_date_c" prefWidth="100.0" text="Lead Created Date And Time" />
+            <TableColumn fx:id="lead_created_date_and_time_c" prefWidth="100.0" text="Lead Created Date And Time" />
             <TableColumn fx:id="assigned_to_c" prefWidth="100.0" text="Assigned To" />
             <TableColumn fx:id="phone_or_mobile_c" prefWidth="100.0" text="Phone/Mobile" />
             <TableColumn fx:id="email_c" prefWidth="100.0" text="Email" />
@@ -39,6 +39,6 @@
       <Button fx:id="search_lead" layoutX="636.0" layoutY="74.0" mnemonicParsing="false" text="Search Leads" />
       <Button fx:id="add_new_lead" layoutX="385.0" layoutY="74.0" mnemonicParsing="false" onAction="#newLead" text="Add New Lead" />
       <Button fx:id="dashboard" layoutX="906.0" layoutY="27.0" mnemonicParsing="false" onAction="#returnToDashBoard" text="Dashboard" />
-      <Button fx:id="delete_lead" layoutX="811.0" layoutY="74.0" mnemonicParsing="false" onAction="#deleteSelectedLead" prefHeight="25.0" prefWidth="184.0" text="DELETE Selected Lead" />
+      <Button fx:id="show_hide_columns_b" layoutX="808.0" layoutY="74.0" mnemonicParsing="false" onAction="#showUnnecessaryColumns" text="Show Unnecessary Columns" />
    </children>
 </AnchorPane>
