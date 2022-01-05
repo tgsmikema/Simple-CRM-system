@@ -25,5 +25,9 @@ public class DashBoardController implements Initializable{
 		sceneManager.switchScene(e, "ContactsHome");
 	}
 	
+	@FXML
+	public void goToLeadsHome(ActionEvent e) {
+		sceneManager.switchScene(e, "LeadsHome");
+	}
 
 }
