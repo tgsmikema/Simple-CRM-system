@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ModifyLeadController">
+   <children>
+      <Label layoutX="410.0" layoutY="14.0" text="Modify Lead">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <Label layoutX="169.0" layoutY="89.0" text="Contact Details">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <Line endX="-100.00003051757812" endY="354.6666564941406" layoutX="599.0" layoutY="244.0" startX="-100.0" startY="-168.0" />
+      <Line endX="899.0" endY="-7.62939453125E-6" layoutX="101.0" layoutY="75.0" startX="-100.0" />
+      <Label layoutX="14.0" layoutY="129.0" text="Contact ID:" />
+      <Label layoutX="14.0" layoutY="164.0" text="First Name:" />
+      <Label layoutX="15.0" layoutY="193.0" text="Last Name:" />
+      <Label layoutX="15.0" layoutY="228.0" text="Phone/Mobile:" />
+      <Label layoutX="14.0" layoutY="260.0" text="Email:" />
+      <Label layoutX="14.0" layoutY="291.0" text="Fax:" />
+      <Label layoutX="14.0" layoutY="318.0" text="Address Line 1:" />
+      <Label layoutX="14.0" layoutY="382.0" text="Address Line 2:" />
+      <Label layoutX="15.0" layoutY="434.0" text="City:" />
+      <Label layoutX="14.0" layoutY="472.0" text="State/County:" />
+      <Label layoutX="14.0" layoutY="505.0" text="Country:" />
+      <Label layoutX="248.0" layoutY="129.0" text="Description:" />
+      <Label layoutX="247.0" layoutY="219.0" text="Industry:" />
+      <Label layoutX="246.0" layoutY="260.0" text="Company:" />
+      <Label layoutX="246.0" layoutY="299.0" text="Job Title:" />
+      <Label layoutX="245.0" layoutY="349.0" prefHeight="41.0" prefWidth="79.0" text="Contact Created By:" wrapText="true" />
+      <Label layoutX="244.0" layoutY="397.0" prefHeight="92.0" prefWidth="91.0" text="Contact Created Date And Time:" wrapText="true" />
+      <Label layoutX="244.0" layoutY="505.0" text="Contact Source:" />
+      <Line endX="899.0" endY="-7.62939453125E-6" layoutX="98.0" layoutY="123.0" startX="-100.0" />
+      <Label fx:id="contact_id_t" layoutX="109.0" layoutY="129.0" prefHeight="17.0" prefWidth="120.0" />
+      <Label fx:id="first_name_t" layoutX="109.0" layoutY="164.0" prefHeight="17.0" prefWidth="120.0" />
+      <Label fx:id="last_name_t" layoutX="109.0" layoutY="193.0" prefHeight="17.0" prefWidth="120.0" />
+      <Label fx:id="phone_or_mobile_t" layoutX="109.0" layoutY="227.0" prefHeight="17.0" prefWidth="120.0" />
+      <Label fx:id="email_t" layoutX="109.0" layoutY="260.0" prefHeight="17.0" prefWidth="120.0" />
+      <Label fx:id="fax_t" layoutX="109.0" layoutY="291.0" prefHeight="17.0" prefWidth="120.0" />
+      <Label fx:id="address_line_1_t" layoutX="109.0" layoutY="318.0" prefHeight="65.0" prefWidth="120.0" wrapText="true" />
+      <Label fx:id="address_line_2_t" layoutX="109.0" layoutY="382.0" prefHeight="52.0" prefWidth="120.0" wrapText="true" />
+      <Label fx:id="city_t" layoutX="109.0" layoutY="434.0" prefHeight="17.0" prefWidth="120.0" wrapText="true" />
+      <Label fx:id="state_or_county_t" layoutX="109.0" layoutY="472.0" prefHeight="17.0" prefWidth="120.0" wrapText="true" />
+      <Label fx:id="country_t" layoutX="109.0" layoutY="505.0" prefHeight="17.0" prefWidth="120.0" wrapText="true" />
+      <Label fx:id="description_t" layoutX="335.0" layoutY="131.0" prefHeight="83.0" prefWidth="161.0" wrapText="true" />
+      <Label fx:id="industry_t" layoutX="335.0" layoutY="218.0" prefHeight="17.0" prefWidth="161.0" wrapText="true" />
+      <Label fx:id="company_t" layoutX="335.0" layoutY="260.0" prefHeight="17.0" prefWidth="161.0" wrapText="true" />
+      <Label fx:id="job_title_t" layoutX="335.0" layoutY="299.0" prefHeight="17.0" prefWidth="161.0" wrapText="true" />
+      <Label fx:id="created_by_t" layoutX="335.0" layoutY="373.0" prefHeight="17.0" prefWidth="161.0" wrapText="true" />
+      <Label fx:id="created_date_and_time_t" layoutX="335.0" layoutY="451.0" prefHeight="17.0" prefWidth="161.0" wrapText="true" />
+      <Label fx:id="contact_source_t" layoutX="335.0" layoutY="505.0" prefHeight="17.0" prefWidth="161.0" wrapText="true" />
+      <Label layoutX="709.0" layoutY="89.0" text="Lead Details">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <Label layoutX="532.0" layoutY="155.0" text="Lead Source:" />
+      <Label layoutX="530.0" layoutY="216.0" text="*Lead Status:" />
+      <Label layoutX="531.0" layoutY="273.0" text="If Lost Reasons:" />
+      <Label layoutX="530.0" layoutY="327.0" text="*Lead Created By:" />
+      <Label layoutX="529.0" layoutY="373.0" prefHeight="52.0" prefWidth="102.0" text="*Lead Created Date And Time:" wrapText="true" />
+      <Label layoutX="532.0" layoutY="453.0" text="Assigned To:" />
+      <TextField fx:id="lead_source_t" layoutX="645.0" layoutY="151.0" prefHeight="25.0" prefWidth="179.0" />
+      <TextField fx:id="lead_status_t" layoutX="645.0" layoutY="212.0" prefHeight="25.0" prefWidth="179.0" />
+      <TextField fx:id="if_lost_reasons_t" layoutX="645.0" layoutY="269.0" prefHeight="25.0" prefWidth="179.0" />
+      <Label layoutX="645.0" layoutY="327.0" prefHeight="17.0" prefWidth="161.0" />
+      <TextField fx:id="lead_created_date_and_time_t" layoutX="645.0" layoutY="398.0" prefHeight="25.0" prefWidth="179.0" />
+      <Button fx:id="get_local_time_b" layoutX="645.0" layoutY="370.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="111.0" text="Get Local Time" />
+      <DatePicker fx:id="date_picker" layoutX="774.0" layoutY="370.0" prefHeight="25.0" prefWidth="1.0" />
+      <ChoiceBox fx:id="assigned_to_t" layoutX="645.0" layoutY="449.0" prefHeight="25.0" prefWidth="179.0" />
+      <Button fx:id="new_activity_b" layoutX="889.0" layoutY="357.0" mnemonicParsing="false" text="New Activity" />
+      <Button fx:id="new_task_b" layoutX="890.0" layoutY="410.0" mnemonicParsing="false" text="New Task" />
+      <Button fx:id="save_b" layoutX="890.0" layoutY="461.0" mnemonicParsing="false" text="Save" />
+      <Button fx:id="cancel_b" layoutX="890.0" layoutY="509.0" mnemonicParsing="false" text="Cancel" />
+   </children>
+</AnchorPane>

@@ -112,10 +112,6 @@ public class LeadsHomeController implements Initializable {
 	@FXML
 	private Button show_hide_columns_b;
 
-	@FXML
-	void modifyContact(ActionEvent event) {
-
-	}
 
 	@FXML
 	void newLead(ActionEvent event) {
@@ -256,6 +252,16 @@ public class LeadsHomeController implements Initializable {
 		Optional<ButtonType> result = alert.showAndWait();
 		return result.get() == ButtonType.OK;
 
+	}
+	
+	@FXML
+	private void modifyOrViewDetailLead(ActionEvent event) {
+		if (selectedleadsHybridContacts.size() == 0) {
+			this.warningAlert("You haven't selected any lead!");
+		} else {
+			tempDataDAO.setCurrentContactID(selectedleadsHybridContacts.get(0).getContact_id());
+			sceneManager.switchScene(event, "ModifyLead");
+		}
 	}
 
 }

@@ -35,7 +35,7 @@
             <TableColumn fx:id="contact_source_c" prefWidth="100.0" text="Contact Source" />
         </columns>
       </TableView>
-      <Button fx:id="view_details" layoutX="45.0" layoutY="74.0" mnemonicParsing="false" onAction="#modifyContact" text="View Details/ Modify Selected Lead" />
+      <Button fx:id="view_details" layoutX="45.0" layoutY="74.0" mnemonicParsing="false" onAction="#modifyOrViewDetailLead" text="View Details/ Modify Selected Lead" />
       <Button fx:id="search_lead" layoutX="636.0" layoutY="74.0" mnemonicParsing="false" text="Search Leads" />
       <Button fx:id="add_new_lead" layoutX="385.0" layoutY="74.0" mnemonicParsing="false" onAction="#newLead" text="Add New Lead" />
       <Button fx:id="dashboard" layoutX="906.0" layoutY="27.0" mnemonicParsing="false" onAction="#returnToDashBoard" text="Dashboard" />
