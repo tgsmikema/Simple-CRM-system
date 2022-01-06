@@ -273,19 +273,61 @@ public class ModifyContactController implements Initializable {
 
 
 		first_name = first_name_t.getText();
+		if(first_name.isEmpty()) {
+			first_name = null;
+		}
 		last_name = last_name_t.getText();
+		if(last_name.isEmpty()) {
+			last_name = null;
+		}
 		phone_or_mobile = phone_or_mobile_t.getText();
+		if(phone_or_mobile.isEmpty()) {
+			phone_or_mobile = null;
+		}
 		email = email_t.getText();
+		if(email.isEmpty()) {
+			email = null;
+		}
 		fax = fax_t.getText();
+		if(fax.isEmpty()) {
+			fax = null;
+		}
 		address_line_1 = address_line_1_t.getText();
+		if(address_line_1.isEmpty()) {
+			address_line_1 = null;
+		}
 		address_line_2 = address_line_2_t.getText();
+		if(address_line_2.isEmpty()) {
+			address_line_2 = null;
+		}
 		city = city_t.getText();
+		if(city.isEmpty()) {
+			city = null;
+		}
 		state_or_county = state_or_county_t.getText();
+		if(state_or_county.isEmpty()) {
+			state_or_county = null;
+		}
 		country = country_t.getText();
+		if(country.isEmpty()) {
+			country = null;
+		}
 		description = description_t.getText();
+		if(description.isEmpty()) {
+			description = null;
+		}
 		industry = industry_t.getText();
+		if(industry.isEmpty()) {
+			industry = null;
+		}
 		company = company_t.getText();
+		if(company.isEmpty()) {
+			company = null;
+		}
 		job_title = job_title_t.getText();
+		if(job_title.isEmpty()) {
+			job_title = null;
+		}
 		//created_by not changable
 		/////////////////////////////////////////////////////
 		date_and_time = created_date_and_time_t.getText();
@@ -303,7 +345,9 @@ public class ModifyContactController implements Initializable {
 		}
 		////////////////////////////////////////////////////
 		contact_source = contact_source_t.getText();
-
+		if(contact_source.isEmpty()) {
+			contact_source = null;
+		}
 
 		if(contactsDAO.modifyContactFromID(contact_id,first_name, last_name, phone_or_mobile, email, fax, 
 				address_line_1, address_line_2, city, state_or_county, country, description,

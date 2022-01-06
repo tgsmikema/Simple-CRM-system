@@ -44,6 +44,42 @@ public class LeadsDAO {
 		} 
 	}
 
+	public boolean modifyLeadFromID(int contact_id, String lead_source, String lead_status,
+			String if_lost_reasons, String lead_created_by, Timestamp lead_created_date_and_time,
+			String assigned_to) {
+
+		// checking if mandatory fields are empty.
+		if ( lead_status == null || lead_created_by == null || lead_created_date_and_time == null) {
+			return false;
+		}
+
+		String query = "UPDATE leads SET lead_source = ? , lead_status = ? , if_lost_reasons = ? , lead_created_by = ? , lead_created_date_and_time = ? , assigned_to = ? WHERE contact_id = " + contact_id;
+
+		Connection con;
+		// check here change here
+		try {
+			con = DriverManager.getConnection(URL, uname, pass);
+			PreparedStatement st = con.prepareStatement(query);
+
+			st.setString(1, lead_source);
+			st.setString(2, lead_status);
+			st.setString(3, if_lost_reasons);
+			st.setString(4, lead_created_by);
+			st.setTimestamp(5, lead_created_date_and_time);
+			st.setString(6, assigned_to);
+
+			st.executeUpdate();
+			return true;
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+
+
+	}
+
 	public boolean checkNewLeadAlreadyExist(int contact_id) {
 
 		String query = "SELECT * FROM leads";
@@ -88,7 +124,7 @@ public class LeadsDAO {
 		if ( lead_status == null || lead_created_by == null || lead_created_date_and_time == null) {
 			return false;
 		}
-		
+
 		String query = "INSERT INTO leads VALUES (?,?,?,?,?,?,?)";
 
 		Connection con;
@@ -106,7 +142,7 @@ public class LeadsDAO {
 
 			st.executeUpdate();
 			return true;
-			
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -114,32 +150,94 @@ public class LeadsDAO {
 		}
 	}
 
-	
+
 	public ArrayList<Integer> getAllContactsIDNotLeadsYet(){
-		
+
 		ArrayList<Integer> allContactIDNotLeadsYet = new ArrayList<>();
-		
+
 		String query = "SELECT contact_id FROM contacts WHERE contact_id NOT IN (SELECT contact_id FROM contacts c JOIN leads l USING (contact_id))";
-		
+
 		Connection con;
-			try {
-				con = DriverManager.getConnection(URL,uname,pass);
-				Statement st = con.createStatement();
-				ResultSet rs = st.executeQuery(query);
-				
-				while(rs.next()) {
-					allContactIDNotLeadsYet.add(rs.getInt("contact_id"));
-				}
-				
-				return allContactIDNotLeadsYet;
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				return null;
+		try {
+			con = DriverManager.getConnection(URL,uname,pass);
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(query);
+
+			while(rs.next()) {
+				allContactIDNotLeadsYet.add(rs.getInt("contact_id"));
 			}
-		
+
+			return allContactIDNotLeadsYet;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+
 	}
-	
+
+
+	public Leads getLeadFromID(int contact_id) {
+
+		String query = "SELECT * FROM leads WHERE contact_id = " + contact_id;
+
+		Connection con;
+
+		try {
+			con = DriverManager.getConnection(URL, uname, pass);
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(query);
+
+			rs.next();
+
+			Leads lead = new Leads();
+
+
+			lead.setContact_id(rs.getInt("contact_id"));
+
+			if (rs.getString("lead_source") != null){
+				lead.setLead_source(rs.getString("lead_source"));
+			} else {
+				lead.setLead_source("");
+			}
+			
+			if (rs.getString("lead_status") != null){
+				lead.setLead_status(rs.getString("lead_status"));
+			} else {
+				lead.setLead_status("");
+			}
+			
+			if (rs.getString("if_lost_reasons") != null) {
+				lead.setIf_lost_reasons(rs.getString("if_lost_reasons"));
+			} else {
+				lead.setIf_lost_reasons("");
+			}
+			
+			if (rs.getString("lead_created_by") != null) {
+				lead.setCreated_by(rs.getString("lead_created_by"));
+			} else {
+				lead.setCreated_by("");
+			}
+			
+			lead.setCreated_date_and_time(rs.getTimestamp("lead_created_date_and_time"));
+
+			if (rs.getString("assigned_to") != null) {
+				lead.setAssigned_to(rs.getString("assigned_to"));
+			} else {
+				lead.setAssigned_to(rs.getString(""));
+			}
+			
+
+			return lead;
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+
+	}
+
 
 	public ArrayList<LeadsHybridContacts> getAllLeadsHybridContacts(){
 
