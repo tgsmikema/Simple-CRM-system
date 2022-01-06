@@ -83,5 +83,6 @@
       <Button fx:id="new_task_b" layoutX="890.0" layoutY="410.0" mnemonicParsing="false" text="New Task" />
       <Button fx:id="save_b" layoutX="890.0" layoutY="461.0" mnemonicParsing="false" onAction="#saveModifiedLead" text="Save" />
       <Button fx:id="cancel_b" layoutX="890.0" layoutY="509.0" mnemonicParsing="false" onAction="#cancelAndReturn" text="Cancel" />
+      <Button layoutX="348.0" layoutY="89.0" mnemonicParsing="false" onAction="#modifyContactsSwitchScene" text="Modify Contact" />
    </children>
 </AnchorPane>

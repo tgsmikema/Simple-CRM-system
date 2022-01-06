@@ -320,6 +320,11 @@ public class ModifyLeadController implements Initializable{
 
 
 	}
+	
+	@FXML
+	public void modifyContactsSwitchScene(ActionEvent event) {
+		sceneManager.switchScene(event, "ModifyContact");
+	}
 
 
 }
