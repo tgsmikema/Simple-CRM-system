@@ -3,8 +3,10 @@ package application;
 import java.sql.Connection;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.lang.reflect.*;
 import java.sql.*;
 
 import javafx.application.Application;
@@ -15,6 +17,8 @@ import javafx.fxml.FXMLLoader;
 
 
 public class Main extends Application {
+	
+	
 	@Override
 	public void start(Stage primaryStage) {
 		try {
@@ -42,8 +46,32 @@ public class Main extends Application {
 		//t.setCurrentContactID(5);
 		//t.setCurrentUserID(6);
 		//t.resetData();
+		
+		
+		/*
+		Tasks contacts = new Tasks();
+		
+		Method m[] = (contacts.getClass().getDeclaredMethods());
+		
+		for (int i = 0; i < m.length; i++) {
+            System.out.println(m[i].getName());
+            System.out.println(m[i].getReturnType().getSimpleName());
+			System.out.println();
+		}
+		
+		System.out.println("-----------------------------------------------------------");
+		
+		Field f[] = (contacts.getClass().getDeclaredFields());
+		
+		for (int i = 0; i < f.length; i++) {
+			System.out.print(f[i].getType().getSimpleName());
+			System.out.print(" ");
+            System.out.println(f[i].getName()+";");
+            
+		}
+		*/
 
-
+		
 		launch(args);
 	}
 }
