@@ -70,8 +70,12 @@ public class Main extends Application {
             
 		}
 		*/
+		
+		Tasks contacts = new Tasks();
+		
+		PrintingFunctionModuleManagement.printDataClassGettersAndSetters(contacts);
 
 		
-		launch(args);
+		//launch(args);
 	}
 }
