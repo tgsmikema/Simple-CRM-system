@@ -71,10 +71,17 @@ public class Main extends Application {
 		}
 		*/
 		
-		Tasks contacts = new Tasks();
 		
-		PrintingFunctionModuleManagement.printDataClassGettersAndSetters(contacts);
-
+		Contacts contacts = new Contacts();
+		Tasks tasks = new Tasks();
+		PrintingFunctionModuleManagement pm = new PrintingFunctionModuleManagement();
+		//Leads contacts = new Leads();
+		//pm.printDataClassGettersAndSetters(contacts);
+		//pm.printDAOClassHeaderStructure(tasks);
+		
+		pm.printDAOClassesGetSingleDataFromID(contacts);
+		//pm.printDAOClassGetAllDataIntoArrayList(tasks);
+		
 		
 		//launch(args);
 	}

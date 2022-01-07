@@ -219,6 +219,7 @@ public class LeadsDAO {
 				lead.setCreated_by("");
 			}
 			
+			
 			lead.setCreated_date_and_time(rs.getTimestamp("lead_created_date_and_time"));
 
 			if (rs.getString("assigned_to") != null) {

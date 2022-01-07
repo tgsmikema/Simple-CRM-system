@@ -14,7 +14,7 @@ public class Leads {
 	private Timestamp lead_created_date_and_time;
 	private String assigned_to;
 	
-	//setted and getters
+	//setter and getters
 	public int getContact_id() {
 		return contact_id;
 	}
