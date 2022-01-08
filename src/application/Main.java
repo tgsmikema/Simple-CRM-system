@@ -79,8 +79,11 @@ public class Main extends Application {
 		//pm.printDataClassGettersAndSetters(contacts);
 		//pm.printDAOClassHeaderStructure(tasks);
 		
-		pm.printDAOClassesGetSingleDataFromID(contacts);
 		//pm.printDAOClassGetAllDataIntoArrayList(tasks);
+		//pm.printDAOClassesGetSingleDataFromID(contacts);
+		//pm.printDAOClassCheckDataEntryExistInDB(contacts, "email");
+		//pm.printDAOClassDeleteDataEntryFromID(contacts);
+		pm.printDAOClassAddNewDataEntry(contacts,"email","first_name,last_name,email,created_by,created_date_and_time");
 		
 		
 		//launch(args);
