@@ -74,18 +74,21 @@ public class Main extends Application {
 		
 		Contacts contacts = new Contacts();
 		Tasks tasks = new Tasks();
+		Leads leads = new Leads();
+		LeadsHybridContacts l = new LeadsHybridContacts();
 		PrintingFunctionModuleManagement pm = new PrintingFunctionModuleManagement();
 		//Leads contacts = new Leads();
 		//pm.printDataClassGettersAndSetters(contacts);
 		//pm.printDAOClassHeaderStructure(tasks);
 		
-		//pm.printDAOClassGetAllDataIntoArrayList(tasks);
-		//pm.printDAOClassesGetSingleDataFromID(contacts);
-		//pm.printDAOClassCheckDataEntryExistInDB(contacts, "email");
-		//pm.printDAOClassDeleteDataEntryFromID(contacts);
-		pm.printDAOClassAddNewDataEntry(contacts,"email","first_name,last_name,email,created_by,created_date_and_time");
+		//pm.printDAOClassGetAllDataIntoArrayList(leads);
+		//pm.printDAOClassesGetSingleDataFromID(leads);
+		//pm.printDAOClassCheckDataEntryExistInDB(leads, "contact_id");
+		//pm.printDAOClassDeleteDataEntryFromID(leads);
+		//pm.printDAOClassAddNewDataEntry(leads,"contact_id","lead_status,lead_created_by,lead_created_date_and_time");
+		//pm.printDAOClassModifyDataFromID(leads,"lead_status,lead_created_by,lead_created_date_and_time");
 		
-		
+		pm.printDAOClassGetAllHybridData(l,leads,contacts);
 		//launch(args);
 	}
 }
