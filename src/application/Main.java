@@ -92,7 +92,7 @@ public class Main extends Application {
 		//pm.printDAOClassModifyDataFromID(leads,"lead_status,lead_created_by,lead_created_date_and_time");
 		//pm.printDAOClassGetAllHybridData(l,leads,contacts);
 		
-		pm.printHomeControllerInitialize(l,leadsDAO);
+		//pm.printHomeControllerInitialize(l,leadsDAO);
 	
 		//launch(args);
 	}
