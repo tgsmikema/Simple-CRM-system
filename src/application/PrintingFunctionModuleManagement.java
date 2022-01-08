@@ -64,6 +64,146 @@ public class PrintingFunctionModuleManagement {
 			System.out.println();
 		}
 	}
+	
+public void printDataClassCreateHybrid(Object contacts, Object leads) {
+		
+		String className1 = contacts.getClass().getSimpleName();
+		String databaseTableName1 = className1.toLowerCase();
+		String classInstance1 = className1.toLowerCase().substring(0, className1.length()-1);
+		String classInstanceFirstUpper1 = makeFirstLetterUpperCase(classInstance1);
+		
+		String className2 = leads.getClass().getSimpleName();
+		String databaseTableName2 = className2.toLowerCase();
+		String classInstance2 = className2.toLowerCase().substring(0, className2.length()-1);
+		String classInstanceFirstUpper2 = makeFirstLetterUpperCase(classInstance2);
+		
+		StringBuilder sb = new StringBuilder();
+		
+		sb.append("package application;\n\n");
+		sb.append("import java.sql.Timestamp;\n\n");
+		sb.append("public class "+className1+"Hybrid"+className2+" {\n\n\n");
+		
+		Field f_c[] = (contacts.getClass().getDeclaredFields());
+		
+		for (int i = 0; i < f_c.length; i++) {
+			String varName = f_c[i].getName();
+			String varType = f_c[i].getType().getSimpleName();
+		
+
+			sb.append("private "+varType+" "+varName+";\n");
+		}
+		
+		sb.append("\n");
+		Field f_l[] = (leads.getClass().getDeclaredFields());
+		
+		for (int i = 1; i < f_l.length; i++) {
+			String varName = f_l[i].getName();
+			String varType = f_l[i].getType().getSimpleName();
+
+			sb.append("private "+varType+" "+varName+";\n");
+		}
+		
+		
+		
+
+		
+		
+		System.out.println(sb.toString());
+		
+		for (int i = 0; i < f_c.length; i++) {
+			String varName = f_c[i].getName();
+			String varType = f_c[i].getType().getSimpleName();
+			StringBuilder sb1 = new StringBuilder();
+			char varChar[] = varName.toCharArray();
+			// generate setter
+			varChar[0] = Character.toUpperCase(varChar[0]);
+			sb1.append("public void ");
+			sb1.append("set");
+			sb1.append(varChar);
+			sb1.append("(");
+			sb1.append(varType);
+			sb1.append(" ");
+			sb1.append(varName);
+			sb1.append(")");
+			sb1.append(" ");
+			sb1.append("{");
+			sb1.append("\n");
+			sb1.append("\t");
+			sb1.append("this.");
+			sb1.append(varName);
+			sb1.append(" = ");
+			sb1.append(varName);
+			sb1.append(";\n");
+			sb1.append("}");
+
+			System.out.println(sb1.toString());
+			System.out.println();
+
+			StringBuilder sb2 = new StringBuilder();
+			sb2.append("public ");
+			sb2.append(varType);
+			sb2.append(" ");
+			sb2.append("get");
+			sb2.append(varChar);
+			sb2.append("() {\n\t");
+			sb2.append("return ");
+			sb2.append(varName);
+			sb2.append(";\n");
+			sb2.append("}");
+
+			System.out.println(sb2.toString());
+			System.out.println();
+		}
+		
+		for (int i = 1; i < f_l.length; i++) {
+			String varName = f_l[i].getName();
+			String varType = f_l[i].getType().getSimpleName();
+			StringBuilder sb1 = new StringBuilder();
+			char varChar[] = varName.toCharArray();
+			// generate setter
+			varChar[0] = Character.toUpperCase(varChar[0]);
+			sb1.append("public void ");
+			sb1.append("set");
+			sb1.append(varChar);
+			sb1.append("(");
+			sb1.append(varType);
+			sb1.append(" ");
+			sb1.append(varName);
+			sb1.append(")");
+			sb1.append(" ");
+			sb1.append("{");
+			sb1.append("\n");
+			sb1.append("\t");
+			sb1.append("this.");
+			sb1.append(varName);
+			sb1.append(" = ");
+			sb1.append(varName);
+			sb1.append(";\n");
+			sb1.append("}");
+
+			System.out.println(sb1.toString());
+			System.out.println();
+
+			StringBuilder sb2 = new StringBuilder();
+			sb2.append("public ");
+			sb2.append(varType);
+			sb2.append(" ");
+			sb2.append("get");
+			sb2.append(varChar);
+			sb2.append("() {\n\t");
+			sb2.append("return ");
+			sb2.append(varName);
+			sb2.append(";\n");
+			sb2.append("}");
+
+			System.out.println(sb2.toString());
+			System.out.println();
+		}
+		
+		System.out.println("}");
+		
+	}
+
 
 	public void printDAOClassHeaderStructure(Object dataClassInstance) {
 		String className = dataClassInstance.getClass().getSimpleName();
@@ -513,7 +653,76 @@ public class PrintingFunctionModuleManagement {
 		
 	}
 
+	public void printHomeControllerInitialize(Object dataClassInstance,Object DAOinstance) {
+		String className = dataClassInstance.getClass().getSimpleName();
+		String DAOname = DAOinstance.getClass().getSimpleName();
+		
+		StringBuilder inst = new StringBuilder();
+		inst.append(Character.toLowerCase(className.toCharArray()[0]));
+		char[] classNameChar = className.toCharArray();
+		for(int i=1;i<classNameChar.length;i++) {
+			inst.append(classNameChar[i]);
+		}
+		String classInstanceName = inst.toString();
+		
+		StringBuilder inst2 = new StringBuilder();
+		inst2.append(Character.toLowerCase(DAOname.toCharArray()[0]));
+		char[] classNameChar1 = DAOname.toCharArray();
+		for(int i=1;i<classNameChar1.length;i++) {
+			inst2.append(classNameChar1[i]);
+		}
+		String DAOInstanceName = inst2.toString();
+		
+		StringBuilder sb = new StringBuilder();
+		
+		sb.append("private SceneManager sceneManager = new SceneManager();\n\n");
+		sb.append("private ArrayList<"+className+"> "+classInstanceName+"Array;\n");
+		sb.append("private ObservableList<"+className+"> "+classInstanceName+"Observe;\n");
+		sb.append("private ObservableList<"+className+"> selected"+className+";\n\n");
+		
+		sb.append("private TempDataDAO tempDataDAO = new TempDataDAO();\n\n");
+		
+		sb.append("@Override\n");
+		sb.append("public void initialize(URL arg0, ResourceBundle arg1) {\n\n");
+		
+		sb.append(DAOname+" "+DAOInstanceName+" = new "+DAOname+"();\n");
+		sb.append(classInstanceName+"Array = new ArrayList<>();\n");
+		sb.append(classInstanceName+"Array = "+DAOInstanceName+".getAll"+className+"();\n");
+		sb.append(classInstanceName+"Observe = FXCollections.observableArrayList("+classInstanceName+"Array);\n\n");
+		
+		Field f[] = (dataClassInstance.getClass().getDeclaredFields());
 
+		for (int i = 0; i < f.length; i++) {
+			String varName = f[i].getName();
+			String varType = f[i].getType().getSimpleName();
+			String upperVarType = makeFirstLetterUpperCase(varType);
+			String upperVarName = makeFirstLetterUpperCase(varName);
+			
+			sb.append("this."+varName+"_c.setCellValueFactory((new PropertyValueFactory<");
+			sb.append(className);
+			sb.append(",");
+			if (upperVarType.equals("Int")) {
+				upperVarType = "Integer";
+			}
+			sb.append(upperVarType);
+			sb.append(">("+Q+varName+Q+")));\n");
+		}
+		sb.append("\n");
+		sb.append("this.table_view.setItems("+classInstanceName+"Observe"+");\n\n");
+		
+		sb.append("selected"+className+" = table_view.getSelectionModel().getSelectedItems();\n\n");
+		
+		sb.append("selected"+className+".addListener(new ListChangeListener<Object>() {\n\n");
+		sb.append("@Override\n");
+		sb.append("public void onChanged(Change<? extends Object> arg0) {\n\n");
+		sb.append("}\n\n});\n\n}\n");
+		
+		
+		System.out.println(sb.toString());
+		
+	}
+	
+	
 
-
+	
 }
