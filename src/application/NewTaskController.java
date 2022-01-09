@@ -199,7 +199,7 @@ public class NewTaskController implements Initializable {
 
 		// inject all contacts data Arraylist into Observable arraylist
 		contactsObserve = FXCollections.observableArrayList(contactsArray);
-
+ 
 		// display observable list items into tableview
 		this.contact_id_c.setCellValueFactory((new PropertyValueFactory<Contacts,Integer>("contact_id")));
 		this.first_name_c.setCellValueFactory((new PropertyValueFactory<Contacts,String>("first_name")));
