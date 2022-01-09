@@ -35,65 +35,35 @@ public class Main extends Application {
 
 	public static void main(String[] args) throws Exception {
 
-		//ContactsDAO contactsDAO = new ContactsDAO();
-		//System.out.println(contactsDAO.addNewContact("asb","ddd",null,"email@gmail.com",null,null,null,null,null,null,null,null,null,null,"Mike Ma",Timestamp.valueOf("2021-03-04 12:23:00"),null));
-
-
-		//ContactsDAO contactsDAO = new ContactsDAO();
-		//System.out.println(contactsDAO.modifyContactFromID(15,"asb","Gao",null,"email@gmail.com",null,null,null,null,null,null,null,null,null,null,"Mike Ma",Timestamp.valueOf("2021-03-04 12:23:00"),null));
-
-		//TempDataDAO t = new TempDataDAO();
-		//t.setCurrentContactID(5);
-		//t.setCurrentUserID(6);
-		//t.resetData();
-		
-		
-		/*
-		Tasks contacts = new Tasks();
-		
-		Method m[] = (contacts.getClass().getDeclaredMethods());
-		
-		for (int i = 0; i < m.length; i++) {
-            System.out.println(m[i].getName());
-            System.out.println(m[i].getReturnType().getSimpleName());
-			System.out.println();
-		}
-		
-		System.out.println("-----------------------------------------------------------");
-		
-		Field f[] = (contacts.getClass().getDeclaredFields());
-		
-		for (int i = 0; i < f.length; i++) {
-			System.out.print(f[i].getType().getSimpleName());
-			System.out.print(" ");
-            System.out.println(f[i].getName()+";");
-            
-		}
-		*/
-		
-		
 		Contacts contacts = new Contacts();
 		Tasks tasks = new Tasks();
-		Leads leads = new Leads();
-		LeadsDAO leadsDAO = new LeadsDAO();
-		LeadsHybridContacts l = new LeadsHybridContacts();
+		//Leads leads = new Leads();
+		//LeadsDAO leadsDAO = new LeadsDAO();
+		TasksDAO tasksDAO = new TasksDAO();
+		TasksHybridContacts th = new TasksHybridContacts();
+		//LeadsHybridContacts l = new LeadsHybridContacts();
 		PrintingFunctionModuleManagement pm = new PrintingFunctionModuleManagement();
 		//Leads contacts = new Leads();
+		tasksDAO.deleteTaskFromTaskID(6);
 		
-		//pm.printDataClassGettersAndSetters(contacts);
-		//pm.printDataClassCreateHybrid(contacts,leads);
+		//pm.printDataClassGettersAndSetters(tasks);
+		//pm.printDataClassCreateHybrid(tasks,contacts);
 		
 		//pm.printDAOClassHeaderStructure(tasks);
-		//pm.printDAOClassGetAllDataIntoArrayList(leads);
-		//pm.printDAOClassesGetSingleDataFromID(leads);
-		//pm.printDAOClassCheckDataEntryExistInDB(leads, "contact_id");
-		//pm.printDAOClassDeleteDataEntryFromID(leads);
-		//pm.printDAOClassAddNewDataEntry(leads,"contact_id","lead_status,lead_created_by,lead_created_date_and_time");
-		//pm.printDAOClassModifyDataFromID(leads,"lead_status,lead_created_by,lead_created_date_and_time");
-		//pm.printDAOClassGetAllHybridData(l,leads,contacts);
+		//pm.printDAOClassGetAllDataIntoArrayList(tasks);
+		//pm.printDAOClassesGetSingleDataFromID(tasks);
+		//pm.printDAOClassCheckDataEntryExistInDB(tasks, "task_id");
+		//pm.printDAOClassDeleteDataEntryFromID(tasks);
 		
-		//pm.printHomeControllerInitialize(l,leadsDAO);
+		
+		//pm.printDAOClassAddNewDataEntry(tasks,"task_id","task_id,contact_id,task_type,task_created_by,task_created_date_and_time");
+		//pm.printDAOClassModifyDataFromID(tasks,"task_type,task_created_by,task_created_date_and_time");
+		//pm.printDAOClassGetAllHybridData(th,tasks,contacts);
+		
+		//pm.printHomeControllerInitialize(th,tasksDAO);
+		
+		
 	
-		//launch(args);
+		launch(args);
 	}
 }
