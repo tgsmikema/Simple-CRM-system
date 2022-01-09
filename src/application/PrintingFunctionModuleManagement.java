@@ -15,6 +15,34 @@ public class PrintingFunctionModuleManagement {
 	private String Q = "\"";
 	private String L_B = "{";
 	private String R_B = "}";
+	
+	public void printGetTextFXML(Object instance) {
+		String className = instance.getClass().getSimpleName();
+		String databaseTableName = className.toLowerCase();
+		String classInstance = className.toLowerCase().substring(0, className.length()-1);
+		String classInstanceFirstUpper = makeFirstLetterUpperCase(classInstance);
+		
+		StringBuilder sb = new StringBuilder();
+		
+		Field f[] = (instance.getClass().getDeclaredFields());
+
+		for (int i = 0; i < f.length; i++) {
+			String varName = f[i].getName();
+			String varType = f[i].getType().getSimpleName();
+			String upperVarType = makeFirstLetterUpperCase(varType);
+			String upperVarName = makeFirstLetterUpperCase(varName);
+			
+			sb.append(varType+" "+varName+" = "+varName+"_t.getText();\n");
+			sb.append("if ("+varName+".isEmpty()) {\n");
+			sb.append("\t"+varName+" = null;\n");
+			sb.append("}\n\n");
+			
+			
+			
+		}
+		
+		System.out.println(sb.toString());
+	}
 
 	public void printDataClassGettersAndSetters(Object instance) {
 		Field f[] = (instance.getClass().getDeclaredFields());

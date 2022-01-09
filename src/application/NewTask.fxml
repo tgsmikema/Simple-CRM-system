@@ -59,7 +59,7 @@
       <Label layoutX="23.0" layoutY="358.0" text="Contact ID:" />
       <Label fx:id="contact_id_t" layoutX="100.0" layoutY="358.0" prefHeight="17.0" prefWidth="37.0" />
       <Label fx:id="lead_created_by_t" layoutX="105.0" layoutY="541.0" prefHeight="17.0" prefWidth="135.0" />
-      <Button fx:id="save_b" layoutX="914.0" layoutY="453.0" mnemonicParsing="false" onAction="#saveNewLead" text="Save" />
+      <Button fx:id="save_b" layoutX="914.0" layoutY="453.0" mnemonicParsing="false" onAction="#saveNewTask" text="Save" />
       <Button fx:id="cancel_b" layoutX="908.0" layoutY="505.0" mnemonicParsing="false" onAction="#cancelAndReturn" text="Cancel" />
       <Label layoutX="23.0" layoutY="390.0" text="Task ID:" />
       <Label layoutX="22.0" layoutY="433.0" text="*Task Type:" />
@@ -81,7 +81,7 @@
       <TextField fx:id="task_created_date_and_time_t" layoutX="395.0" layoutY="407.0" />
       <TextField fx:id="due_date_and_time_t" layoutX="395.0" layoutY="505.0" />
       <TextField fx:id="priority_t" layoutX="697.0" layoutY="354.0" />
-      <Slider fx:id="progress_t" blockIncrement="5.0" layoutX="697.0" layoutY="413.0" showTickLabels="true" showTickMarks="true" />
+      <Slider fx:id="progress_t" blockIncrement="5.0" layoutX="697.0" layoutY="413.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
       <TextField fx:id="task_current_status_t" layoutX="697.0" layoutY="466.0" />
       <ChoiceBox fx:id="task_assigned_to_t" layoutX="395.0" layoutY="441.0" prefHeight="25.0" prefWidth="161.0" />
       <DatePicker fx:id="date_picker_created" layoutX="504.0" layoutY="378.0" onAction="#datePickerCreated" prefHeight="25.0" prefWidth="27.0" />

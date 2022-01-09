@@ -39,12 +39,12 @@ public class Main extends Application {
 		Tasks tasks = new Tasks();
 		//Leads leads = new Leads();
 		//LeadsDAO leadsDAO = new LeadsDAO();
-		TasksDAO tasksDAO = new TasksDAO();
-		TasksHybridContacts th = new TasksHybridContacts();
+		//TasksDAO tasksDAO = new TasksDAO();
+		//TasksHybridContacts th = new TasksHybridContacts();
 		//LeadsHybridContacts l = new LeadsHybridContacts();
-		PrintingFunctionModuleManagement pm = new PrintingFunctionModuleManagement();
+		//PrintingFunctionModuleManagement pm = new PrintingFunctionModuleManagement();
 		//Leads contacts = new Leads();
-		tasksDAO.deleteTaskFromTaskID(6);
+		//pm.printGetTextFXML(tasks);
 		
 		//pm.printDataClassGettersAndSetters(tasks);
 		//pm.printDataClassCreateHybrid(tasks,contacts);

@@ -7,6 +7,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
@@ -15,6 +17,7 @@ import javafx.collections.ListChangeListener.Change;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
@@ -23,6 +26,7 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class NewTaskController implements Initializable {
@@ -168,6 +172,8 @@ public class NewTaskController implements Initializable {
 
 	private int contact_id;
 
+	private TasksDAO tasksDAO = new TasksDAO();
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
@@ -233,6 +239,104 @@ public class NewTaskController implements Initializable {
 
 	}
 
+	private void warningAlert(String message) {
+		Alert alert = new Alert(AlertType.WARNING);
+		alert.setTitle("Warning!");
+		alert.setHeaderText(message);
+
+		alert.showAndWait();
+		return;
+	}
+
+	@FXML
+	private void saveNewTask(ActionEvent event) {
+		if (contact_id_t.getText().isEmpty()) {
+			this.warningAlert("Please Select A Contact First!");
+			return;
+		} else {
+			contact_id = Integer.valueOf(contact_id_t.getText());
+		}
+		
+		
+
+		int task_id = -1;
+
+		String task_type = task_type_t.getText();
+		if (task_type.isEmpty()) {
+			task_type = null;
+		}
+
+		String task_summary = task_summary_t.getText();
+		if (task_summary.isEmpty()) {
+			task_summary = null;
+		}
+
+		String task_description = task_description_t.getText();
+		if (task_description.isEmpty()) {
+			task_description = null;
+		}
+
+		String task_created_by = task_created_by_t.getText();
+		if (task_created_by.isEmpty()) {
+			task_created_by = null;
+		}
+
+		///////////////////
+		String task_created_date_and_time_string = task_created_date_and_time_t.getText();
+
+		Pattern p = Pattern.compile("\\d{4}-\\d{2}-\\d{2}\\s\\d{2}:\\d{2}:\\d{2}");
+		Matcher m = p.matcher(task_created_date_and_time_string);
+		boolean b = m.matches();
+
+		Timestamp task_created_date_and_time;
+
+		// if yes, then proceed to convert to Timestamp type to aviod exceptions
+		if (b) {
+			task_created_date_and_time = Timestamp.valueOf(task_created_date_and_time_string);
+		} else {
+			task_created_date_and_time = null;
+		}
+		//////////////////////
+
+		String task_assigned_to = task_assigned_to_t.getValue();
+
+		///////////////////
+		String due_date_and_time_string = due_date_and_time_t.getText();
+
+		Pattern p1 = Pattern.compile("\\d{4}-\\d{2}-\\d{2}\\s\\d{2}:\\d{2}:\\d{2}");
+		Matcher m1 = p1.matcher(due_date_and_time_string);
+		boolean b1 = m1.matches();
+
+		Timestamp due_date_and_time;
+
+		// if yes, then proceed to convert to Timestamp type to aviod exceptions
+		if (b1) {
+			due_date_and_time = Timestamp.valueOf(due_date_and_time_string);
+		} else {
+			due_date_and_time = null;
+		}
+		//////////////////////
+
+		String priority = priority_t.getText();
+		if (priority.isEmpty()) {
+			priority = null;
+		}
+
+		int progress = (int) progress_t.getValue();
+
+		String task_current_status = task_current_status_t.getText();
+		if (task_current_status.isEmpty()) {
+			task_current_status = null;
+		}
+		
+		if(tasksDAO.addNewTask(contact_id, task_id, task_type, task_summary, task_description, task_created_by, task_created_date_and_time, task_assigned_to, due_date_and_time, priority, progress, task_current_status)) {
+			sceneManager.switchScene(event, "SuccessfullySavedNewTask");
+		} else {
+			this.warningAlert("Task Save Failed, Please double check the details you entered and try again!");
+		}
+
+	}
+
 	@FXML
 	private void datePickerCreated(ActionEvent event) {
 
@@ -268,7 +372,7 @@ public class NewTaskController implements Initializable {
 		due_date_and_time_t.setText(dateAndTimeConcat);
 
 	}
-	
+
 	@FXML
 	private void localTimeButtonCreated(ActionEvent event) {
 
@@ -281,7 +385,7 @@ public class NewTaskController implements Initializable {
 
 
 	}
-	
+
 	@FXML
 	private void localTimeButtonDue(ActionEvent event) {
 

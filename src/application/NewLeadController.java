@@ -222,6 +222,7 @@ public class NewLeadController implements Initializable {
 		}
 		
 		contact_id = selectedContact.get(0).getContact_id();
+		
 		String lead_source = lead_source_t.getText();
 		String lead_status = lead_status_t.getText();
 		String if_lost_reasons = if_lost_reasons_t.getText();
