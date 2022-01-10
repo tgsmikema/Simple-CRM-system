@@ -35,6 +35,11 @@ public class DashBoardController implements Initializable{
 		sceneManager.switchScene(e, "TasksHome");
 	}
 	
+	@FXML
+	public void goToActivitiesHome(ActionEvent e) {
+		sceneManager.switchScene(e, "ActivitiesHome");
+	}
+	
 	
 
 }

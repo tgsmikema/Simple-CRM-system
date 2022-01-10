@@ -49,7 +49,7 @@ public class Main extends Application {
 		//LeadsHybridContacts l = new LeadsHybridContacts();
 		PrintingFunctionModuleManagement pm = new PrintingFunctionModuleManagement();
 		//Leads contacts = new Leads();
-		//pm.printGetTextFXML(tasks);
+		//pm.printGetTextFXML(activities);
 		
 		//pm.printDataClassGettersAndSetters(activity);
 		//pm.printDataClassCreateHybrid(activities,contacts);
@@ -63,12 +63,13 @@ public class Main extends Application {
 		
 		//pm.printDAOClassAddNewDataEntry(activities,"activity_id","activity_type,activity_created_by,activity_created_date_and_time");
 		//pm.printDAOClassModifyDataFromID(activities,"activity_type,activity_created_by,activity_created_date_and_time");
-		pm.printDAOClassGetAllHybridData(ac,activities,contacts);
+		//pm.printDAOClassGetAllHybridData(ac,activities,contacts);
 		
-		//pm.printHomeControllerInitialize(th,tasksDAO);
+		//ActivitiesDAO aDAO = new ActivitiesDAO();
+		//pm.printHomeControllerInitialize(ac,aDAO);
 		
 		
 	
-		//launch(args);
+		launch(args);
 	}
 }

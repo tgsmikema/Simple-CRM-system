@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.NewActivityController">
+   <children>
+      <Label layoutX="395.0" layoutY="14.0" text="Add New Activity">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <Label layoutX="14.0" layoutY="72.0" text="Step 1. Select Contact">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TableView fx:id="table_view" layoutY="108.0" prefHeight="200.0" prefWidth="1000.0">
+        <columns>
+          <TableColumn fx:id="contact_id_c" prefWidth="120.0" text="Contact ID" />
+          <TableColumn fx:id="first_name_c" prefWidth="120.0" text="First Name" />
+            <TableColumn fx:id="last_name_c" prefWidth="120.0" text="Last Name" />
+            <TableColumn fx:id="phone_or_mobile_c" prefWidth="120.0" text="Phone/Mobile" />
+            <TableColumn fx:id="email_c" prefWidth="120.0" text="Email" />
+            <TableColumn fx:id="fax_c" prefWidth="120.0" text="Fax" />
+            <TableColumn fx:id="address_line_1_c" prefWidth="120.0" text="Address Line 1" />
+            <TableColumn fx:id="address_line_2_c" prefWidth="120.0" text="Address Line 2" />
+            <TableColumn fx:id="city_c" prefWidth="120.0" text="City" />
+            <TableColumn fx:id="state_or_county_c" prefWidth="120.0" text="State or County" />
+            <TableColumn fx:id="country_c" prefWidth="120.0" text="Country" />
+            <TableColumn fx:id="description_c" prefWidth="120.0" text="Description" />
+            <TableColumn fx:id="industry_c" prefWidth="120.0" text="Industry" />
+            <TableColumn fx:id="company_c" prefWidth="120.0" text="Company" />
+            <TableColumn fx:id="job_title_c" prefWidth="120.0" text="Job Title" />
+            <TableColumn fx:id="created_by_c" prefWidth="120.0" text="Created By" />
+            <TableColumn fx:id="created_date_and_time_c" prefWidth="120.0" text="Created Date And Time" />
+            <TableColumn fx:id="contact_source_c" prefWidth="120.0" text="Contact Source" />
+        </columns>
+      </TableView>
+      <Label layoutX="14.0" layoutY="315.0" prefHeight="24.0" prefWidth="249.0" text="Step 2. Create New Activity">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="275.0" layoutY="72.0" text="OR">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Button layoutX="363.0" layoutY="71.0" mnemonicParsing="false" onAction="#switchToAddNewContact" text="Create A New Contact First" />
+      <Label layoutX="23.0" layoutY="358.0" text="Contact ID:" />
+      <Label fx:id="contact_id_t" layoutX="100.0" layoutY="358.0" prefHeight="17.0" prefWidth="37.0" />
+      <Label fx:id="lead_created_by_t" layoutX="105.0" layoutY="541.0" prefHeight="17.0" prefWidth="135.0" />
+      <Button fx:id="save_b" layoutX="914.0" layoutY="453.0" mnemonicParsing="false" onAction="#saveNewActivity" text="Save" />
+      <Button fx:id="cancel_b" layoutX="908.0" layoutY="505.0" mnemonicParsing="false" onAction="#cancelAndReturn" text="Cancel" />
+      <Label fx:id="contact_id_t" layoutX="103.0" layoutY="358.0" prefHeight="17.0" prefWidth="99.0" />
+      <Label fx:id="task_created_by_t" layoutX="399.0" layoutY="358.0" prefHeight="17.0" prefWidth="99.0" />
+      <Label layoutX="23.0" layoutY="401.0" text="Activity ID:" />
+      <Label layoutX="23.0" layoutY="457.0" text="Activity Type:" />
+      <Label layoutX="23.0" layoutY="518.0" text="Activity Summary:" />
+      <Label layoutX="361.0" layoutY="366.0" text="Activity Description:" />
+      <Label layoutX="363.0" layoutY="474.0" text="Activity Created By:" />
+      <Label layoutX="368.0" layoutY="517.0" prefHeight="48.0" prefWidth="115.0" text="Activity Created Date And Time:" wrapText="true" />
+      <Label fx:id="activity_id_t" layoutX="103.0" layoutY="401.0" prefHeight="17.0" prefWidth="27.0" text="N/A" />
+      <TextField fx:id="activity_type_t" layoutX="143.0" layoutY="453.0" prefHeight="25.0" prefWidth="194.0" />
+      <TextField fx:id="activity_summary_t" layoutX="143.0" layoutY="514.0" prefHeight="25.0" prefWidth="194.0" />
+      <TextField fx:id="activity_description_t" layoutX="483.0" layoutY="362.0" prefHeight="95.0" prefWidth="249.0" />
+      <TextField fx:id="activity_created_date_and_time_t" layoutX="483.0" layoutY="528.0" prefHeight="25.0" prefWidth="249.0" />
+      <Label fx:id="activity_created_by_t" layoutX="483.0" layoutY="474.0" prefHeight="17.0" prefWidth="249.0" />
+      <Button fx:id="get_local_time" layoutX="483.0" layoutY="556.0" mnemonicParsing="false" onAction="#localTimeButton" prefHeight="25.0" prefWidth="155.0" text="Get Local Time" />
+      <DatePicker fx:id="date_picker" layoutX="682.0" layoutY="556.0" onAction="#datePicker" prefHeight="25.0" prefWidth="27.0" />
+   </children>
+</AnchorPane>

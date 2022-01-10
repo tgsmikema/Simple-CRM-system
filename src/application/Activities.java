@@ -5,13 +5,13 @@ import java.sql.Timestamp;
 public class Activities {
 	
 	//fields
-	int activity_id;
-	int contact_id;
-	String activity_type;
-	String activity_summary;
-	String activity_description;
-	String activity_created_by;
-	Timestamp activity_created_date_and_time;
+	private int activity_id;
+	private int contact_id;
+	private String activity_type;
+	private String activity_summary;
+	private String activity_description;
+	private String activity_created_by;
+	private Timestamp activity_created_date_and_time;
 	
 	//setter and getters
 	

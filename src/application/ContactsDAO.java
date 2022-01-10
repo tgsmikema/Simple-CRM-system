@@ -297,8 +297,36 @@ public class ContactsDAO {
 
 	}
 
-	public int getRowNumberFromID(int contact_id) {
+	public boolean checkIfContactIDExistInDataBase(int contact_id) {
 		
+		String query = "SELECT contact_id FROM contacts";
+
+		Connection con;
+
+		try {
+			con = DriverManager.getConnection(URL, uname, pass);
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(query);
+
+			while(rs.next()) {
+				if (rs.getInt("contact_id") == contact_id) {
+					return true;
+				}
+			}
+			
+			return false;
+
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+
+	}
+
+	public int getRowNumberFromID(int contact_id) {
+
 		String query = "select row_num from (SELECT ROW_NUMBER() OVER (ORDER BY contact_id) row_num,contact_id FROM contacts) as aaa where contact_id = " + contact_id;
 
 		Connection con;
@@ -309,64 +337,64 @@ public class ContactsDAO {
 			ResultSet rs = st.executeQuery(query);
 
 			rs.next();
-			
+
 			return ((rs.getInt(1))-1);
-			
-		 } catch (SQLException e) {
+
+		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return 0;
 		}
 	}
 
-		/**
-		 * this method returns a boolean, ture if insertion was successful, else false.
-		 * 
-		 */
-		public boolean modifyContactFromID(int contact_id, String first_name,String last_name,String phone_or_mobile,String email,
-				String fax, String address_line_1, String address_line_2,String city,String state_or_county,
-				String country,String description,String industry,String company,String job_title,
-				String created_by,Timestamp created_date_and_time,String contact_source) {
+	/**
+	 * this method returns a boolean, ture if insertion was successful, else false.
+	 * 
+	 */
+	public boolean modifyContactFromID(int contact_id, String first_name,String last_name,String phone_or_mobile,String email,
+			String fax, String address_line_1, String address_line_2,String city,String state_or_county,
+			String country,String description,String industry,String company,String job_title,
+			String created_by,Timestamp created_date_and_time,String contact_source) {
 
-			// checking if mandatory fields are empty.
-			if (first_name == null || last_name == null || email == null || created_by == null ||
-					created_date_and_time == null) {
-				return false;
-			}
-
-			String query = "UPDATE contacts SET first_name = ? , last_name = ? , phone_or_mobile = ? , email = ? , fax = ? , address_line_1 = ? , address_line_2 = ? , city = ? , state_or_county = ? , country = ? , description = ? , industry = ? , company = ? , job_title = ? , created_by = ? , created_date_and_time = ? , contact_source = ? WHERE contact_id = " + contact_id;
-
-			Connection con;
-			// check here change here
-			try {
-				con = DriverManager.getConnection(URL, uname, pass);
-				PreparedStatement st = con.prepareStatement(query);
-				st.setString(1, first_name);
-				st.setString(2, last_name);
-				st.setString(3, phone_or_mobile);
-				st.setString(4, email);
-				st.setString(5, fax);
-				st.setString(6, address_line_1);
-				st.setString(7, address_line_2);
-				st.setString(8, city);
-				st.setString(9, state_or_county);
-				st.setString(10, country);
-				st.setString(11, description);
-				st.setString(12, industry);
-				st.setString(13, company);
-				st.setString(14, job_title);
-				st.setString(15, created_by);
-				st.setTimestamp(16, created_date_and_time);
-				st.setString(17, contact_source);
-
-				st.executeUpdate();
-				return true;
-
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				return false;
-			}
+		// checking if mandatory fields are empty.
+		if (first_name == null || last_name == null || email == null || created_by == null ||
+				created_date_and_time == null) {
+			return false;
 		}
 
+		String query = "UPDATE contacts SET first_name = ? , last_name = ? , phone_or_mobile = ? , email = ? , fax = ? , address_line_1 = ? , address_line_2 = ? , city = ? , state_or_county = ? , country = ? , description = ? , industry = ? , company = ? , job_title = ? , created_by = ? , created_date_and_time = ? , contact_source = ? WHERE contact_id = " + contact_id;
+
+		Connection con;
+		// check here change here
+		try {
+			con = DriverManager.getConnection(URL, uname, pass);
+			PreparedStatement st = con.prepareStatement(query);
+			st.setString(1, first_name);
+			st.setString(2, last_name);
+			st.setString(3, phone_or_mobile);
+			st.setString(4, email);
+			st.setString(5, fax);
+			st.setString(6, address_line_1);
+			st.setString(7, address_line_2);
+			st.setString(8, city);
+			st.setString(9, state_or_county);
+			st.setString(10, country);
+			st.setString(11, description);
+			st.setString(12, industry);
+			st.setString(13, company);
+			st.setString(14, job_title);
+			st.setString(15, created_by);
+			st.setTimestamp(16, created_date_and_time);
+			st.setString(17, contact_source);
+
+			st.executeUpdate();
+			return true;
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
 	}
+
+}
