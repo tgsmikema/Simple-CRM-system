@@ -648,7 +648,7 @@ public void printDataClassCreateHybrid(Object contacts, Object leads) {
 
 		sb.append("public ArrayList<" + className + "> getAll" + className + "() {\n\n");
 		sb.append("ArrayList<"+className+"> "+arrayListInstance+" = new ArrayList<>();\n");
-		sb.append("String query = \"SELECT * FROM "+databaseTableName1+" a JOIN "+databaseTableName2+" b USING (contact_id);\n\n");
+		sb.append("String query = \"SELECT * FROM "+databaseTableName1+" a JOIN "+databaseTableName2+" b USING (contact_id)\";\n\n");
 		sb.append("Connection con;\n");
 		sb.append("try {\n");
 		sb.append("con = DriverManager.getConnection(URL, uname, pass);\n");

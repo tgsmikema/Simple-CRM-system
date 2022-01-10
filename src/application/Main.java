@@ -37,6 +37,8 @@ public class Main extends Application {
 
 		Contacts contacts = new Contacts();
 		Tasks tasks = new Tasks();
+		Activities activities = new Activities();
+		ActivitiesHybridContacts ac = new ActivitiesHybridContacts();
 		//Leads leads = new Leads();
 		//LeadsDAO leadsDAO = new LeadsDAO();
 		//TasksDAO tasksDAO = new TasksDAO();
@@ -45,28 +47,28 @@ public class Main extends Application {
 		
 		//TasksHybridContacts th = new TasksHybridContacts();
 		//LeadsHybridContacts l = new LeadsHybridContacts();
-		//PrintingFunctionModuleManagement pm = new PrintingFunctionModuleManagement();
+		PrintingFunctionModuleManagement pm = new PrintingFunctionModuleManagement();
 		//Leads contacts = new Leads();
 		//pm.printGetTextFXML(tasks);
 		
-		//pm.printDataClassGettersAndSetters(tasks);
-		//pm.printDataClassCreateHybrid(tasks,contacts);
+		//pm.printDataClassGettersAndSetters(activity);
+		//pm.printDataClassCreateHybrid(activities,contacts);
 		
-		//pm.printDAOClassHeaderStructure(tasks);
-		//pm.printDAOClassGetAllDataIntoArrayList(tasks);
-		//pm.printDAOClassesGetSingleDataFromID(tasks);
-		//pm.printDAOClassCheckDataEntryExistInDB(tasks, "task_id");
-		//pm.printDAOClassDeleteDataEntryFromID(tasks);
+		//pm.printDAOClassHeaderStructure(activities);
+		//pm.printDAOClassGetAllDataIntoArrayList(activities);
+		//pm.printDAOClassesGetSingleDataFromID(activities);
+		//pm.printDAOClassCheckDataEntryExistInDB(activities, "activity_id");
+		//pm.printDAOClassDeleteDataEntryFromID(activities);
 		
 		
-		//pm.printDAOClassAddNewDataEntry(tasks,"task_id","task_id,contact_id,task_type,task_created_by,task_created_date_and_time");
-		//pm.printDAOClassModifyDataFromID(tasks,"task_type,task_created_by,task_created_date_and_time");
-		//pm.printDAOClassGetAllHybridData(th,tasks,contacts);
+		//pm.printDAOClassAddNewDataEntry(activities,"activity_id","activity_type,activity_created_by,activity_created_date_and_time");
+		//pm.printDAOClassModifyDataFromID(activities,"activity_type,activity_created_by,activity_created_date_and_time");
+		pm.printDAOClassGetAllHybridData(ac,activities,contacts);
 		
 		//pm.printHomeControllerInitialize(th,tasksDAO);
 		
 		
 	
-		launch(args);
+		//launch(args);
 	}
 }
