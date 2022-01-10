@@ -40,6 +40,9 @@ public class Main extends Application {
 		//Leads leads = new Leads();
 		//LeadsDAO leadsDAO = new LeadsDAO();
 		//TasksDAO tasksDAO = new TasksDAO();
+		//ContactsDAO contactsDAO = new ContactsDAO();
+		//System.out.println(contactsDAO.getRowNumberFromID(18));
+		
 		//TasksHybridContacts th = new TasksHybridContacts();
 		//LeadsHybridContacts l = new LeadsHybridContacts();
 		//PrintingFunctionModuleManagement pm = new PrintingFunctionModuleManagement();

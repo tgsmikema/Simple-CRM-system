@@ -221,10 +221,7 @@ public class NewTaskController implements Initializable {
 		this.contact_source_c.setCellValueFactory((new PropertyValueFactory<Contacts,String>("contact_source")));
 		this.table_view.setItems(contactsObserve);
 		
-		int current_contact = tempDataDAO.getCurrentContactID();
-		if (current_contact != -1) {
-		contact_id_t.setText(String.valueOf(current_contact));
-		}
+	
 
 		//table_view.getSelectionModel().setCellSelectionEnabled(true);
 		selectedContact = table_view.getSelectionModel().getSelectedItems();
@@ -241,6 +238,18 @@ public class NewTaskController implements Initializable {
 			}
 
 		});
+		
+		
+		//automatic select contacts from the previous memory
+		int current_contact = tempDataDAO.getCurrentContactID();
+		if (current_contact != -1) {
+			
+			int row_num = contactsDAO.getRowNumberFromID(current_contact);
+			contact_id_t.setText(String.valueOf(current_contact));
+			table_view.getSelectionModel().select(row_num);
+		
+		} 
+		
 
 	}
 

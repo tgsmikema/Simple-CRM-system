@@ -229,6 +229,12 @@ public class ModifyLeadController implements Initializable{
 		assigned_to_t.setValue(assigned_to);
 	}
 
+	
+	@FXML
+	public void newTask(ActionEvent event) {
+		sceneManager.switchScene(event, "NewTask");
+	}
+	
 	@FXML
 	public void cancelAndReturn(ActionEvent event) {
 		sceneManager.switchScene(event, "LeadsHome");
