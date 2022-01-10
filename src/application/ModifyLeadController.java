@@ -236,6 +236,12 @@ public class ModifyLeadController implements Initializable{
 	}
 	
 	@FXML
+	public void newActivity(ActionEvent event) {
+		sceneManager.switchScene(event, "NewActivity");
+	}
+	
+	
+	@FXML
 	public void cancelAndReturn(ActionEvent event) {
 		sceneManager.switchScene(event, "LeadsHome");
 	}
