@@ -267,6 +267,11 @@ public class ModifyContactController implements Initializable {
 		}
 
 	}
+	
+	@FXML
+	public void newTask(ActionEvent event) {
+		sceneManager.switchScene(event, "NewTask");
+	}
 
 	public void saveModifiedContact(ActionEvent event) {
 

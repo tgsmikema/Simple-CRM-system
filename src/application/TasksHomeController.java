@@ -129,7 +129,12 @@ public class TasksHomeController implements Initializable{
 
 	@FXML
 	void modifyOrViewDetailLead(ActionEvent event) {
-
+		if (selectedTasksHybridContacts.size() == 0) {
+			this.warningAlert("You haven't selected any task!");
+		} else {
+			tempDataDAO.setCurrentContactID(selectedTasksHybridContacts.get(0).getTask_id());
+			sceneManager.switchScene(event, "ModifyTask");
+		}
 	}
 
 	@FXML

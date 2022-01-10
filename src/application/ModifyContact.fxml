@@ -54,7 +54,7 @@
       <Button fx:id="save_b" layoutX="900.0" layoutY="466.0" mnemonicParsing="false" onAction="#saveModifiedContact" text="Save" />
       <Button fx:id="cancel_b" layoutX="894.0" layoutY="511.0" mnemonicParsing="false" onAction="#cancelAndReturn" text="Cancel" />
       <DatePicker fx:id="date_picker" layoutX="726.0" layoutY="425.0" onAction="#datePicking" prefHeight="25.0" prefWidth="34.0" showWeekNumbers="true" />
-      <Button fx:id="new_task_b" layoutX="884.0" layoutY="416.0" mnemonicParsing="false" text="New Task" />
+      <Button fx:id="new_task_b" layoutX="884.0" layoutY="416.0" mnemonicParsing="false" onAction="#newTask" text="New Task" />
       <Button fx:id="new_activity_b" layoutX="876.0" layoutY="364.0" mnemonicParsing="false" text="New Activity" />
    </children>
 </AnchorPane>
