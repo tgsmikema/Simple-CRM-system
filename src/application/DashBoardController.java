@@ -96,7 +96,6 @@ public class DashBoardController implements Initializable{
 		
 		todays_date_t.setText(localTime);
 		
-		
 		//get who logged in as current user
 		logged_in_as_t.setText(loginDAO.getLoginFromID(tempDataDAO.getCurrentUserID()).getFull_name());
 
