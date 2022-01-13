@@ -35,41 +35,6 @@ public class Main extends Application {
 
 	public static void main(String[] args) throws Exception {
 
-		Contacts contacts = new Contacts();
-		Tasks tasks = new Tasks();
-		Activities activities = new Activities();
-		ActivitiesHybridContacts ac = new ActivitiesHybridContacts();
-		//Leads leads = new Leads();
-		//LeadsDAO leadsDAO = new LeadsDAO();
-		//TasksDAO tasksDAO = new TasksDAO();
-		//ContactsDAO contactsDAO = new ContactsDAO();
-		//System.out.println(contactsDAO.getRowNumberFromID(18));
-		
-		//TasksHybridContacts th = new TasksHybridContacts();
-		//LeadsHybridContacts l = new LeadsHybridContacts();
-		PrintingFunctionModuleManagement pm = new PrintingFunctionModuleManagement();
-		//Leads contacts = new Leads();
-		//pm.printGetTextFXML(activities);
-		
-		//pm.printDataClassGettersAndSetters(activity);
-		//pm.printDataClassCreateHybrid(activities,contacts);
-		
-		//pm.printDAOClassHeaderStructure(activities);
-		//pm.printDAOClassGetAllDataIntoArrayList(activities);
-		//pm.printDAOClassesGetSingleDataFromID(activities);
-		//pm.printDAOClassCheckDataEntryExistInDB(activities, "activity_id");
-		//pm.printDAOClassDeleteDataEntryFromID(activities);
-		
-		
-		//pm.printDAOClassAddNewDataEntry(activities,"activity_id","activity_type,activity_created_by,activity_created_date_and_time");
-		//pm.printDAOClassModifyDataFromID(activities,"activity_type,activity_created_by,activity_created_date_and_time");
-		//pm.printDAOClassGetAllHybridData(ac,activities,contacts);
-		
-		//ActivitiesDAO aDAO = new ActivitiesDAO();
-		//pm.printHomeControllerInitialize(ac,aDAO);
-		
-		
-	
 		launch(args);
 	}
 }
