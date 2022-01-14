@@ -18,7 +18,7 @@
       <Label fx:id="first_name_l" layoutX="37.0" layoutY="185.0" text="* First Name:" />
       <Label fx:id="last_name_l" layoutX="37.0" layoutY="238.0" text="* Last Name:" />
       <Label fx:id="phone_or_mobile_l" layoutX="23.0" layoutY="291.0" text="Phone/Mobile:" />
-      <Label fx:id="email_l" layoutX="65.0" layoutY="324.0" text="* Email:" />
+      <Label fx:id="email_l" layoutX="65.0" layoutY="324.0" text=" Email:" />
       <Label fx:id="fax_l" layoutX="87.0" layoutY="355.0" text="Fax:" />
       <Label fx:id="address_line_1_l" layoutX="22.0" layoutY="391.0" text="Address Line 1:" />
       <Label fx:id="address_line_2_l" layoutX="22.0" layoutY="484.0" text="Address Line 2:" />

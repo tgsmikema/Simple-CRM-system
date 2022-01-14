@@ -190,7 +190,7 @@ public class ContactsDAO {
 
 	}
 
-	public boolean checkUserExist(String email) {
+	public boolean checkUserExist(String email, Timestamp created_date_and_time) {
 
 		String query = "SELECT * FROM contacts";
 
@@ -203,8 +203,10 @@ public class ContactsDAO {
 
 			// loop result set that if email exist in database
 			while(rs.next()) {
-				if(rs.getString("email").equals(email)) {
-					return true;
+				if(rs.getTimestamp("created_date_and_time").equals(created_date_and_time)) {
+					if((rs.getString("email") != null) && (rs.getString("email").equals(email))) {
+						return true;
+					}
 				}
 			}
 
@@ -250,12 +252,12 @@ public class ContactsDAO {
 			String created_by,Timestamp created_date_and_time,String contact_source) {
 
 		// checking if user already exist in database by checking against email.
-		if (checkUserExist(email)) {
+		if (checkUserExist(email,created_date_and_time)) {
 			return false;
 		}
 
 		// checking if mandatory fields are empty.
-		if (first_name == null || last_name == null || email == null || created_by == null ||
+		if (first_name == null || last_name == null || created_by == null ||
 				created_date_and_time == null) {
 			return false;
 		}
@@ -357,7 +359,7 @@ public class ContactsDAO {
 			String created_by,Timestamp created_date_and_time,String contact_source) {
 
 		// checking if mandatory fields are empty.
-		if (first_name == null || last_name == null || email == null || created_by == null ||
+		if (first_name == null || last_name == null || created_by == null ||
 				created_date_and_time == null) {
 			return false;
 		}
