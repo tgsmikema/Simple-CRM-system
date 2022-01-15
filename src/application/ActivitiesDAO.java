@@ -39,6 +39,34 @@ public class ActivitiesDAO {
 		}
 
 	}
+	
+	public boolean isActivityInfoExistInSQL(String[] row) {
+		String query = "SELECT * FROM activities";
+
+		Connection con;
+
+		try {
+			con = DriverManager.getConnection(URL, uname, pass);
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(query);
+
+			// loop result set that if email exist in database
+			while(rs.next()) {
+				if(rs.getTimestamp("activity_created_date_and_time").equals(Timestamp.valueOf(row[6]))) {
+					return true;
+				}
+			}
+
+			return false;
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return false;
+
+	}
 
 	public Activities getActivityFromActivityID(int activity_id) {
 
@@ -229,6 +257,46 @@ public class ActivitiesDAO {
 			return false;
 		}
 
+		if (activity_type == null || activity_created_by == null || activity_created_date_and_time == null ) {
+
+			return false;
+		}
+
+		String query = "INSERT INTO activities VALUES (DEFAULT,?,?,?,?,?,?)";
+
+		Connection con;
+
+		try {
+			con = DriverManager.getConnection(URL, uname, pass);
+			PreparedStatement st = con.prepareStatement(query);
+			st.setInt(1, contact_id);
+			st.setString(2, activity_type);
+			st.setString(3, activity_summary);
+			st.setString(4, activity_description);
+			st.setString(5, activity_created_by);
+			st.setTimestamp(6, activity_created_date_and_time);
+
+			st.executeUpdate();
+			return true;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+
+	}
+	
+	public boolean importActivity(String[] row) {
+		
+		int activity_id = Integer.valueOf(row[0]);
+		int contact_id = Integer.valueOf(row[1]);
+		String activity_type = row[2];
+		String activity_summary = row[3];
+		String activity_description = row[4];
+		String activity_created_by = row[5];
+		Timestamp activity_created_date_and_time = Timestamp.valueOf(row[6]);
+
+		
 		if (activity_type == null || activity_created_by == null || activity_created_date_and_time == null ) {
 
 			return false;

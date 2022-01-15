@@ -36,6 +36,11 @@ public class CSVImportAndExportUtil {
 	private final String LEADS_FILE_PATH = "./data/leads.csv";
 	private final String TASKS_FILE_PATH = "./data/tasks.csv";
 	private final String ACTIVITIES_FILE_PATH = "./data/activities.csv";
+	
+	ContactsDAO contactsDAO = new ContactsDAO();
+	LeadsDAO leadsDAO = new LeadsDAO();
+	TasksDAO tasksDAO = new TasksDAO();
+	ActivitiesDAO activitiesDAO = new ActivitiesDAO();
 
 
 	public boolean exportContactsToCSV() {
@@ -169,13 +174,13 @@ public class CSVImportAndExportUtil {
 	}
 
 
-	private boolean isColumnTypeString (String tableName,  int columnIndex) {
+	public boolean isColumnTypeString (String tableName,  int columnIndex) {
 		return isColumnTypeUtil(tableName, columnIndex, "string");
 	}
-	private boolean isColumnTypeInteger (String tableName,  int columnIndex) {
+	public boolean isColumnTypeInteger (String tableName,  int columnIndex) {
 		return isColumnTypeUtil(tableName, columnIndex, "int");
 	}
-	private boolean isColumnTypeTimestamp (String tableName,  int columnIndex) {
+	public boolean isColumnTypeTimestamp (String tableName,  int columnIndex) {
 		return isColumnTypeUtil(tableName, columnIndex, "timestamp");
 	}
 
@@ -258,7 +263,68 @@ public class CSVImportAndExportUtil {
 		}
 		return -1;
 	}
+	
+	private void updateAllEmptyCellToNull(List<String[]> contactsCSV,List<String[]> leadsCSV,List<String[]> tasksCSV,List<String[]> activitiesCSV) {
+		
+		int total_cols_contacts = getCSVColumnSize(contactsCSV);
+		int total_cols_leads = getCSVColumnSize(leadsCSV);
+		int total_cols_tasks = getCSVColumnSize(tasksCSV);
+		int total_cols_activities = getCSVColumnSize(activitiesCSV);
 
+		int total_rows_contacts = getCSVRowSizeIncHeader(contactsCSV);
+		int total_rows_leads = getCSVRowSizeIncHeader(leadsCSV);
+		int total_rows_tasks = getCSVRowSizeIncHeader(tasksCSV);
+		int total_rows_activities = getCSVRowSizeIncHeader(activitiesCSV);
+		
+		for (int i=0;i<total_rows_contacts;i++) {
+			for (int j=0;j<total_cols_contacts;j++) {
+				if (contactsCSV.get(i)[j].isBlank()) {
+					contactsCSV.get(i)[j] = null;
+				}
+			}
+		}
+		
+		for (int i=0;i<total_rows_leads;i++) {
+			for (int j=0;j<total_cols_leads;j++) {
+				if (leadsCSV.get(i)[j].isBlank()) {
+					leadsCSV.get(i)[j] = null;
+				}
+			}
+		}
+		
+		for (int i=0;i<total_rows_tasks;i++) {
+			for (int j=0;j<total_cols_tasks;j++) {
+				if (tasksCSV.get(i)[j].isBlank()) {
+					tasksCSV.get(i)[j] = null;
+				}
+			}
+		}
+		
+		for (int i=0;i<total_rows_activities;i++) {
+			for (int j=0;j<total_cols_activities;j++) {
+				if (activitiesCSV.get(i)[j].isBlank()) {
+					activitiesCSV.get(i)[j] = null;
+				}
+			} 
+		}
+		
+	}
+	
+	
+	public boolean isHeaderRow(String[] row) {
+		
+		Pattern p = Pattern.compile("\\d{1,}");
+		Matcher m = p.matcher(row[0]);
+		boolean b = m.matches();
+		
+		// if matches, then not a header row
+		
+		if(b) {
+			return false;
+		} else {
+			return true;
+		}
+	}
 
 	public void importAllData() throws IOException, CsvException {
 
@@ -267,29 +333,56 @@ public class CSVImportAndExportUtil {
 		List<String[]> tasksCSV = readImportCSVToList(TASKS_FILE_PATH);
 		List<String[]> activitiesCSV = readImportCSVToList(ACTIVITIES_FILE_PATH);
 
-		// get all result sets with current database entries
-		ResultSet rsContacts = getResultSet("contacts");
-		ResultSet rsLeads = getResultSet("leads");
-		ResultSet rsTasks = getResultSet("tasks");
-		ResultSet rsActivities = getResultSet("activities");
 
-
-
-		/*
-
-
-		if (!contactImport.isEmpty()) {
-			int colSize = contactImport.get(0).length;
-			int rowSizeIncHeader = contactImport.size();
-
-			for (int i=1;i<rowSizeIncHeader;i++) {
-				System.out.println(contactImport.get(i)[2]);
-
+		updateAllEmptyCellToNull(contactsCSV, leadsCSV, tasksCSV, activitiesCSV);
+		
+		for(String[] row:contactsCSV) {
+			if (isHeaderRow(row)) {
+				// do nothing;
+			} else if (contactsDAO.isContactInfoExistInSQL(row)) {
+				// do nothing;
+			} else if (contactsDAO.isContactIDExistInSQL(row) == true){
+				int newID = contactsDAO.getLargestContactIDFromSQL() + 1;
+				int oldID = Integer.valueOf(row[0]);
+				updateAllContactsID(contactsCSV, leadsCSV, tasksCSV, activitiesCSV, oldID, newID);
+				contactsDAO.importContactWithID(row);
+			} else if (contactsDAO.isContactIDExistInSQL(row) == false) {
+				contactsDAO.importContactWithDefaultID(row);
 			}
-
 		}
-
-		 */
+		
+		for(String[] row:leadsCSV) {
+			if (isHeaderRow(row)) {
+				// do nothing;
+			} else if (leadsDAO.isLeadExistInSQL(row)){
+				//do nothing;
+			} else {
+				leadsDAO.importLeadWithID(row);
+			}
+		}
+		
+		for(String[] row:tasksCSV) {
+			
+			if (isHeaderRow(row)) {
+				// do nothing;
+			} else if(tasksDAO.isTaskInfoExistInSQL(row)){
+				// do nothing;
+			} else {
+				tasksDAO.importTask(row);
+			}
+		}
+		
+		for(String[] row:activitiesCSV) {
+			
+			if (isHeaderRow(row)) {
+				// do nothing;
+			} else if(activitiesDAO.isActivityInfoExistInSQL(row)) {
+				// do nothing;
+			} else {
+				activitiesDAO.importActivity(row);
+			}
+		}
+		
 
 	}
 

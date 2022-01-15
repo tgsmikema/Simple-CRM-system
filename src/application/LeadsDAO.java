@@ -79,6 +79,34 @@ public class LeadsDAO {
 
 
 	}
+	
+	public boolean isLeadExistInSQL(String[] row) {
+		String query = "SELECT * FROM leads";
+
+		Connection con;
+
+		try {
+			con = DriverManager.getConnection(URL, uname, pass);
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(query);
+
+			// loop result set that if email exist in database
+			while(rs.next()) {
+				if(rs.getInt("contact_id") == Integer.valueOf(row[0])) {
+					return true;
+				}
+			}
+
+			return false;
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return false;
+
+	}
 
 	public boolean checkNewLeadAlreadyExist(int contact_id) {
 
@@ -119,6 +147,46 @@ public class LeadsDAO {
 		if (checkNewLeadAlreadyExist(contact_id)) {
 			return false;
 		}
+
+		// checking if mandatory fields are empty.
+		if ( lead_status == null || lead_created_by == null || lead_created_date_and_time == null) {
+			return false;
+		}
+
+		String query = "INSERT INTO leads VALUES (?,?,?,?,?,?,?)";
+
+		Connection con;
+		// check here change here
+		try {
+			con = DriverManager.getConnection(URL, uname, pass);
+			PreparedStatement st = con.prepareStatement(query);
+			st.setInt(1, contact_id);
+			st.setString(2, lead_source);
+			st.setString(3, lead_status);
+			st.setString(4, if_lost_reasons);
+			st.setString(5, lead_created_by);
+			st.setTimestamp(6, lead_created_date_and_time);
+			st.setString(7, assigned_to);
+
+			st.executeUpdate();
+			return true;
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	public boolean importLeadWithID(String[] row) {
+
+		int contact_id = Integer.valueOf(row[0]);
+		String lead_source = row[1];
+		String lead_status = row[2];
+		String if_lost_reasons = row[3];
+		String lead_created_by = row[4];
+		Timestamp lead_created_date_and_time = Timestamp.valueOf(row[5]);
+		String assigned_to = row[6];
 
 		// checking if mandatory fields are empty.
 		if ( lead_status == null || lead_created_by == null || lead_created_date_and_time == null) {

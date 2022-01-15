@@ -50,15 +50,17 @@ public class Main extends Application {
 
 		
 		CSVImportAndExportUtil c = new CSVImportAndExportUtil();
-		c.exportContactsToCSV();
-		c.exportLeadsToCSV();
-		c.exportTasksToCSV();
-		c.exportActivitiesToCSV();
+		//c.exportContactsToCSV();
+		//c.exportLeadsToCSV();
+		//c.exportTasksToCSV();
+		//c.exportActivitiesToCSV();
 		
-		c.importAllData();
+		//c.importAllData();
+		
+		
 		
 
-		//launch(args);
+		launch(args);
 	}
 
 

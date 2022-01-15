@@ -45,6 +45,34 @@ public class TasksDAO {
 		}
 
 	}
+	
+	public boolean isTaskInfoExistInSQL(String[] row) {
+		String query = "SELECT * FROM tasks";
+
+		Connection con;
+
+		try {
+			con = DriverManager.getConnection(URL, uname, pass);
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(query);
+
+			// loop result set that if email exist in database
+			while(rs.next()) {
+				if(rs.getTimestamp("task_created_date_and_time").equals(Timestamp.valueOf(row[6]))) {
+					return true;
+				}
+			}
+
+			return false;
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return false;
+
+	}
 
 	public ArrayList<Tasks> getTaskFromContactID(int contact_id) {
 
@@ -285,6 +313,63 @@ public class TasksDAO {
 		if (checkTaskExist(task_created_date_and_time)) {
 			return false;
 		}
+
+		if (task_type == null || task_created_by == null || task_created_date_and_time == null ) {
+
+			return false;
+		}
+
+		String query = "INSERT INTO tasks VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?)";
+
+		Connection con;
+
+		try {
+			con = DriverManager.getConnection(URL, uname, pass);
+			PreparedStatement st = con.prepareStatement(query);
+			st.setInt(1, contact_id);
+			st.setString(2, task_type);
+			st.setString(3, task_summary);
+			st.setString(4, task_description);
+			st.setString(5, task_created_by);
+			st.setTimestamp(6, task_created_date_and_time);
+			st.setString(7, task_assigned_to);
+			st.setTimestamp(8, due_date_and_time);
+			st.setString(9, priority);
+			st.setInt(10, progress);
+			st.setString(11, task_current_status);
+
+			st.executeUpdate();
+			return true;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+
+	}
+
+	
+	public boolean importTask(String[] row) {
+		
+		
+		int contact_id = Integer.valueOf(row[1]);
+		int task_id = Integer.valueOf(row[0]);
+		String task_type = row[2];
+		String task_summary = row[3];
+		String task_description = row[4];
+		String task_created_by = row[5];
+		Timestamp task_created_date_and_time = Timestamp.valueOf(row[6]);
+		String task_assigned_to = row[7];
+		Timestamp due_date_and_time;
+		if (row[8] == null) {
+			due_date_and_time = null;
+		} else {
+			due_date_and_time = Timestamp.valueOf(row[8]);
+		}
+		String priority = row[9];
+		int progress = Integer.valueOf(row[10]);
+		String task_current_status = row[11];
+		
 
 		if (task_type == null || task_created_by == null || task_created_date_and_time == null ) {
 

@@ -15,6 +15,7 @@ public class ContactsDAO {
 	String uname = "root";
 	String pass = "masiqi93";
 
+
 	public ArrayList<Contacts> getAllContacts(){
 
 		ArrayList<Contacts> contacts = new ArrayList<>();
@@ -56,6 +57,105 @@ public class ContactsDAO {
 		}
 
 		return null;
+
+	}
+
+	public boolean isContactIDExistInSQL(String[] row) {
+		String query = "SELECT * FROM contacts";
+
+		Connection con;
+
+		try {
+			con = DriverManager.getConnection(URL, uname, pass);
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(query);
+
+			// loop result set that if email exist in database
+			while(rs.next()) {
+				if(rs.getInt("contact_id") == Integer.valueOf(row[0])) {
+					return true;
+				}
+			}
+
+			return false;
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return false;
+
+	}
+
+	public boolean isContactInfoExistInSQL(String[] row) {
+
+		String query = "SELECT * FROM contacts";
+
+		Connection con;
+
+		try {
+			con = DriverManager.getConnection(URL, uname, pass);
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(query);
+
+			// loop result set that if email exist in database
+			while(rs.next()) {
+				if((rs.getString("email") != null) && (rs.getString("email").equals(row[4]))) {
+					return true;
+				} else if(rs.getTimestamp("created_date_and_time").equals(Timestamp.valueOf(row[16]))) {
+					return true;
+				}
+			}
+
+
+			return false;
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return false;
+
+	}
+
+
+	public int getLargestContactIDFromSQL() {
+
+		ArrayList<Integer> contacts_id = new ArrayList<Integer>();
+		String query = "SELECT contact_id FROM contacts";
+
+		Connection con;
+		try {
+			con = DriverManager.getConnection(URL, uname, pass);
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(query);
+
+			while(rs.next()) {
+				contacts_id.add(rs.getInt("contact_id"));
+			}
+
+			//get the largest element
+			if (contacts_id.isEmpty()) {
+				return Integer.MIN_VALUE;
+			}
+			int largest = contacts_id.get(0);
+
+			for(int i:contacts_id) {
+				if (i > largest) {
+					largest = i;
+				}
+			}
+
+			return largest;
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return Integer.MIN_VALUE;
+
 
 	}
 
@@ -203,10 +303,10 @@ public class ContactsDAO {
 
 			// loop result set that if email exist in database
 			while(rs.next()) {
-				if(rs.getTimestamp("created_date_and_time").equals(created_date_and_time)) {
-					if((rs.getString("email") != null) && (rs.getString("email").equals(email))) {
-						return true;
-					}
+				if((rs.getString("email") != null) && (rs.getString("email").equals(email))) {
+					return true;
+				} else if(rs.getTimestamp("created_date_and_time").equals(created_date_and_time)) {
+					return true;
 				}
 			}
 
@@ -241,6 +341,140 @@ public class ContactsDAO {
 
 
 	}
+
+	public boolean importContactWithID(String[] row) {
+
+		int contact_id = Integer.valueOf(row[0]);
+		String first_name = row[1];
+		String last_name  = row[2];
+		String phone_or_mobile  = row[3];
+		String email  = row[4];
+		String fax  = row[5];
+		String address_line_1  = row[6];
+		String address_line_2  = row[7];
+		String city  = row[8];
+		String state_or_county = row[9];
+		String country = row[10];
+		String description = row[11];
+		String industry = row[12];
+		String company = row[13];
+		String job_title = row[14];
+		String created_by = row[15];
+		Timestamp created_date_and_time = Timestamp.valueOf(row[16]);
+		String contact_source = row[17];
+
+
+		// checking if mandatory fields are empty.
+		if (first_name == null || last_name == null || created_by == null ||
+				created_date_and_time == null) {
+			return false;
+		}
+
+		String query = "INSERT INTO contacts VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+
+		Connection con;
+		// check here change here
+		try {
+			con = DriverManager.getConnection(URL, uname, pass);
+			PreparedStatement st = con.prepareStatement(query);
+			st.setInt(1, contact_id);
+			st.setString(2, first_name);
+			st.setString(3, last_name);
+			st.setString(4, phone_or_mobile);
+			st.setString(5, email);
+			st.setString(6, fax);
+			st.setString(7, address_line_1);
+			st.setString(8, address_line_2);
+			st.setString(9, city);
+			st.setString(10, state_or_county);
+			st.setString(11, country);
+			st.setString(12, description);
+			st.setString(13, industry);
+			st.setString(14, company);
+			st.setString(15, job_title);
+			st.setString(16, created_by);
+			st.setTimestamp(17, created_date_and_time);
+			st.setString(18, contact_source);
+
+			st.executeUpdate();
+			return true;
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+
+
+	}
+
+	public boolean importContactWithDefaultID(String[] row) {
+
+		int contact_id = Integer.valueOf(row[0]);
+		String first_name = row[1];
+		String last_name  = row[2];
+		String phone_or_mobile  = row[3];
+		String email  = row[4];
+		String fax  = row[5];
+		String address_line_1  = row[6];
+		String address_line_2  = row[7];
+		String city  = row[8];
+		String state_or_county = row[9];
+		String country = row[10];
+		String description = row[11];
+		String industry = row[12];
+		String company = row[13];
+		String job_title = row[14];
+		String created_by = row[15];
+		Timestamp created_date_and_time = Timestamp.valueOf(row[16]);
+		String contact_source = row[17];
+
+
+		// checking if mandatory fields are empty.
+		if (first_name == null || last_name == null || created_by == null ||
+				created_date_and_time == null) {
+			return false;
+		}
+
+		String query = "INSERT INTO contacts VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+
+		Connection con;
+		// check here change here
+		try {
+			con = DriverManager.getConnection(URL, uname, pass);
+			PreparedStatement st = con.prepareStatement(query);
+			st.setString(1, first_name);
+			st.setString(2, last_name);
+			st.setString(3, phone_or_mobile);
+			st.setString(4, email);
+			st.setString(5, fax);
+			st.setString(6, address_line_1);
+			st.setString(7, address_line_2);
+			st.setString(8, city);
+			st.setString(9, state_or_county);
+			st.setString(10, country);
+			st.setString(11, description);
+			st.setString(12, industry);
+			st.setString(13, company);
+			st.setString(14, job_title);
+			st.setString(15, created_by);
+			st.setTimestamp(16, created_date_and_time);
+			st.setString(17, contact_source);
+
+			st.executeUpdate();
+			return true;
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+
+
+	}
+
+
+
 
 	/**
 	 * this method returns a boolean, ture if insertion was successful, else false.
@@ -300,7 +534,7 @@ public class ContactsDAO {
 	}
 
 	public boolean checkIfContactIDExistInDataBase(int contact_id) {
-		
+
 		String query = "SELECT contact_id FROM contacts";
 
 		Connection con;
@@ -315,7 +549,7 @@ public class ContactsDAO {
 					return true;
 				}
 			}
-			
+
 			return false;
 
 
