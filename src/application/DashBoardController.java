@@ -139,6 +139,11 @@ public class DashBoardController implements Initializable{
 		sceneManager.switchScene(e, "ActivitiesHome");
 	}
 	
+	@FXML
+	public void importExportBackupFiles(ActionEvent e) {
+		sceneManager.switchScene(e, "ImportExportBackupFile");
+	}
+	
 	
 
 }
