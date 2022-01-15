@@ -101,6 +101,11 @@ public class DashBoardController implements Initializable{
 
 	}
 	
+	 @FXML
+	    void deleteDatabase(ActionEvent event) {
+		 sceneManager.switchScene(event, "deleteDatabase");
+	    }
+	
 	@FXML
 	void modifyOrViewDetailLead(ActionEvent event) {
 		if (selectedTasksHybridContacts.size() == 0) {

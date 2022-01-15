@@ -10,6 +10,27 @@ public class TasksDAO {
 	String pass = "masiqi93";
 
 
+	
+	public void deleteAllTasks() {
+
+		String query = "TRUNCATE TABLE tasks";
+
+		Connection con;
+		try {
+			con = DriverManager.getConnection(URL, uname, pass);
+			Statement st = con.createStatement();
+			st.execute(query);
+
+			st.close();
+			con.close();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+
+	}
 	public ArrayList<Tasks> getAllTasks() {
 
 		ArrayList<Tasks> tasks = new ArrayList<>();

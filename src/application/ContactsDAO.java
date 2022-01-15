@@ -341,6 +341,27 @@ public class ContactsDAO {
 
 
 	}
+	
+	public void deleteAllContacts() {
+
+		String query = "TRUNCATE TABLE contacts";
+
+		Connection con;
+		try {
+			con = DriverManager.getConnection(URL, uname, pass);
+			Statement st = con.createStatement();
+			st.execute(query);
+
+			st.close();
+			con.close();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+
+	}
 
 	public boolean importContactWithID(String[] row) {
 

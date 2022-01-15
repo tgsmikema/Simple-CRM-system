@@ -14,6 +14,27 @@ public class LeadsDAO {
 	String URL = "jdbc:mysql://127.0.0.1:3306/super_chat_pal_crm";
 	String uname = "root";
 	String pass = "masiqi93";
+	
+	public void deleteAllLeads() {
+
+		String query = "TRUNCATE TABLE leads";
+
+		Connection con;
+		try {
+			con = DriverManager.getConnection(URL, uname, pass);
+			Statement st = con.createStatement();
+			st.execute(query);
+
+			st.close();
+			con.close();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+
+	}
 
 	public ArrayList<Leads> getAllLeads(){
 		ArrayList<Leads> leads = new ArrayList<>();

@@ -8,6 +8,27 @@ public class ActivitiesDAO {
 	String URL = "jdbc:mysql://127.0.0.1:3306/super_chat_pal_crm";
 	String uname = "root";
 	String pass = "masiqi93";
+	
+	public void deleteAllActivities() {
+
+		String query = "TRUNCATE TABLE activities";
+
+		Connection con;
+		try {
+			con = DriverManager.getConnection(URL, uname, pass);
+			Statement st = con.createStatement();
+			st.execute(query);
+
+			st.close();
+			con.close();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+
+	}
 
 	public ArrayList<Activities> getAllActivities() {
 

@@ -10,9 +10,9 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.DashBoardController">
    <children>
       <Button fx:id="contacts_b" layoutX="71.0" layoutY="152.0" mnemonicParsing="false" onAction="#goToContactsHome" prefHeight="25.0" prefWidth="77.0" text="Contacts" />
-      <Button layoutX="70.0" layoutY="261.0" mnemonicParsing="false" onAction="#goToLeadsHome" prefHeight="25.0" prefWidth="77.0" text="Leads" />
-      <Button layoutX="70.0" layoutY="377.0" mnemonicParsing="false" onAction="#goToTasksHome" prefHeight="25.0" prefWidth="77.0" text="Tasks" />
-      <Button layoutX="70.0" layoutY="500.0" mnemonicParsing="false" onAction="#goToActivitiesHome" prefHeight="25.0" prefWidth="77.0" text="Activities" />
+      <Button layoutX="243.0" layoutY="152.0" mnemonicParsing="false" onAction="#goToLeadsHome" prefHeight="25.0" prefWidth="77.0" text="Leads" />
+      <Button layoutX="70.0" layoutY="261.0" mnemonicParsing="false" onAction="#goToTasksHome" prefHeight="25.0" prefWidth="77.0" text="Tasks" />
+      <Button layoutX="243.0" layoutY="261.0" mnemonicParsing="false" onAction="#goToActivitiesHome" prefHeight="25.0" prefWidth="77.0" text="Activities" />
       <Label layoutX="214.0" layoutY="7.0" prefHeight="44.0" prefWidth="531.0" text="Super Chat Pal CRM System Dashboard">
          <font>
             <Font size="27.0" />
@@ -37,5 +37,7 @@
       </Label>
       <Button layoutX="621.0" layoutY="569.0" mnemonicParsing="false" onAction="#modifyOrViewDetailLead" text="Modify/ View Selected Task" />
       <Button layoutX="23.0" layoutY="19.0" mnemonicParsing="false" onAction="#importExportBackupFiles" text="Import/Export Backup Files" wrapText="true" />
+      <Button layoutX="139.0" layoutY="530.0" mnemonicParsing="false" onAction="#deleteDatabase" text="Delete Database" />
+      <Button layoutX="142.0" layoutY="402.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="104.0" text="Search" />
    </children>
 </AnchorPane>

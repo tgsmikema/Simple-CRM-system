@@ -48,16 +48,6 @@ public class Main extends Application {
 
 	public static void main(String[] args) throws Exception {
 
-		
-		//CSVImportAndExportUtil c = new CSVImportAndExportUtil();
-		//c.exportContactsToCSV();
-		//c.exportLeadsToCSV();
-		//c.exportTasksToCSV();
-		//c.exportActivitiesToCSV();
-		
-		//c.importAllData();
-	
-
 		launch(args);
 	}
 
