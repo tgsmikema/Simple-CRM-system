@@ -39,5 +39,6 @@
       <Button layoutX="23.0" layoutY="19.0" mnemonicParsing="false" onAction="#importExportBackupFiles" text="Import/Export Backup Files" wrapText="true" />
       <Button layoutX="139.0" layoutY="530.0" mnemonicParsing="false" onAction="#deleteDatabase" text="Delete Database" />
       <Button layoutX="142.0" layoutY="402.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="104.0" text="Search" />
+      <Button layoutX="903.0" layoutY="71.0" mnemonicParsing="false" onAction="#logOut" text="Log Out" />
    </children>
 </AnchorPane>
