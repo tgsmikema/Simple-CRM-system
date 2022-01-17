@@ -9,6 +9,8 @@ import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -17,6 +19,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 
@@ -57,6 +60,9 @@ public class LeadsHomeController implements Initializable {
 
 	@FXML
 	private Button dashboard;
+
+	@FXML
+	private TextField search_box;
 
 	@FXML
 	private TableColumn<LeadsHybridContacts,String> description_c;
@@ -171,23 +177,99 @@ public class LeadsHomeController implements Initializable {
 		this.contact_created_by_c.setCellValueFactory((new PropertyValueFactory<LeadsHybridContacts,String>("created_by")));
 		this.contact_created_date_and_time_c.setCellValueFactory((new PropertyValueFactory<LeadsHybridContacts,Timestamp>("created_date_and_time")));
 		this.contact_source_c.setCellValueFactory((new PropertyValueFactory<LeadsHybridContacts,String>("contact_source")));
-		this.table_view.setItems(leadsHybridContactsObserve);
+		//this.table_view.setItems(leadsHybridContactsObserve);
 
 		//hide unnecessary columns
 		this.hideUnnecessaryColumns(null);
 
 		selectedleadsHybridContacts = table_view.getSelectionModel().getSelectedItems();
-		
-		
+
+
 		selectedleadsHybridContacts.addListener(new ListChangeListener<Object>() {
 
 			@Override
 			public void onChanged(Change<? extends Object> arg0) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 		});
+
+		FilteredList<LeadsHybridContacts> filteredData = new FilteredList<>(leadsHybridContactsObserve, b -> true);
+
+		search_box.textProperty().addListener((observable, oldValue, newValue) -> {
+			filteredData.setPredicate(leadsHybridContacts -> {
+				// If filter text is empty, display all persons.
+
+				if (newValue == null || newValue.isEmpty()) {
+					return true;
+				}
+
+				// Compare first name and last name of every person with filter text.
+				String lowerCaseFilter = newValue.toLowerCase();
+
+				if (leadsHybridContacts.getFirst_name().toLowerCase().indexOf(lowerCaseFilter) != -1 ) {
+					return true; // Filter matches first name.
+				} else if (leadsHybridContacts.getLead_source().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true; // Filter matches last name.
+				}  else if (leadsHybridContacts.getLead_status().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true; // Filter matches last name.
+				}  else if (leadsHybridContacts.getIf_lost_reasons().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true; // Filter matches last name.
+				}  else if (leadsHybridContacts.getLead_created_by().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true; // Filter matches last name.
+				} else if (String.valueOf(leadsHybridContacts.getLead_created_date_and_time()).indexOf(lowerCaseFilter) != -1) {
+						return true;
+				}  else if (leadsHybridContacts.getAssigned_to().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true; // Filter matches last name.
+				}  else if (leadsHybridContacts.getLast_name().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true; // Filter matches last name.
+				} else if (String.valueOf(leadsHybridContacts.getContact_id()).indexOf(lowerCaseFilter)!=-1) {
+					return true;
+				} else if (leadsHybridContacts.getPhone_or_mobile().indexOf(lowerCaseFilter) != -1) {
+					return true;
+				} else if (leadsHybridContacts.getEmail().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true;
+				}  else if (leadsHybridContacts.getFax().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true;
+				}  else if (leadsHybridContacts.getAddress_line_1().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true;
+				} else if (leadsHybridContacts.getAddress_line_2().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true;
+				}  else if (leadsHybridContacts.getCity().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true;
+				} else if (leadsHybridContacts.getState_or_county().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true;
+				} else if (leadsHybridContacts.getCountry().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true;
+				}  else if (leadsHybridContacts.getDescription().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true;
+				} else if (leadsHybridContacts.getIndustry().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true;
+				} else if (leadsHybridContacts.getCompany().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true;
+				} else if (leadsHybridContacts.getJob_title().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true;
+				} //else if (contacts.getCreated_by().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+				//  return true;
+				//} 
+				else if (String.valueOf(leadsHybridContacts.getCreated_date_and_time()).indexOf(lowerCaseFilter) != -1) {
+					return true;
+				} else if (leadsHybridContacts.getContact_source().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true;
+				} else {  
+					return false; // Does not match.
+				}
+			});
+		});
+
+		SortedList<LeadsHybridContacts> sortedData = new SortedList<>(filteredData);
+
+		sortedData.comparatorProperty().bind(table_view.comparatorProperty());
+
+		this.table_view.setItems(sortedData);
+
+
 
 	}
 
@@ -253,7 +335,7 @@ public class LeadsHomeController implements Initializable {
 		return result.get() == ButtonType.OK;
 
 	}
-	
+
 	@FXML
 	private void modifyOrViewDetailLead(ActionEvent event) {
 		if (selectedleadsHybridContacts.size() == 0) {

@@ -8,6 +8,8 @@ import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -15,6 +17,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 
@@ -97,6 +100,9 @@ public class ActivitiesHomeController implements Initializable{
 
 	@FXML
 	private Button search_tasks;
+	
+    @FXML
+    private TextField search_box;
 
 	@FXML
 	private Button show_hide_columns_b;
@@ -172,6 +178,78 @@ public class ActivitiesHomeController implements Initializable{
 			}
 
 		});
+		
+		FilteredList<ActivitiesHybridContacts> filteredData = new FilteredList<>(activitiesHybridContactsObserve, b -> true);
+
+		search_box.textProperty().addListener((observable, oldValue, newValue) -> {
+			filteredData.setPredicate(activitiesHybridContacts -> {
+				// If filter text is empty, display all persons.
+
+				if (newValue == null || newValue.isEmpty()) {
+					return true;
+				}
+
+				// Compare first name and last name of every person with filter text.
+				String lowerCaseFilter = newValue.toLowerCase();
+
+				if (activitiesHybridContacts.getFirst_name().toLowerCase().indexOf(lowerCaseFilter) != -1 ) {
+					return true; // Filter matches first name.
+				} else if (activitiesHybridContacts.getActivity_type().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true; // Filter matches last name.
+				}  else if (activitiesHybridContacts.getActivity_summary().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true; // Filter matches last name.
+				}  else if (activitiesHybridContacts.getActivity_description().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true; // Filter matches last name.
+				} else if (String.valueOf(activitiesHybridContacts.getActivity_created_date_and_time()).indexOf(lowerCaseFilter) != -1) {
+					return true;
+				}  else if (activitiesHybridContacts.getLast_name().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true; // Filter matches last name.
+				} else if (String.valueOf(activitiesHybridContacts.getActivity_id()).indexOf(lowerCaseFilter)!=-1) {
+					return true;
+				} else if (String.valueOf(activitiesHybridContacts.getContact_id()).indexOf(lowerCaseFilter)!=-1) {
+					return true;
+				} else if (activitiesHybridContacts.getPhone_or_mobile().indexOf(lowerCaseFilter) != -1) {
+					return true;
+				} else if (activitiesHybridContacts.getEmail().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true;
+				}  else if (activitiesHybridContacts.getFax().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true;
+				}  else if (activitiesHybridContacts.getAddress_line_1().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true;
+				} else if (activitiesHybridContacts.getAddress_line_2().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true;
+				}  else if (activitiesHybridContacts.getCity().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true;
+				} else if (activitiesHybridContacts.getState_or_county().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true;
+				} else if (activitiesHybridContacts.getCountry().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true;
+				}  else if (activitiesHybridContacts.getDescription().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true;
+				} else if (activitiesHybridContacts.getIndustry().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true;
+				} else if (activitiesHybridContacts.getCompany().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true;
+				} else if (activitiesHybridContacts.getJob_title().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true;
+				} //else if (contacts.getCreated_by().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+				//  return true;
+				//} 
+				else if (String.valueOf(activitiesHybridContacts.getCreated_date_and_time()).indexOf(lowerCaseFilter) != -1) {
+					return true;
+				} else if (activitiesHybridContacts.getContact_source().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true;
+				} else {  
+					return false; // Does not match.
+				}
+			});
+		});
+
+		SortedList<ActivitiesHybridContacts> sortedData = new SortedList<>(filteredData);
+
+		sortedData.comparatorProperty().bind(table_view.comparatorProperty());
+
+		this.table_view.setItems(sortedData);
 
 	}
 

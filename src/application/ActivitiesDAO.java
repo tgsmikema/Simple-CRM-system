@@ -391,31 +391,143 @@ public class ActivitiesDAO {
 
 			while(rs.next()) {
 				ActivitiesHybridContacts activitieshybridcontact = new ActivitiesHybridContacts();
-				activitieshybridcontact.setActivity_id(rs.getInt("activity_id"));
-				activitieshybridcontact.setContact_id(rs.getInt("contact_id"));
-				activitieshybridcontact.setActivity_type(rs.getString("activity_type"));
-				activitieshybridcontact.setActivity_summary(rs.getString("activity_summary"));
-				activitieshybridcontact.setActivity_description(rs.getString("activity_description"));
-				activitieshybridcontact.setActivity_created_by(rs.getString("activity_created_by"));
-				activitieshybridcontact.setActivity_created_date_and_time(rs.getTimestamp("activity_created_date_and_time"));
 				
-				activitieshybridcontact.setFirst_name(rs.getString("first_name"));
-				activitieshybridcontact.setLast_name(rs.getString("last_name"));
-				activitieshybridcontact.setPhone_or_mobile(rs.getString("phone_or_mobile"));
-				activitieshybridcontact.setEmail(rs.getString("email"));
-				activitieshybridcontact.setFax(rs.getString("fax"));
-				activitieshybridcontact.setAddress_line_1(rs.getString("address_line_1"));
-				activitieshybridcontact.setAddress_line_2(rs.getString("address_line_2"));
-				activitieshybridcontact.setCity(rs.getString("city"));
-				activitieshybridcontact.setState_or_county(rs.getString("state_or_county"));
-				activitieshybridcontact.setCountry(rs.getString("country"));
-				activitieshybridcontact.setDescription(rs.getString("description"));
-				activitieshybridcontact.setIndustry(rs.getString("industry"));
-				activitieshybridcontact.setCompany(rs.getString("company"));
-				activitieshybridcontact.setJob_title(rs.getString("job_title"));
-				activitieshybridcontact.setCreated_by(rs.getString("created_by"));
-				activitieshybridcontact.setCreated_date_and_time(rs.getTimestamp("created_date_and_time"));
-				activitieshybridcontact.setContact_source(rs.getString("contact_source"));
+				activitieshybridcontact.setActivity_id(rs.getInt("activity_id"));
+
+				activitieshybridcontact.setContact_id(rs.getInt("contact_id"));
+
+				if (rs.getString("activity_type") != null){
+					activitieshybridcontact.setActivity_type(rs.getString("activity_type"));
+				} else {
+					activitieshybridcontact.setActivity_type("");
+				}
+
+				if (rs.getString("activity_summary") != null){
+					activitieshybridcontact.setActivity_summary(rs.getString("activity_summary"));
+				} else {
+					activitieshybridcontact.setActivity_summary("");
+				}
+
+				if (rs.getString("activity_description") != null){
+					activitieshybridcontact.setActivity_description(rs.getString("activity_description"));
+				} else {
+					activitieshybridcontact.setActivity_description("");
+				}
+
+				if (rs.getString("activity_created_by") != null){
+					activitieshybridcontact.setActivity_created_by(rs.getString("activity_created_by"));
+				} else {
+					activitieshybridcontact.setActivity_created_by("");
+				}
+
+				if (rs.getTimestamp("activity_created_date_and_time") != null){
+					activitieshybridcontact.setActivity_created_date_and_time(rs.getTimestamp("activity_created_date_and_time"));
+				} else {
+					activitieshybridcontact.setActivity_created_date_and_time(null);
+				}
+
+				if (rs.getString("first_name") != null){
+					activitieshybridcontact.setFirst_name(rs.getString("first_name"));
+				} else {
+					activitieshybridcontact.setFirst_name("");
+				}
+
+				if (rs.getString("last_name") != null){
+					activitieshybridcontact.setLast_name(rs.getString("last_name"));
+				} else {
+					activitieshybridcontact.setLast_name("");
+				}
+
+				if (rs.getString("phone_or_mobile") != null){
+					activitieshybridcontact.setPhone_or_mobile(rs.getString("phone_or_mobile"));
+				} else {
+					activitieshybridcontact.setPhone_or_mobile("");
+				}
+
+				if (rs.getString("email") != null){
+					activitieshybridcontact.setEmail(rs.getString("email"));
+				} else {
+					activitieshybridcontact.setEmail("");
+				}
+
+				if (rs.getString("fax") != null){
+					activitieshybridcontact.setFax(rs.getString("fax"));
+				} else {
+					activitieshybridcontact.setFax("");
+				}
+
+				if (rs.getString("address_line_1") != null){
+					activitieshybridcontact.setAddress_line_1(rs.getString("address_line_1"));
+				} else {
+					activitieshybridcontact.setAddress_line_1("");
+				}
+
+				if (rs.getString("address_line_2") != null){
+					activitieshybridcontact.setAddress_line_2(rs.getString("address_line_2"));
+				} else {
+					activitieshybridcontact.setAddress_line_2("");
+				}
+
+				if (rs.getString("city") != null){
+					activitieshybridcontact.setCity(rs.getString("city"));
+				} else {
+					activitieshybridcontact.setCity("");
+				}
+
+				if (rs.getString("state_or_county") != null){
+					activitieshybridcontact.setState_or_county(rs.getString("state_or_county"));
+				} else {
+					activitieshybridcontact.setState_or_county("");
+				}
+
+				if (rs.getString("country") != null){
+					activitieshybridcontact.setCountry(rs.getString("country"));
+				} else {
+					activitieshybridcontact.setCountry("");
+				}
+
+				if (rs.getString("description") != null){
+					activitieshybridcontact.setDescription(rs.getString("description"));
+				} else {
+					activitieshybridcontact.setDescription("");
+				}
+
+				if (rs.getString("industry") != null){
+					activitieshybridcontact.setIndustry(rs.getString("industry"));
+				} else {
+					activitieshybridcontact.setIndustry("");
+				}
+
+				if (rs.getString("company") != null){
+					activitieshybridcontact.setCompany(rs.getString("company"));
+				} else {
+					activitieshybridcontact.setCompany("");
+				}
+
+				if (rs.getString("job_title") != null){
+					activitieshybridcontact.setJob_title(rs.getString("job_title"));
+				} else {
+					activitieshybridcontact.setJob_title("");
+				}
+
+				if (rs.getString("created_by") != null){
+					activitieshybridcontact.setCreated_by(rs.getString("created_by"));
+				} else {
+					activitieshybridcontact.setCreated_by("");
+				}
+
+				if (rs.getTimestamp("created_date_and_time") != null){
+					activitieshybridcontact.setCreated_date_and_time(rs.getTimestamp("created_date_and_time"));
+				} else {
+					activitieshybridcontact.setCreated_date_and_time(null);
+				}
+
+				if (rs.getString("contact_source") != null){
+					activitieshybridcontact.setContact_source(rs.getString("contact_source"));
+				} else {
+					activitieshybridcontact.setContact_source("");
+				}
+
 				activitieshybridcontacts.add(activitieshybridcontact);
 			}
 

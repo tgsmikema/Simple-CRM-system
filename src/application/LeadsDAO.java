@@ -345,30 +345,144 @@ public class LeadsDAO {
 				LeadsHybridContacts leadsHybridContact = new LeadsHybridContacts();
 				// leads section
 				leadsHybridContact.setContact_id(rs.getInt("contact_id"));
-				leadsHybridContact.setLead_source(rs.getString("lead_source"));
-				leadsHybridContact.setLead_status(rs.getString("lead_status"));
-				leadsHybridContact.setIf_lost_reasons(rs.getString("if_lost_reasons"));
-				leadsHybridContact.setLead_created_by(rs.getString("lead_created_by"));
-				leadsHybridContact.setLead_created_date_and_time(rs.getTimestamp("lead_created_date_and_time"));
-				leadsHybridContact.setAssigned_to(rs.getString("assigned_to"));
-				// contacts section
-				leadsHybridContact.setFirst_name(rs.getString("first_name"));
-				leadsHybridContact.setLast_name(rs.getString("last_name"));
-				leadsHybridContact.setPhone_or_mobile(rs.getString("phone_or_mobile"));
-				leadsHybridContact.setEmail(rs.getString("email"));
-				leadsHybridContact.setFax(rs.getString("fax"));
-				leadsHybridContact.setAddress_line_1(rs.getString("address_line_1"));
-				leadsHybridContact.setAddress_line_2(rs.getString("address_line_2"));
-				leadsHybridContact.setCity(rs.getString("city"));
-				leadsHybridContact.setState_or_county(rs.getString("state_or_county"));
-				leadsHybridContact.setCountry(rs.getString("country"));
-				leadsHybridContact.setDescription(rs.getString("description"));
-				leadsHybridContact.setIndustry(rs.getString("industry"));
-				leadsHybridContact.setCompany(rs.getString("company"));
-				leadsHybridContact.setJob_title(rs.getString("job_title"));
-				leadsHybridContact.setCreated_by(rs.getString("created_by"));
-				leadsHybridContact.setCreated_date_and_time(rs.getTimestamp("created_date_and_time"));
-				leadsHybridContact.setContact_source(rs.getString("contact_source"));
+				
+				if (rs.getString("lead_source") != null){
+					leadsHybridContact.setLead_source(rs.getString("lead_source"));
+				} else {
+					leadsHybridContact.setLead_source("");
+				}
+
+				if (rs.getString("lead_status") != null){
+					leadsHybridContact.setLead_status(rs.getString("lead_status"));
+				} else {
+					leadsHybridContact.setLead_status("");
+				}
+
+				if (rs.getString("if_lost_reasons") != null){
+					leadsHybridContact.setIf_lost_reasons(rs.getString("if_lost_reasons"));
+				} else {
+					leadsHybridContact.setIf_lost_reasons("");
+				}
+
+				if (rs.getString("lead_created_by") != null){
+					leadsHybridContact.setLead_created_by(rs.getString("lead_created_by"));
+				} else {
+					leadsHybridContact.setLead_created_by("");
+				}
+
+				if (rs.getTimestamp("lead_created_date_and_time") != null){
+					leadsHybridContact.setLead_created_date_and_time(rs.getTimestamp("lead_created_date_and_time"));
+				} else {
+					leadsHybridContact.setLead_created_date_and_time(null);
+				}
+
+				if (rs.getString("assigned_to") != null){
+					leadsHybridContact.setAssigned_to(rs.getString("assigned_to"));
+				} else {
+					leadsHybridContact.setAssigned_to("");
+				}
+
+				if (rs.getString("first_name") != null){
+					leadsHybridContact.setFirst_name(rs.getString("first_name"));
+				} else {
+					leadsHybridContact.setFirst_name("");
+				}
+
+				if (rs.getString("last_name") != null){
+					leadsHybridContact.setLast_name(rs.getString("last_name"));
+				} else {
+					leadsHybridContact.setLast_name("");
+				}
+
+				if (rs.getString("phone_or_mobile") != null){
+					leadsHybridContact.setPhone_or_mobile(rs.getString("phone_or_mobile"));
+				} else {
+					leadsHybridContact.setPhone_or_mobile("");
+				}
+
+				if (rs.getString("email") != null){
+					leadsHybridContact.setEmail(rs.getString("email"));
+				} else {
+					leadsHybridContact.setEmail("");
+				}
+
+				if (rs.getString("fax") != null){
+					leadsHybridContact.setFax(rs.getString("fax"));
+				} else {
+					leadsHybridContact.setFax("");
+				}
+
+				if (rs.getString("address_line_1") != null){
+					leadsHybridContact.setAddress_line_1(rs.getString("address_line_1"));
+				} else {
+					leadsHybridContact.setAddress_line_1("");
+				}
+
+				if (rs.getString("address_line_2") != null){
+					leadsHybridContact.setAddress_line_2(rs.getString("address_line_2"));
+				} else {
+					leadsHybridContact.setAddress_line_2("");
+				}
+
+				if (rs.getString("city") != null){
+					leadsHybridContact.setCity(rs.getString("city"));
+				} else {
+					leadsHybridContact.setCity("");
+				}
+
+				if (rs.getString("state_or_county") != null){
+					leadsHybridContact.setState_or_county(rs.getString("state_or_county"));
+				} else {
+					leadsHybridContact.setState_or_county("");
+				}
+
+				if (rs.getString("country") != null){
+					leadsHybridContact.setCountry(rs.getString("country"));
+				} else {
+					leadsHybridContact.setCountry("");
+				}
+
+				if (rs.getString("description") != null){
+					leadsHybridContact.setDescription(rs.getString("description"));
+				} else {
+					leadsHybridContact.setDescription("");
+				}
+
+				if (rs.getString("industry") != null){
+					leadsHybridContact.setIndustry(rs.getString("industry"));
+				} else {
+					leadsHybridContact.setIndustry("");
+				}
+
+				if (rs.getString("company") != null){
+					leadsHybridContact.setCompany(rs.getString("company"));
+				} else {
+					leadsHybridContact.setCompany("");
+				}
+
+				if (rs.getString("job_title") != null){
+					leadsHybridContact.setJob_title(rs.getString("job_title"));
+				} else {
+					leadsHybridContact.setJob_title("");
+				}
+
+				if (rs.getString("created_by") != null){
+					leadsHybridContact.setCreated_by(rs.getString("created_by"));
+				} else {
+					leadsHybridContact.setCreated_by("");
+				}
+
+				if (rs.getTimestamp("created_date_and_time") != null){
+					leadsHybridContact.setCreated_date_and_time(rs.getTimestamp("created_date_and_time"));
+				} else {
+					leadsHybridContact.setCreated_date_and_time(null);
+				}
+
+				if (rs.getString("contact_source") != null){
+					leadsHybridContact.setContact_source(rs.getString("contact_source"));
+				} else {
+					leadsHybridContact.setContact_source("");
+				}
 				//add into arraylist
 				leadsHybridContacts.add(leadsHybridContact);
 			}

@@ -9,6 +9,8 @@ import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -17,6 +19,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 
@@ -54,6 +57,10 @@ public class TasksHomeController implements Initializable{
 
 	@FXML
 	private Button dashboard;
+
+	@FXML
+	private TextField search_box;
+
 
 	@FXML
 	private TableColumn<TasksHybridContacts, String> description_c;
@@ -209,6 +216,89 @@ public class TasksHomeController implements Initializable{
 			}
 
 		});
+
+
+		FilteredList<TasksHybridContacts> filteredData = new FilteredList<>(tasksHybridContactsObserve, b -> true);
+
+		search_box.textProperty().addListener((observable, oldValue, newValue) -> {
+			filteredData.setPredicate(tasksHybridContacts -> {
+				// If filter text is empty, display all persons.
+
+				if (newValue == null || newValue.isEmpty()) {
+					return true;
+				}
+
+				// Compare first name and last name of every person with filter text.
+				String lowerCaseFilter = newValue.toLowerCase();
+
+				if (tasksHybridContacts.getFirst_name().toLowerCase().indexOf(lowerCaseFilter) != -1 ) {
+					return true; // Filter matches first name.
+				} else if (tasksHybridContacts.getTask_type().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true; // Filter matches last name.
+				}  else if (tasksHybridContacts.getTask_summary().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true; // Filter matches last name.
+				}	else if (String.valueOf(tasksHybridContacts.getDue_date_and_time()).indexOf(lowerCaseFilter) != -1) {
+					return true;
+				}   else if (tasksHybridContacts.getTask_description().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true; // Filter matches last name.
+				}    else if (tasksHybridContacts.getTask_current_status().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true; // Filter matches last name.
+				} else if (tasksHybridContacts.getTask_assigned_to().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true; // Filter matches last name.
+				} else if (String.valueOf(tasksHybridContacts.getTask_created_date_and_time()).indexOf(lowerCaseFilter) != -1) {
+					return true;
+				}  else if (tasksHybridContacts.getPriority().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true; // Filter matches last name.
+				}  else if (String.valueOf(tasksHybridContacts.getProgress()).indexOf(lowerCaseFilter)!=-1) {
+					return true;
+				}  else if (tasksHybridContacts.getLast_name().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true; // Filter matches last name.
+				} else if (String.valueOf(tasksHybridContacts.getTask_id()).indexOf(lowerCaseFilter)!=-1) {
+					return true;
+				} else if (String.valueOf(tasksHybridContacts.getContact_id()).indexOf(lowerCaseFilter)!=-1) {
+					return true;
+				} else if (tasksHybridContacts.getPhone_or_mobile().indexOf(lowerCaseFilter) != -1) {
+					return true;
+				} else if (tasksHybridContacts.getEmail().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true;
+				}  else if (tasksHybridContacts.getFax().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true;
+				}  else if (tasksHybridContacts.getAddress_line_1().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true;
+				} else if (tasksHybridContacts.getAddress_line_2().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true;
+				}  else if (tasksHybridContacts.getCity().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true;
+				} else if (tasksHybridContacts.getState_or_county().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true;
+				} else if (tasksHybridContacts.getCountry().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true;
+				}  else if (tasksHybridContacts.getDescription().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true;
+				} else if (tasksHybridContacts.getIndustry().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true;
+				} else if (tasksHybridContacts.getCompany().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true;
+				} else if (tasksHybridContacts.getJob_title().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true;
+				} //else if (contacts.getCreated_by().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+				//  return true;
+				//} 
+				else if (String.valueOf(tasksHybridContacts.getCreated_date_and_time()).indexOf(lowerCaseFilter) != -1) {
+					return true;
+				} else if (tasksHybridContacts.getContact_source().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true;
+				} else {  
+					return false; // Does not match.
+				}
+			});
+		});
+
+		SortedList<TasksHybridContacts> sortedData = new SortedList<>(filteredData);
+
+		sortedData.comparatorProperty().bind(table_view.comparatorProperty());
+
+		this.table_view.setItems(sortedData);
 
 	}
 

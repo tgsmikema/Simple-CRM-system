@@ -477,35 +477,166 @@ public class TasksDAO {
 
 			while(rs.next()) {
 				TasksHybridContacts taskshybridcontact = new TasksHybridContacts();
+				
 				taskshybridcontact.setContact_id(rs.getInt("contact_id"));
+
 				taskshybridcontact.setTask_id(rs.getInt("task_id"));
-				taskshybridcontact.setTask_type(rs.getString("task_type"));
-				taskshybridcontact.setTask_summary(rs.getString("task_summary"));
-				taskshybridcontact.setTask_description(rs.getString("task_description"));
-				taskshybridcontact.setTask_created_by(rs.getString("task_created_by"));
+
+				if (rs.getString("task_type") != null){
+					taskshybridcontact.setTask_type(rs.getString("task_type"));
+				} else {
+					taskshybridcontact.setTask_type("");
+				}
+
+				if (rs.getString("task_summary") != null){
+					taskshybridcontact.setTask_summary(rs.getString("task_summary"));
+				} else {
+					taskshybridcontact.setTask_summary("");
+				}
+
+				if (rs.getString("task_description") != null){
+					taskshybridcontact.setTask_description(rs.getString("task_description"));
+				} else {
+					taskshybridcontact.setTask_description("");
+				}
+
+				if (rs.getString("task_created_by") != null){
+					taskshybridcontact.setTask_created_by(rs.getString("task_created_by"));
+				} else {
+					taskshybridcontact.setTask_created_by("");
+				}
+
+	
 				taskshybridcontact.setTask_created_date_and_time(rs.getTimestamp("task_created_date_and_time"));
-				taskshybridcontact.setTask_assigned_to(rs.getString("task_assigned_to"));
-				taskshybridcontact.setDue_date_and_time(rs.getTimestamp("due_date_and_time"));
-				taskshybridcontact.setPriority(rs.getString("priority"));
+				
+
+				if (rs.getString("task_assigned_to") != null){
+					taskshybridcontact.setTask_assigned_to(rs.getString("task_assigned_to"));
+				} else {
+					taskshybridcontact.setTask_assigned_to("");
+				}
+
+				if (rs.getTimestamp("due_date_and_time") != null){
+					taskshybridcontact.setDue_date_and_time(rs.getTimestamp("due_date_and_time"));
+				} else {
+					taskshybridcontact.setDue_date_and_time(null);
+				}
+
+				if (rs.getString("priority") != null){
+					taskshybridcontact.setPriority(rs.getString("priority"));
+				} else {
+					taskshybridcontact.setPriority("");
+				}
+
 				taskshybridcontact.setProgress(rs.getInt("progress"));
-				taskshybridcontact.setTask_current_status(rs.getString("task_current_status"));
-				taskshybridcontact.setFirst_name(rs.getString("first_name"));
-				taskshybridcontact.setLast_name(rs.getString("last_name"));
-				taskshybridcontact.setPhone_or_mobile(rs.getString("phone_or_mobile"));
-				taskshybridcontact.setEmail(rs.getString("email"));
-				taskshybridcontact.setFax(rs.getString("fax"));
-				taskshybridcontact.setAddress_line_1(rs.getString("address_line_1"));
-				taskshybridcontact.setAddress_line_2(rs.getString("address_line_2"));
-				taskshybridcontact.setCity(rs.getString("city"));
-				taskshybridcontact.setState_or_county(rs.getString("state_or_county"));
-				taskshybridcontact.setCountry(rs.getString("country"));
-				taskshybridcontact.setDescription(rs.getString("description"));
-				taskshybridcontact.setIndustry(rs.getString("industry"));
-				taskshybridcontact.setCompany(rs.getString("company"));
-				taskshybridcontact.setJob_title(rs.getString("job_title"));
-				taskshybridcontact.setCreated_by(rs.getString("created_by"));
-				taskshybridcontact.setCreated_date_and_time(rs.getTimestamp("created_date_and_time"));
-				taskshybridcontact.setContact_source(rs.getString("contact_source"));
+
+				if (rs.getString("task_current_status") != null){
+					taskshybridcontact.setTask_current_status(rs.getString("task_current_status"));
+				} else {
+					taskshybridcontact.setTask_current_status("");
+				}
+
+				if (rs.getString("first_name") != null){
+					taskshybridcontact.setFirst_name(rs.getString("first_name"));
+				} else {
+					taskshybridcontact.setFirst_name("");
+				}
+
+				if (rs.getString("last_name") != null){
+					taskshybridcontact.setLast_name(rs.getString("last_name"));
+				} else {
+					taskshybridcontact.setLast_name("");
+				}
+
+				if (rs.getString("phone_or_mobile") != null){
+					taskshybridcontact.setPhone_or_mobile(rs.getString("phone_or_mobile"));
+				} else {
+					taskshybridcontact.setPhone_or_mobile("");
+				}
+
+				if (rs.getString("email") != null){
+					taskshybridcontact.setEmail(rs.getString("email"));
+				} else {
+					taskshybridcontact.setEmail("");
+				}
+
+				if (rs.getString("fax") != null){
+					taskshybridcontact.setFax(rs.getString("fax"));
+				} else {
+					taskshybridcontact.setFax("");
+				}
+
+				if (rs.getString("address_line_1") != null){
+					taskshybridcontact.setAddress_line_1(rs.getString("address_line_1"));
+				} else {
+					taskshybridcontact.setAddress_line_1("");
+				}
+
+				if (rs.getString("address_line_2") != null){
+					taskshybridcontact.setAddress_line_2(rs.getString("address_line_2"));
+				} else {
+					taskshybridcontact.setAddress_line_2("");
+				}
+
+				if (rs.getString("city") != null){
+					taskshybridcontact.setCity(rs.getString("city"));
+				} else {
+					taskshybridcontact.setCity("");
+				}
+
+				if (rs.getString("state_or_county") != null){
+					taskshybridcontact.setState_or_county(rs.getString("state_or_county"));
+				} else {
+					taskshybridcontact.setState_or_county("");
+				}
+
+				if (rs.getString("country") != null){
+					taskshybridcontact.setCountry(rs.getString("country"));
+				} else {
+					taskshybridcontact.setCountry("");
+				}
+
+				if (rs.getString("description") != null){
+					taskshybridcontact.setDescription(rs.getString("description"));
+				} else {
+					taskshybridcontact.setDescription("");
+				}
+
+				if (rs.getString("industry") != null){
+					taskshybridcontact.setIndustry(rs.getString("industry"));
+				} else {
+					taskshybridcontact.setIndustry("");
+				}
+
+				if (rs.getString("company") != null){
+					taskshybridcontact.setCompany(rs.getString("company"));
+				} else {
+					taskshybridcontact.setCompany("");
+				}
+
+				if (rs.getString("job_title") != null){
+					taskshybridcontact.setJob_title(rs.getString("job_title"));
+				} else {
+					taskshybridcontact.setJob_title("");
+				}
+
+				if (rs.getString("created_by") != null){
+					taskshybridcontact.setCreated_by(rs.getString("created_by"));
+				} else {
+					taskshybridcontact.setCreated_by("");
+				}
+
+				if (rs.getTimestamp("created_date_and_time") != null){
+					taskshybridcontact.setCreated_date_and_time(rs.getTimestamp("created_date_and_time"));
+				} else {
+					taskshybridcontact.setCreated_date_and_time(null);
+				}
+
+				if (rs.getString("contact_source") != null){
+					taskshybridcontact.setContact_source(rs.getString("contact_source"));
+				} else {
+					taskshybridcontact.setContact_source("");
+				}
 				taskshybridcontacts.add(taskshybridcontact);
 			}
 
