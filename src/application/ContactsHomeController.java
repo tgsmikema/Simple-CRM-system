@@ -8,6 +8,8 @@ import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -16,6 +18,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 
@@ -26,6 +29,9 @@ public class ContactsHomeController implements Initializable {
 
 	@FXML
 	private TableView<Contacts> table_view;
+
+	@FXML
+	private TextField search_box;
 
 	@FXML
 	private TableColumn<Contacts, String> address_line_1_c;
@@ -101,7 +107,7 @@ public class ContactsHomeController implements Initializable {
 	private SceneManager sceneManager = new SceneManager();
 
 	private ArrayList<Contacts> contactsArray;
-	private ObservableList<Contacts> contactsObserve;
+	//private final ObservableList<Contacts> contactsObserve;
 	private ObservableList<Contacts> selectedContact;
 
 	private TempDataDAO tempDataDAO = new TempDataDAO();
@@ -117,7 +123,7 @@ public class ContactsHomeController implements Initializable {
 		// inject all contacts data from MySQL thru ContactsDAO methods into Arraylist
 		contactsArray = contactsDAO.getAllContacts();
 		// inject all contacts data Arraylist into Observable arraylist
-		contactsObserve = FXCollections.observableArrayList(contactsArray);
+		final ObservableList<Contacts> contactsObserve = FXCollections.observableArrayList(contactsArray);
 
 		// display observable list items into tableview
 		this.contact_id_c.setCellValueFactory((new PropertyValueFactory<Contacts,Integer>("contact_id")));
@@ -138,7 +144,7 @@ public class ContactsHomeController implements Initializable {
 		this.created_by_c.setCellValueFactory((new PropertyValueFactory<Contacts,String>("created_by")));
 		this.created_date_and_time_c.setCellValueFactory((new PropertyValueFactory<Contacts,Timestamp>("created_date_and_time")));
 		this.contact_source_c.setCellValueFactory((new PropertyValueFactory<Contacts,String>("contact_source")));
-		this.table_view.setItems(contactsObserve);
+
 
 		//table_view.getSelectionModel().setCellSelectionEnabled(true);
 		selectedContact = table_view.getSelectionModel().getSelectedItems();
@@ -154,6 +160,67 @@ public class ContactsHomeController implements Initializable {
 
 		});
 
+		FilteredList<Contacts> filteredData = new FilteredList<>(contactsObserve, b -> true);
+
+		search_box.textProperty().addListener((observable, oldValue, newValue) -> {
+			filteredData.setPredicate(contacts -> {
+				// If filter text is empty, display all persons.
+
+				if (newValue == null || newValue.isEmpty()) {
+					return true;
+				}
+
+				// Compare first name and last name of every person with filter text.
+				String lowerCaseFilter = newValue.toLowerCase();
+
+				if (contacts.getFirst_name().toLowerCase().indexOf(lowerCaseFilter) != -1 ) {
+					return true; // Filter matches first name.
+				} else if (contacts.getLast_name().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true; // Filter matches last name.
+				} else if (String.valueOf(contacts.getContact_id()).indexOf(lowerCaseFilter)!=-1) {
+					return true;
+				} else if (contacts.getPhone_or_mobile().indexOf(lowerCaseFilter) != -1) {
+					return true;
+				} else if (contacts.getEmail().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true;
+				}  else if (contacts.getFax().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true;
+				}  else if (contacts.getAddress_line_1().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true;
+				} else if (contacts.getAddress_line_2().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true;
+				}  else if (contacts.getCity().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true;
+				} else if (contacts.getState_or_county().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true;
+				} else if (contacts.getCountry().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true;
+				}  else if (contacts.getDescription().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true;
+				} else if (contacts.getIndustry().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true;
+				} else if (contacts.getCompany().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true;
+				} else if (contacts.getJob_title().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true;
+				} //else if (contacts.getCreated_by().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+				//  return true;
+				//} 
+				else if (String.valueOf(contacts.getCreated_date_and_time()).indexOf(lowerCaseFilter) != -1) {
+					return true;
+				} else if (contacts.getContact_source().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true;
+				} else {  
+					return false; // Does not match.
+				}
+			});
+		});
+
+		SortedList<Contacts> sortedData = new SortedList<>(filteredData);
+
+		sortedData.comparatorProperty().bind(table_view.comparatorProperty());
+
+		this.table_view.setItems(sortedData);
 
 	}
 

@@ -29,24 +29,108 @@ public class ContactsDAO {
 
 			while(rs.next()) {
 				Contacts contact = new Contacts();
+				
 				contact.setContact_id(rs.getInt("contact_id"));
-				contact.setFirst_name(rs.getString("first_name"));
-				contact.setLast_name(rs.getString("last_name"));
-				contact.setPhone_or_mobile(rs.getString("phone_or_mobile"));
-				contact.setEmail(rs.getString("email"));
-				contact.setFax(rs.getString("fax"));
-				contact.setAddress_line_1(rs.getString("address_line_1"));
-				contact.setAddress_line_2(rs.getString("address_line_2"));
-				contact.setCity(rs.getString("city"));
-				contact.setState_or_county(rs.getString("state_or_county"));
-				contact.setCountry(rs.getString("country"));
-				contact.setDescription(rs.getString("description"));
-				contact.setIndustry(rs.getString("industry"));
-				contact.setCompany(rs.getString("company"));
-				contact.setJob_title(rs.getString("job_title"));
-				contact.setCreated_by(rs.getString("created_by"));
+
+				if (rs.getString("first_name") != null){
+					contact.setFirst_name(rs.getString("first_name"));
+				} else {
+					contact.setFirst_name("");
+				}
+
+				if (rs.getString("last_name") != null){
+					contact.setLast_name(rs.getString("last_name"));
+				} else {
+					contact.setLast_name("");
+				}
+
+				if (rs.getString("phone_or_mobile") != null){
+					contact.setPhone_or_mobile(rs.getString("phone_or_mobile"));
+				} else {
+					contact.setPhone_or_mobile("");
+				}
+
+				if (rs.getString("email") != null){
+					contact.setEmail(rs.getString("email"));
+				} else {
+					contact.setEmail("");
+				}
+
+				if (rs.getString("fax") != null){
+					contact.setFax(rs.getString("fax"));
+				} else {
+					contact.setFax("");
+				}
+
+				if (rs.getString("address_line_1") != null){
+					contact.setAddress_line_1(rs.getString("address_line_1"));
+				} else {
+					contact.setAddress_line_1("");
+				}
+
+				if (rs.getString("address_line_2") != null){
+					contact.setAddress_line_2(rs.getString("address_line_2"));
+				} else {
+					contact.setAddress_line_2("");
+				}
+
+				if (rs.getString("city") != null){
+					contact.setCity(rs.getString("city"));
+				} else {
+					contact.setCity("");
+				}
+
+				if (rs.getString("state_or_county") != null){
+					contact.setState_or_county(rs.getString("state_or_county"));
+				} else {
+					contact.setState_or_county("");
+				}
+
+				if (rs.getString("country") != null){
+					contact.setCountry(rs.getString("country"));
+				} else {
+					contact.setCountry("");
+				}
+
+				if (rs.getString("description") != null){
+					contact.setDescription(rs.getString("description"));
+				} else {
+					contact.setDescription("");
+				}
+
+				if (rs.getString("industry") != null){
+					contact.setIndustry(rs.getString("industry"));
+				} else {
+					contact.setIndustry("");
+				}
+
+				if (rs.getString("company") != null){
+					contact.setCompany(rs.getString("company"));
+				} else {
+					contact.setCompany("");
+				}
+
+				if (rs.getString("job_title") != null){
+					contact.setJob_title(rs.getString("job_title"));
+				} else {
+					contact.setJob_title("");
+				}
+
+				if (rs.getString("created_by") != null){
+					contact.setCreated_by(rs.getString("created_by"));
+				} else {
+					contact.setCreated_by("");
+				}
+
+
 				contact.setCreated_date_and_time(rs.getTimestamp("created_date_and_time"));
-				contact.setContact_source(rs.getString("contact_source"));
+
+
+				if (rs.getString("contact_source") != null){
+					contact.setContact_source(rs.getString("contact_source"));
+				} else {
+					contact.setContact_source("");
+				}
 				contacts.add(contact);
 			}
 
