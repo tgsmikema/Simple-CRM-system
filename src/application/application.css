@@ -2,3 +2,7 @@
 	-fx-background-color: linear-gradient(to bottom, white, cyan);
 	-fx-font-family: "Arial";
 } 
+
+.dashboard{
+	-fx-background-color:linear-gradient(to bottom, white, red);
+}

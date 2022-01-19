@@ -5,9 +5,9 @@ import java.util.ArrayList;
 
 public class ActivitiesDAO {
 
-	String URL = "jdbc:mysql://127.0.0.1:3306/super_chat_pal_crm";
-	String uname = "root";
-	String pass = "masiqi93";
+	String URL = DataBaseConnectionCredentials.URL;
+	String uname = DataBaseConnectionCredentials.username;
+	String pass = DataBaseConnectionCredentials.password;
 	
 	public void deleteAllActivities() {
 

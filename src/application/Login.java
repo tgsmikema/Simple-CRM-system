@@ -9,10 +9,10 @@ public class Login {
 	private String full_name;
 	private int auth_level;
 	
-	
 	public Login() {
 		// TODO Auto-generated constructor stub
 	}
+	
 	// getter and setter methods
 	public int getUser_id() {
 		return user_id;

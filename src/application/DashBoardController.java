@@ -11,6 +11,7 @@ import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.collections.ListChangeListener.Change;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -66,6 +67,8 @@ public class DashBoardController implements Initializable{
 		TasksDAO tasksDAO = new TasksDAO();
 		tasksHybridContactsArray = new ArrayList<>();
 		tasksHybridContactsArray = tasksDAO.getAllTasksHybridContacts();
+		
+		
 		tasksHybridContactsObserve = FXCollections.observableArrayList(tasksHybridContactsArray);
 
 

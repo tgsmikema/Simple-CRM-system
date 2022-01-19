@@ -5,6 +5,8 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -37,7 +39,7 @@ public class LoginController implements Initializable {
 	}
 
 	public void submit(ActionEvent e) throws SQLException {
-
+		
 		// new instance of login and loginDAO
 		LoginDAO loginDAO = new LoginDAO();
 		Login login = new Login();

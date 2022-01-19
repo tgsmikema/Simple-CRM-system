@@ -11,9 +11,9 @@ import java.util.ArrayList;
 
 public class ContactsDAO {
 
-	String URL = "jdbc:mysql://127.0.0.1:3306/super_chat_pal_crm";
-	String uname = "root";
-	String pass = "masiqi93";
+	String URL = DataBaseConnectionCredentials.URL;
+	String uname = DataBaseConnectionCredentials.username;
+	String pass = DataBaseConnectionCredentials.password;
 
 
 	public ArrayList<Contacts> getAllContacts(){
@@ -407,13 +407,19 @@ public class ContactsDAO {
 
 	public void deleteContactFromID(int contact_id) {
 
-		String query = "DELETE FROM contacts WHERE contact_id = " + contact_id;
+		String query = "DELETE FROM contacts WHERE contact_id = "+contact_id;
+		String q2 = "DELETE FROM leads WHERE contact_id = "+contact_id;
+		String q3 = "DELETE FROM tasks WHERE contact_id = "+contact_id;
+		String q4 = "DELETE FROM activities WHERE contact_id = "+contact_id;
 
 		Connection con;
 		try {
 			con = DriverManager.getConnection(URL, uname, pass);
 			Statement st = con.createStatement();
 			st.execute(query);
+			st.execute(q2);
+			st.execute(q3);
+			st.execute(q4);
 
 			st.close();
 			con.close();
@@ -426,15 +432,24 @@ public class ContactsDAO {
 
 	}
 	
+	
+	
+	// this will also delete all associated leads/tasks/activities@
 	public void deleteAllContacts() {
 
 		String query = "TRUNCATE TABLE contacts";
+		String q2 = "TRUNCATE TABLE tasks";
+		String q3 = "TRUNCATE TABLE leads";
+		String q4 = "TRUNCATE TABLE activities";
 
 		Connection con;
 		try {
 			con = DriverManager.getConnection(URL, uname, pass);
 			Statement st = con.createStatement();
 			st.execute(query);
+			st.execute(q2);
+			st.execute(q3);
+			st.execute(q4);
 
 			st.close();
 			con.close();

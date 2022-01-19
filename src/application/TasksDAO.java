@@ -5,9 +5,9 @@ import java.util.ArrayList;
 
 public class TasksDAO {
 
-	String URL = "jdbc:mysql://127.0.0.1:3306/super_chat_pal_crm";
-	String uname = "root";
-	String pass = "masiqi93";
+	String URL = DataBaseConnectionCredentials.URL;
+	String uname = DataBaseConnectionCredentials.username;
+	String pass = DataBaseConnectionCredentials.password;
 
 
 	
@@ -387,6 +387,7 @@ public class TasksDAO {
 		} else {
 			due_date_and_time = Timestamp.valueOf(row[8]);
 		}
+
 		String priority = row[9];
 		int progress = Integer.valueOf(row[10]);
 		String task_current_status = row[11];
