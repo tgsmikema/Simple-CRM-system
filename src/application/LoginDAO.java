@@ -45,6 +45,8 @@ public class LoginDAO {
 	}
 
 
+
+
 	public Login getLogin(String email) throws SQLException {
 
 		Login login = new Login();
@@ -67,6 +69,31 @@ public class LoginDAO {
 		con.close();
 
 		return login;
+	}
+
+	public void deleteAllUsers() {
+
+		String query = "TRUNCATE TABLE login";
+
+		Connection con;
+		try {
+			con = DriverManager.getConnection(URL, uname, pass);
+			Statement st = con.createStatement();
+			st.execute(query);
+
+			st.close();
+			con.close();
+			
+			this.register("@admin", "root", "ADMIN", 9);
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+
+
 	}
 
 	public void register(String email, String password, String full_name, int auth_level) throws SQLException {

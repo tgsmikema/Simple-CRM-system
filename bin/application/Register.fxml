@@ -39,7 +39,7 @@
       <TextField fx:id="email" layoutX="245.0" layoutY="110.0" promptText="Please enter your email address" />
       <PasswordField fx:id="password" layoutX="245.0" layoutY="162.0" promptText="Please enter a password" />
       <TextField fx:id="fullName" layoutX="245.0" layoutY="214.0" promptText="Please enter your full name" />
-      <RadioButton fx:id="authLevel1" layoutX="245.0" layoutY="269.0" mnemonicParsing="false" text="Admin">
+      <RadioButton fx:id="authLevel1" layoutX="245.0" layoutY="269.0" mnemonicParsing="false" text="Manager">
          <toggleGroup>
             <ToggleGroup fx:id="auth_level" />
          </toggleGroup>

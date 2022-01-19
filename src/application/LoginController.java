@@ -71,6 +71,10 @@ public class LoginController implements Initializable {
 			// if everything entered correctly then proceed to the next step - dashboard
 		} else {
 			// record current session user id who logging into the system
+			if (login.getAuth_level() == 9) {
+				sceneManager.switchScene(e, "AdminControlPanel");
+				return;
+			}
 			tempDataDAO.setCurrentUserID(login.getUser_id());
 			sceneManager.switchScene(e, "DashBoard");
 		}
