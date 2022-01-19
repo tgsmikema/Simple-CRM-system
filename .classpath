@@ -12,5 +12,6 @@
 	<classpathentry kind="lib" path="D:/mysql-connector-java-8.0.27.jar"/>
 	<classpathentry kind="lib" path="D:/opencsv-5.5.2.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/javamail"/>
+	<classpathentry kind="lib" path="D:/javamail/activation-1.1.1-osgi.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

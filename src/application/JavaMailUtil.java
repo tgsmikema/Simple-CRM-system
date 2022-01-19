@@ -6,11 +6,9 @@ import java.util.logging.Logger;
 
 import javax.mail.Authenticator;
 import javax.mail.Message;
-import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
-import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
@@ -26,8 +24,9 @@ public class JavaMailUtil {
 		properties.put("mail.smtp.host", "smtp.gmail.com");
 		properties.put("mail.smtp.port", "587");
 
-		String myAccountEmail = "hikewithmikenz@gmail.com";
-		String password = "MAsiqi93";
+		// read email name and password from txt file.
+		String myAccountEmail = FileReaderUtil.fileReader("emailDetails.txt").get(0);
+		String password = FileReaderUtil.fileReader("emailDetails.txt").get(1);
 
 		Session session = Session.getInstance(properties, new Authenticator() {
 			@Override

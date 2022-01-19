@@ -1,6 +1,7 @@
 package application;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -14,6 +15,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.collections.ListChangeListener.Change;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -199,7 +201,7 @@ public class NewTaskController implements Initializable {
 
 		// inject all contacts data Arraylist into Observable arraylist
 		contactsObserve = FXCollections.observableArrayList(contactsArray);
- 
+
 		// display observable list items into tableview
 		this.contact_id_c.setCellValueFactory((new PropertyValueFactory<Contacts,Integer>("contact_id")));
 		this.first_name_c.setCellValueFactory((new PropertyValueFactory<Contacts,String>("first_name")));
@@ -220,8 +222,8 @@ public class NewTaskController implements Initializable {
 		this.created_date_and_time_c.setCellValueFactory((new PropertyValueFactory<Contacts,Timestamp>("created_date_and_time")));
 		this.contact_source_c.setCellValueFactory((new PropertyValueFactory<Contacts,String>("contact_source")));
 		this.table_view.setItems(contactsObserve);
-		
-	
+
+
 
 		//table_view.getSelectionModel().setCellSelectionEnabled(true);
 		selectedContact = table_view.getSelectionModel().getSelectedItems();
@@ -238,18 +240,18 @@ public class NewTaskController implements Initializable {
 			}
 
 		});
-		
-		
+
+
 		//automatic select contacts from the previous memory
 		int current_contact = tempDataDAO.getCurrentContactID();
 		if (current_contact != -1 && contactsDAO.checkIfContactIDExistInDataBase(current_contact)) {
-			
+
 			int row_num = contactsDAO.getRowNumberFromID(current_contact);
 			contact_id_t.setText(String.valueOf(current_contact));
 			table_view.getSelectionModel().select(row_num);
-		
+
 		} 
-		
+
 
 	}
 
@@ -270,8 +272,8 @@ public class NewTaskController implements Initializable {
 		} else {
 			contact_id = Integer.valueOf(contact_id_t.getText());
 		}
-		
-		
+
+
 
 		int task_id = -1;
 
@@ -342,9 +344,66 @@ public class NewTaskController implements Initializable {
 		if (task_current_status.isEmpty()) {
 			task_current_status = null;
 		}
-		
+
 		if(tasksDAO.addNewTask(contact_id, task_id, task_type, task_summary, task_description, task_created_by, task_created_date_and_time, task_assigned_to, due_date_and_time, priority, progress, task_current_status)) {
+			//get assigned to person's email
+			
+			////
+			final String task_type_final = task_type;
+			final String task_summary_final = task_summary;
+			final String task_description_final = task_description;
+			final String task_created_by_final = task_created_by;
+			final String due_date_and_time_final;
+			if (b1) {
+			due_date_and_time_final = due_date_and_time_string;
+			} else {
+			due_date_and_time_final = null;	
+			}
+			final String priority_final = priority;
+			final int progress_final = progress;
+			final String task_current_status_final = task_current_status;
+			
 			sceneManager.switchScene(event, "SuccessfullySavedNewTask");
+
+			Task<Void> task = new Task<Void>() {
+
+				@Override
+				protected Void call() throws Exception {
+					// TODO Auto-generated method stub
+					String emailAddress = loginDAO.getLoginFromName(task_assigned_to).getEmail();
+					String subject = "A New Task created has been allocated to you, " + task_assigned_to;
+					StringBuilder sb = new StringBuilder();
+					sb.append("Task Details: \n");
+					sb.append("1) Task Type: "+task_type_final+"\n");
+					sb.append("2) Task Summary: "+task_summary_final+"\n");
+					sb.append("3) Task Description: "+task_description_final+"\n");
+					sb.append("4) Task Created By: "+task_created_by_final+"\n");
+					sb.append("5) Task Due Date And Time: "+due_date_and_time_final+"\n");
+					sb.append("6) Task Priority: "+priority_final+"\n");
+					sb.append("7) Task Progress: "+progress_final+"%\n");
+					sb.append("8) Task Current Status: "+task_current_status_final+"\n");
+					sb.append("\n\n Kind Regards,\n");
+					sb.append("The Team\n");
+					String message = sb.toString();
+
+					try {
+						JavaMailUtil.sendMail(emailAddress, subject, message);
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
+					////
+
+					return null;
+				}
+			};
+
+			new Thread(task).start();
+
+
+
+
 		} else {
 			this.warningAlert("Task Save Failed, Please double check the details you entered and try again!");
 		}

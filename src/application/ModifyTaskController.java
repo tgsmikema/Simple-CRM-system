@@ -13,6 +13,7 @@ import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -331,16 +332,22 @@ public class ModifyTaskController implements Initializable {
 		}
 
 		//////////////////////////////////////////////
-		task_due_date_and_time_string = due_date_and_time_t.getText();
+		String the_task_due_date_and_time_string;
+		if (due_date_and_time_t.getText() == null) {
+			the_task_due_date_and_time_string = "";
+		} else {
+			the_task_due_date_and_time_string = due_date_and_time_t.getText();
+		}
+		 
 
 		// specify date and time pattern
 		Pattern p1 = Pattern.compile("\\d{4}-\\d{2}-\\d{2}\\s\\d{2}:\\d{2}:\\d{2}");
-		Matcher m1 = p1.matcher(task_due_date_and_time_string);
+		Matcher m1 = p1.matcher(the_task_due_date_and_time_string);
 		boolean b1 = m1.matches();
 
 		// if pattern matches, then proceed to convert to Timestamp type to aviod exceptions
 		if (b1) {
-			due_date_and_time = Timestamp.valueOf(task_due_date_and_time_string);
+			due_date_and_time = Timestamp.valueOf(the_task_due_date_and_time_string);
 		} else {
 			due_date_and_time = null;
 		}
@@ -359,7 +366,57 @@ public class ModifyTaskController implements Initializable {
 		}
 
 		if(tasksDAO.modifyTaskFromTaskID(contact_id,task_id,task_type,task_summary,task_description,task_created_by,task_created_date_and_time,task_assigned_to,due_date_and_time,priority,progress,task_current_status)) {
+			
 			sceneManager.switchScene(event, "SuccessfullyModifiedTask");
+			
+			Task<Void> task = new Task<Void>() {
+				
+				@Override
+				protected Void call() throws Exception {
+					// TODO Auto-generated method stub
+					String due;
+					if(b1) {
+						due = the_task_due_date_and_time_string;
+					} else {
+						due = null;
+					}
+					
+					
+					String emailAddress = loginDAO.getLoginFromName(task_assigned_to).getEmail();
+					String subject = "A Task has been Modified and allocated to you, " + task_assigned_to;
+					StringBuilder sb = new StringBuilder();
+					sb.append("Task Details: \n");
+					sb.append("1) Task Type: "+task_type+"\n");
+					sb.append("2) Task Summary: "+task_summary+"\n");
+					sb.append("3) Task Description: "+task_description+"\n");
+					sb.append("4) Task Created By: "+task_created_by+"\n");
+					sb.append("5) Task Due Date And Time: "+due+"\n");
+					sb.append("6) Task Priority: "+priority+"\n");
+					sb.append("7) Task Progress: "+progress+"%\n");
+					sb.append("8) Task Current Status: "+task_current_status+"\n");
+					sb.append("\n\n Kind Regards,\n");
+					sb.append("The Team\n");
+					String message = sb.toString();
+					
+					try {
+						JavaMailUtil.sendMail(emailAddress, subject, message);
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+					////
+					
+					return null;
+				}
+			};
+			
+		new Thread(task).start();
+			
+			
+			
+			
+			
 		} else {
 			this.warningAlert("Task Save Failed, Please double check the details you entered and try again!");
 		}

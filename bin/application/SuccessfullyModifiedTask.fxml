@@ -12,6 +12,6 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Button layoutX="123.0" layoutY="60.0" mnemonicParsing="false" onAction="#returnToTasksHome" text="Return" />
+      <Button fx:id="button" layoutX="123.0" layoutY="60.0" mnemonicParsing="false" onAction="#returnToTasksHome" text="Return" />
    </children>
 </AnchorPane>
