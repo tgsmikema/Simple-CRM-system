@@ -13,10 +13,13 @@ public class DataBaseConnectionCredentials {
 	
 	
 	// local database
-	public static String URL = "jdbc:mysql://127.0.0.1:3306/super_chat_pal_crm";
-	public static String username = "root";
-	public static String password = "masiqi93";
+	public static String URL = FileReaderUtil.fileReader("databaseConfig.txt").get(0);
+	public static String username = FileReaderUtil.fileReader("databaseConfig.txt").get(1);
+	public static String password = FileReaderUtil.fileReader("databaseConfig.txt").get(2);
 	
+	
+	
+	// perhaps save detail into a file for persistance use, and read from file everytime.
 }
 
 
