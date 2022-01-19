@@ -20,5 +20,6 @@
       <PasswordField fx:id="password" layoutX="152.0" layoutY="123.0" promptText="Enter Password" />
       <Button fx:id="submitButton" layoutX="284.0" layoutY="198.0" mnemonicParsing="false" onAction="#submit" text="Submit" />
       <Button fx:id="registerButton" layoutX="60.0" layoutY="198.0" mnemonicParsing="false" onAction="#register" text="Register" />
+      <Button layoutX="7.0" layoutY="43.0" mnemonicParsing="false" onAction="#databaseSetting" prefHeight="45.0" prefWidth="73.0" text="DataBase Setting" textAlignment="CENTER" wrapText="true" />
    </children>
 </AnchorPane>

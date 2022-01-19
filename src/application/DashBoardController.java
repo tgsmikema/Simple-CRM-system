@@ -7,6 +7,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
@@ -60,9 +62,12 @@ public class DashBoardController implements Initializable{
 
 
 	private SceneManager sceneManager = new SceneManager();
+	
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		
+		
 
 		TasksDAO tasksDAO = new TasksDAO();
 		tasksHybridContactsArray = new ArrayList<>();

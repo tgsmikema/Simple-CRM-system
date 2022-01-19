@@ -99,6 +99,11 @@ public class LoginController implements Initializable {
 		return;
 	}
 	
+	@FXML
+	private void databaseSetting(ActionEvent e) {
+		sceneManager.switchScene(e, "DatabaseSetting");
+	}
+	
 	private void wrongPassword() {
 		Alert alert = new Alert(AlertType.WARNING);
 		alert.setTitle("Warning!");
