@@ -84,7 +84,7 @@ public class DeleteDatabaseController {
 
 	@FXML
 	void returnToDashboard(ActionEvent event) {
-		s.switchScene(event, "Dashboard");
+		s.switchScene(event, "DashBoard");
 	}
 
 	private boolean confirmationAlert(String message) {

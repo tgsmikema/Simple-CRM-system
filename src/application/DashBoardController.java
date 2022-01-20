@@ -113,7 +113,7 @@ public class DashBoardController implements Initializable{
 
 	@FXML
 	void deleteDatabase(ActionEvent event) {
-		sceneManager.switchScene(event, "deleteDatabase");
+		sceneManager.switchScene(event, "DeleteDatabase");
 	}
 
 	@FXML

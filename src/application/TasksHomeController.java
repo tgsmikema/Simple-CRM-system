@@ -151,7 +151,7 @@ public class TasksHomeController implements Initializable{
 
 	@FXML
 	void returnToDashBoard(ActionEvent event) {
-		sceneManager.switchScene(event, "Dashboard");
+		sceneManager.switchScene(event, "DashBoard");
 	}
 
 

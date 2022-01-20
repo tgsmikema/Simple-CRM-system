@@ -40,7 +40,7 @@ public class ImportExportBackupFileController {
     
     @FXML
     void returnToDashboard(ActionEvent event) {
-    	sceneManager.switchScene(event, "Dashboard");
+    	sceneManager.switchScene(event, "DashBoard");
     }
 
 }
