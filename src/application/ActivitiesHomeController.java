@@ -164,6 +164,7 @@ public class ActivitiesHomeController implements Initializable{
 		this.contact_created_date_and_time_c.setCellValueFactory((new PropertyValueFactory<ActivitiesHybridContacts,Timestamp>("created_date_and_time")));
 		this.contact_source_c.setCellValueFactory((new PropertyValueFactory<ActivitiesHybridContacts,String>("contact_source")));
 
+		
 		this.table_view.setItems(activitiesHybridContactsObserve);
 
 		this.hideUnnecessaryColumns(null);

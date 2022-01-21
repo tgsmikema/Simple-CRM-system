@@ -47,10 +47,3 @@ To run the project:
 		3) enter `java --module-path "path of javafx library" --add-modules javafx.controls,javafx.fxml -jar crm.jar`
 		to run the project. (replace the location to your javafx library with path in the quote above)
 
-4) Changing Base Email Address for sending the reminder email from when creating a new task/ modified task:
-
-	a) save the email address and login password into "emailDetails.txt" file.
-	
-	b) makesure the new email address has to be a gmail address, also, set "Less secure app access" on for your account,
-	for more info about how to setup, please go to: https://support.google.com/accounts/answer/6010255?hl=en
-

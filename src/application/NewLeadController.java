@@ -193,6 +193,10 @@ public class NewLeadController implements Initializable {
 		this.created_by_c.setCellValueFactory((new PropertyValueFactory<Contacts,String>("created_by")));
 		this.created_date_and_time_c.setCellValueFactory((new PropertyValueFactory<Contacts,Timestamp>("created_date_and_time")));
 		this.contact_source_c.setCellValueFactory((new PropertyValueFactory<Contacts,String>("contact_source")));
+		
+		this.description_c.setVisible(false);
+		
+		
 		this.table_view.setItems(contactsObserve);
 
 		//table_view.getSelectionModel().setCellSelectionEnabled(true);
