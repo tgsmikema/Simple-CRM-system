@@ -2,6 +2,25 @@
 
 To run the project:
 
+	*********************************************************************
+	Easiest way of getting project working:
+	
+	a) setup MySQL database:
+	
+	b) install JavaFX library: https://gluonhq.com/products/javafx/
+	download Windows SDK version, then unzip and open top folder, then open 'lib' folder,
+	Copy the directory address as a text.
+	
+	c) update 'pathOfJavaFXLibrary.txt' file with the directory address.
+	
+	d) click run.bat to start the project.
+	
+
+	*********************************************************************
+
+
+
+
 1) Setup the MySQL database:
 
 	a) download MySQL workbench for Windows
@@ -46,6 +65,7 @@ To run the project:
 		
 		3) enter `java --module-path "path of javafx library" --add-modules javafx.controls,javafx.fxml -jar crm.jar`
 		to run the project. (replace the location to your javafx library with path in the quote above)
+		
 
 4) Changing Base Email Address for sending the reminder email from when creating a new task/ modified task:
 
