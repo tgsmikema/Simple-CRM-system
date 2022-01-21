@@ -331,7 +331,7 @@ public class NewTaskController implements Initializable {
 		} else {
 			due_date_and_time = null;
 		}
-		//////////////////////
+		///////////////////////
 
 		String priority = priority_t.getText();
 		if (priority.isEmpty()) {

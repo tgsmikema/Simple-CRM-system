@@ -18,6 +18,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class LoginController implements Initializable {
@@ -26,6 +27,8 @@ public class LoginController implements Initializable {
 	@FXML private Button registerButton;
 	@FXML private TextField email;
 	@FXML private PasswordField password;
+	
+	@FXML AnchorPane anchorpane;
 
 	private SceneManager sceneManager = new SceneManager();
 	
@@ -35,6 +38,7 @@ public class LoginController implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 	
+		anchorpane.requestFocus();
 		tempDataDAO.resetData();
 	}
 

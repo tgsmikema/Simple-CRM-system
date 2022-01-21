@@ -7,19 +7,23 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.LoginController">
+<AnchorPane fx:id="anchorpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.LoginController">
    <children>
-      <Label layoutX="53.0" layoutY="14.0" text="Super Chat Pal CRM Login">
+      <Label fx:id="loginTitleLabel" layoutX="53.0" layoutY="14.0" text="Super Chat Pal CRM Login">
          <font>
             <Font size="22.0" />
          </font>
       </Label>
-      <Label layoutX="89.0" layoutY="82.0" text="Email:" />
-      <Label layoutX="65.0" layoutY="127.0" text="Password:" />
-      <TextField fx:id="email" layoutX="152.0" layoutY="78.0" promptText="Enter Email" />
-      <PasswordField fx:id="password" layoutX="152.0" layoutY="123.0" promptText="Enter Password" />
-      <Button fx:id="submitButton" layoutX="284.0" layoutY="198.0" mnemonicParsing="false" onAction="#submit" text="Submit" />
-      <Button fx:id="registerButton" layoutX="60.0" layoutY="198.0" mnemonicParsing="false" onAction="#register" text="Register" />
-      <Button layoutX="7.0" layoutY="43.0" mnemonicParsing="false" onAction="#databaseSetting" prefHeight="45.0" prefWidth="73.0" text="DataBase Setting" textAlignment="CENTER" wrapText="true" />
+      <TextField fx:id="email" alignment="CENTER" layoutX="58.0" layoutY="79.0" prefHeight="29.0" prefWidth="277.0" promptText="Enter Email">
+         <font>
+            <Font size="14.0" />
+         </font></TextField>
+      <PasswordField fx:id="password" alignment="CENTER" layoutX="58.0" layoutY="132.0" prefHeight="29.0" prefWidth="277.0" promptText="Enter Password">
+         <font>
+            <Font size="14.0" />
+         </font></PasswordField>
+      <Button fx:id="submitButton" layoutX="290.0" layoutY="200.0" mnemonicParsing="false" onAction="#submit" prefHeight="30.0" prefWidth="73.0" text="Submit" />
+      <Button fx:id="registerButton" layoutX="160.0" layoutY="200.0" mnemonicParsing="false" onAction="#register" prefHeight="30.0" prefWidth="73.0" text="Register" />
+      <Button layoutX="30.0" layoutY="200.0" mnemonicParsing="false" onAction="#databaseSetting" prefHeight="30.0" prefWidth="73.0" text="Settings" textAlignment="CENTER" wrapText="true" />
    </children>
 </AnchorPane>
