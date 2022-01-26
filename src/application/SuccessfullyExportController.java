@@ -9,7 +9,7 @@ public class SuccessfullyExportController {
 	
 	@FXML
 	public void returnToDashboard(ActionEvent e) {
-		sceneManager.switchScene(e, "Dashboard");
+		sceneManager.switchScene(e, "DashBoard");
 	}
 
 }

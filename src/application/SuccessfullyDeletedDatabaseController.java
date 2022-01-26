@@ -10,6 +10,6 @@ public class SuccessfullyDeletedDatabaseController {
 	SceneManager sceneManager = new SceneManager();
 	
 	public void returnToHome(ActionEvent e) {
-		sceneManager.switchScene(e, "Dashboard");
+		sceneManager.switchScene(e, "DashBoard");
 	}
 }
