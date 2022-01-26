@@ -73,4 +73,23 @@ To run the project:
 	
 	b) makesure the new email address has to be a gmail address, also, set "Less secure app access" on for your account,
 	for more info about how to setup, please go to: https://support.google.com/accounts/answer/6010255?hl=en
+	
+	
+	
+	
+	
+	
+	
+	
+************************************************************************************************************************
+hiddden feature:
+
+1) Delete all login user accounts:
+
+	a) when you are at the login panel, enter following:
+	
+		email:  		@admin
+		password: 		root
+		
+	b) you will then be logged into an admin panel and you can delete all login user accounts there.
 
