@@ -1,4 +1,4 @@
-# SuperChatPalCRM
+# Simple-CRM-system
 
 To run the project:
 
